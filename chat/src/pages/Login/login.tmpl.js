@@ -13,5 +13,4 @@ export const tmpl = `
     </form>
   </div>
 </body>
-
 `
