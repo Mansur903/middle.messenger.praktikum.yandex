@@ -1,0 +1,98 @@
+@import 'src/styles/vars.scss';
+@import 'src/styles/typography.scss';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+
+  .profileContainer {
+    width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+
+    h2 {
+      margin: 10px 0;
+    }
+
+    .avatar {
+      width: 100px;
+      border-radius: 100%;
+    }
+
+    form {
+      margin: 0 25px;
+
+      .formList {
+        list-style: none;
+      }
+
+      .formListItem {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $gray8;
+        margin-bottom: 8px;
+      }
+
+      .sign {
+        line-height: 35px;
+        font-size: $fontSizeMD;
+      }
+
+      input {
+        width: 30%;
+        padding: 8px;
+        border: none;
+        color: $gray50;
+        text-align: right
+      }
+
+      input:disabled {
+        background: $white;
+      }
+
+      button {
+        width: 50%;
+        padding: 10px;
+        background-color: $primary;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 70px 0 20px 0;
+      }
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 50px 25px 20px;
+      text-align: left;
+
+      .optionsItem {
+        padding: 10px 0;
+        border-bottom: 1px solid $gray8;
+
+        .blueLink {
+          color: $primary
+        }
+
+        .redLink {
+          color: $error
+        }
+      }
+    }
+  }
+}
+

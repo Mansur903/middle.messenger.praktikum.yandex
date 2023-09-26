@@ -5,7 +5,7 @@ import styles from './styles.module.scss'
 
 export const SignUp = () => {
 	return Handlebars.compile(tmpl)({
-		loginContainer: styles.loginContainer,
+		signUpContainer: styles.signUpContainer,
 		header: styles.header,
 		signUpPageAddress: '/signup',
 		signUpPageText: 'Нет аккаунта?'

@@ -3,7 +3,7 @@ export const tmpl = `
   <title>Регистрация</title>
 </head>
 <body>
-  <div class={{signupContainer}}>
+  <div class={{signUpContainer}}>
     <h2 class={{header}}>Регистрация</h2>
     <form>
       <input type="text" placeholder="Почта" name="email" required>
