@@ -4,10 +4,11 @@ import {tmpl} from './signup.tmpl'
 import styles from './styles.module.scss'
 
 export const SignUp = () => {
+
 	return Handlebars.compile(tmpl)({
 		signUpContainer: styles.signUpContainer,
 		header: styles.header,
 		signUpPageAddress: '/signup',
-		signUpPageText: 'Нет аккаунта?'
+		blueLink: styles.blueLink
 	})
 }

@@ -5,6 +5,7 @@ import { SignUp } from './pages/SignUp'
 import { EditProfile } from './pages/EditProfile'
 import { Profile } from './pages/Profile'
 import { ChangePassword } from './pages/ChangePassword'
+import { ServerError } from './pages/ServerError'
 
 import './styles/index.scss'
 
@@ -17,6 +18,7 @@ const ROUTES = {
 	'/editProfile': EditProfile(),
 	'/profile': Profile(),
 	'/changePassword': ChangePassword(),
+	'/serverError': ServerError(),
 }
 
 window.addEventListener('DOMContentLoaded', () => {

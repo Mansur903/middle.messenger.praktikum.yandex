@@ -14,8 +14,7 @@ export const tmpl = `
       <input type="password" placeholder="Пароль" name="password" required>
       <input type="password" placeholder="Пароль (eще раз)" name="password" required>
       <button class={{signup}} type="submit">Зарегистрироваться</button>
-      <button class={{signin}}>Войти</button>
-      <a href={{signUpPageAddress}}>{{signUpPageText}}</a>
+      <a class={{blueLink}} href="/login">Войти</a>
     </form>
   </div>
 </body>

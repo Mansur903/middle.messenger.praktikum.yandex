@@ -8,7 +8,7 @@ export const tmpl = `
 			<li class={{page}}><a href='/editProfile'>Edit Profile</a></li>
 			<li class={{page}}><a href='/changePassword'>Change Password</a></li>
 			<li class={{page}}><a href='/404'>404</a></li>
-			<li class={{page}}><a href='/500'>500</a></li>
+			<li class={{page}}><a href='/serverError'>500</a></li>
 		</ul>
 	</div>
 `

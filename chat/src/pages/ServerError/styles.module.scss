@@ -1,0 +1,26 @@
+@import 'src/styles/vars.scss';
+@import 'src/styles/typography.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  .title {
+    margin: 10px;
+  }
+
+  .subTitle {
+    margin-bottom: 60px;
+  }
+
+  .blueLink {
+    color: $primary
+  }
+}

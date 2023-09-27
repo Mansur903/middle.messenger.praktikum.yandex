@@ -4,6 +4,7 @@ import {tmpl} from './notFound.tmpl'
 import styles from './styles.module.scss'
 
 export const NotFound = () => {
+
 	return Handlebars.compile(tmpl)({
 		wrapper: styles.wrapper,
 		title: styles.title,
