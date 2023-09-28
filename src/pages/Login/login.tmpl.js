@@ -3,7 +3,7 @@ export const tmpl = `
   <title>Страница входа</title>
 </head>
 <body>
-  <div class={{loginContainer}}>
+  <main class={{loginContainer}}>
     <h2 class={{header}}>Войти</h2>
     <form>
       <input type="text" placeholder="Логин" name="login" required>
@@ -11,6 +11,6 @@ export const tmpl = `
       <button type="submit">Войти</button>
       <a href={{signUpPageAddress}}>{{signUpPageText}}</a>
     </form>
-  </div>
+  </main>
 </body>
 `

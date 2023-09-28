@@ -1,5 +1,5 @@
 export const tmpl = `
-	<div>
+	<main>
 		<h1>Main page</h1>
 		<ul class={{pages}}>
 			<li class={{page}}><a href='/login'>Login</a></li>
@@ -10,5 +10,5 @@ export const tmpl = `
 			<li class={{page}}><a href='/404'>404</a></li>
 			<li class={{page}}><a href='/serverError'>500</a></li>
 		</ul>
-	</div>
+	</main>
 `

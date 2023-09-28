@@ -3,7 +3,7 @@ export const tmpl = `
 	<title>Страница профиля</title>
 </head>
 <body>
-	<div class={{profileContainer}}>
+	<main class={{profileContainer}}>
 		<img class={{avatar}} src={{path}} alt={{alt}}>
 		<h2 class={{header}}>{{name}}</h2>
 		<form class={{form}}>
@@ -40,6 +40,6 @@ export const tmpl = `
 			<li class={{optionsItem}}><a class={{blueLink}} href='/changePassword'>Изменить пароль</a></li>
 			<li class={{optionsItem}}><a class={{redLink}} href='/main'>Выйти</a></li>
 		</ul>
-	</div>
+	</main>
 </body>
 `
