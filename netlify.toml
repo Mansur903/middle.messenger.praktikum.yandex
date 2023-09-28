@@ -43,3 +43,8 @@
   to = "/"
   status = 200
 
+[[redirects]]
+  from = "/main"
+  to = "/"
+  status = 200
+
