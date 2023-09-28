@@ -3,7 +3,7 @@ export const tmpl = `
 	<title>Страница редактирования профиля</title>
 </head>
 <body>
-	<div class={{editProfileContainer}}>
+	<main class={{editProfileContainer}}>
 		<img class={{avatar}} src={{path}} alt={{alt}}>
 		<form class={{form}}>
 			<ul class={{formList}}>
@@ -34,6 +34,6 @@ export const tmpl = `
 			</ul>
 			<button type="submit">Сохранить</button>
 		</form>
-	</div>
+	</main>
 </body>
 `

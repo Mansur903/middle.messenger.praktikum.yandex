@@ -13,6 +13,8 @@
 - 404: https://deploy--effervescent-speculoos-d15f09.netlify.app/404
 - 500: https://deploy--effervescent-speculoos-d15f09.netlify.app/serverError
 
+Ссылка на макет в фигме: https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?type=design&node-id=0-1&mode=design
+
 ## Установка
 
 ```sh
