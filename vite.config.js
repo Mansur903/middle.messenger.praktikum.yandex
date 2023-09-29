@@ -1,5 +1,7 @@
-import image from 'vite-image'
+import { defineConfig } from 'vite';
 
-export default {
-	plugins: [ image() ]
-}
+export default defineConfig({
+	server: {
+		port: 3000
+	}
+})
