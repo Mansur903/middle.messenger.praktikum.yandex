@@ -12,6 +12,7 @@ export const ServerError = () => {
 		blueLink: styles.blueLink,
 		value: '500',
 		text: 'Мы уже фиксим',
-		linkText: 'Назад к чатам'
+		linkText: 'Назад к чатам',
+		link: styles.link
 	})
 }

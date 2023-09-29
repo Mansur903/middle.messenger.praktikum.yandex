@@ -11,8 +11,12 @@ export const ChangePassword = () => {
 		avatar: styles.avatar,
 		path: imgUrl,
 		alt: 'Аватар',
+		form: styles.form,
 		formList: styles.formList,
 		formListItem: styles.formListItem,
 		sign: styles.sign,
+		main: styles.main,
+		input: styles.input,
+		button: styles.button,
 	})
 }

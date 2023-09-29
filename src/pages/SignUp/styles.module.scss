@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 @import '../../styles/typography';
 
-body {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,7 @@ body {
       font-size: $fontSizeDisplayXS;
     }
 
-    input {
+    .input {
       width: 90%;
       padding: 8px;
       margin-bottom: 16px;
@@ -29,7 +29,7 @@ body {
       border-bottom: 1px solid #ccc;
     }
 
-    button {
+    .signupButton {
       width: 100%;
       padding: 10px;
       background-color: $primary;
@@ -43,6 +43,5 @@ body {
     .blueLink {
       color: $primary
     }
-
   }
 }

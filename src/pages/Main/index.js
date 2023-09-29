@@ -5,6 +5,6 @@ import styles from './styles.module.scss'
 
 export const Main = () => {
 	return Handlebars.compile(tmpl)({
-		pages: styles.pages
+		main: styles.main
 	})
 }

@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 @import '../../styles/typography';
 
-body {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,12 +16,12 @@ body {
     border-radius: 10px;
     text-align: center;
 
-    a {
+    .link {
       color: inherit;
       text-decoration: inherit;
     }
 
-    h2 {
+    .header {
       margin: 10px 0;
     }
 
@@ -30,7 +30,7 @@ body {
       border-radius: 100%;
     }
 
-    form {
+    .form {
       margin: 0 25px;
 
       .formList {
@@ -49,7 +49,7 @@ body {
         font-size: $fontSizeMD;
       }
 
-      input {
+      .input {
         width: 30%;
         padding: 8px;
         border: none;
@@ -57,19 +57,8 @@ body {
         text-align: right
       }
 
-      input:disabled {
+      .input:disabled {
         background: $white;
-      }
-
-      button {
-        width: 50%;
-        padding: 10px;
-        background-color: $primary;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 70px 0 20px 0;
       }
     }
 

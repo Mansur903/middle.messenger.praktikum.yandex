@@ -8,6 +8,9 @@ export const Login = () => {
 		loginContainer: styles.loginContainer,
 		header: styles.header,
 		signUpPageAddress: '/signup',
-		signUpPageText: 'Нет аккаунта?'
+		signUpPageText: 'Нет аккаунта?',
+		main: styles.main,
+		input: styles.input,
+		button: styles.button,
 	})
 }

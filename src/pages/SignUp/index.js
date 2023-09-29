@@ -9,6 +9,10 @@ export const SignUp = () => {
 		signUpContainer: styles.signUpContainer,
 		header: styles.header,
 		signUpPageAddress: '/signup',
-		blueLink: styles.blueLink
+		blueLink: styles.blueLink,
+		main: styles.main,
+		input: styles.input,
+		signupButton: styles.signupButton,
+
 	})
 }
