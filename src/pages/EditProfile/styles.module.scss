@@ -1,13 +1,12 @@
 @import '../../styles/vars';
 @import '../../styles/typography';
 
-body {
+.main {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   overflow: hidden;
-
 
   .editProfileContainer {
     width: 600px;
@@ -17,7 +16,7 @@ body {
     border-radius: 10px;
     text-align: center;
 
-    form {
+    .form {
       margin: 0 25px
     }
 
@@ -42,7 +41,7 @@ body {
       font-size: $fontSizeMD;
     }
 
-    input {
+    .input {
       width: 30%;
       padding: 8px;
       border: none;
@@ -50,7 +49,7 @@ body {
       text-align: right
     }
 
-    button {
+    .button {
       width: 50%;
       padding: 10px;
       background-color: $primary;
@@ -60,7 +59,5 @@ body {
       cursor: pointer;
       margin: 70px 0 20px 0;
     }
-
   }
 }
-

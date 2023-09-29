@@ -11,6 +11,7 @@ export const Profile = () => {
 		avatar: styles.avatar,
 		path: imgUrl,
 		alt: 'Аватар',
+		form: styles.form,
 		formList: styles.formList,
 		formListItem: styles.formListItem,
 		sign: styles.sign,
@@ -18,6 +19,10 @@ export const Profile = () => {
 		options: styles.options,
 		optionsItem: styles.optionsItem,
 		blueLink: styles.blueLink,
-		redLink: styles.redLink
+		redLink: styles.redLink,
+		main: styles.main,
+		link: styles.link,
+		header: styles.header,
+		input: styles.input,
 	})
 }

@@ -10,5 +10,6 @@ export const NotFound = () => {
 		title: styles.title,
 		subTitle: styles.subTitle,
 		blueLink: styles.blueLink,
+		link: styles.link,
 	})
 }
