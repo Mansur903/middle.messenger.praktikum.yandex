@@ -6,6 +6,7 @@ import { EditProfile } from './pages/EditProfile'
 import { Profile } from './pages/Profile'
 import { ChangePassword } from './pages/ChangePassword'
 import { ServerError } from './pages/ServerError'
+import { Chat } from './pages/Chat'
 
 import './styles/index.scss'
 
@@ -19,6 +20,7 @@ const ROUTES = {
 	'/profile': Profile(),
 	'/changePassword': ChangePassword(),
 	'/serverError': ServerError(),
+	'/chat': Chat(),
 }
 
 window.addEventListener('DOMContentLoaded', () => {
