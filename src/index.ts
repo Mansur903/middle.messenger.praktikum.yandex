@@ -10,7 +10,7 @@ import { Chat } from './pages/Chat'
 
 import './styles/index.scss'
 
-const ROUTES = {
+const ROUTES: Record<string, string> = {
 	'/': Main(),
 	'/main': Main(),
 	'/404': NotFound(),
@@ -26,6 +26,8 @@ const ROUTES = {
 window.addEventListener('DOMContentLoaded', () => {
 	const root = document.getElementById('app')
 
-	const component = ROUTES[window.location.pathname] || NotFound()
-	root.innerHTML = component
+	if (root) {
+		const component = ROUTES[window.location.pathname] || NotFound()
+		root.innerHTML = component
+	}
 })

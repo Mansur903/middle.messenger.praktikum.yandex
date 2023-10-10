@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars'
 
-import { tmpl } from './chat.tmpl.js'
+import { tmpl } from './chat.tmpl.ts'
 import styles from './styles.module.scss'
 import imgUrl from '../../images/default-avatar.jpeg'
 
