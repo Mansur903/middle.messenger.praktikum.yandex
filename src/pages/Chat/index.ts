@@ -19,6 +19,13 @@ export const Chat = () => {
 		channelContent: styles.channelContent,
 		name: styles.name,
 		channelsHeader: styles.channelsHeader,
-		searchInput: styles.searchInput
+		searchInput: styles.searchInput,
+		channelsList: styles.channelsList,
+		time: styles.time,
+		profileLink: styles.profileLink,
+		message: styles.message,
+		inputWrapper: styles.inputWrapper,
+		input: styles.input,
+		button: styles.button,
 	})
 }

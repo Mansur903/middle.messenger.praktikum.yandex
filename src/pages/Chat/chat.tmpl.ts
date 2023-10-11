@@ -2,17 +2,42 @@ export const tmpl = `
 <main class={{main}}>
 	<section class={{channels}}>
 		<div class={{channelsHeader}}>
-		<a href='#'>Профиль</a>
+		<a class={{profileLink}} href='#'>Профиль ></a>
 			<input class={{searchInput}} type="text" name="search" placeholder="Поиск">
 		</div>
 		<ul class={{channelsList}}>
-			<div class={{channel}}>
+			<li class={{channel}}>
 				<img class={{avatar}} src={{path}} alt={{alt}}>
 				<div class={{channelContent}}>
 					<span class={{name}}>Андрей</span>
+					<span class={{message}}>Изображение</span>
+				</div>
+				<span class={{time}}>10:49</span>
+			</li>
+			<li class={{channel}}>
+				<img class={{avatar}} src={{path}} alt={{alt}}>
+				<div class={{channelContent}}>
+					<span class={{name}}>Киноклуб</span>
+					<span class={{message}}>Вы: стикер</span>
+				</div>
+				<span class={{time}}>12:00</span>
+			</li>
+			<li class={{channel}}>
+				<img class={{avatar}} src={{path}} alt={{alt}}>
+				<div class={{channelContent}}>
+					<span class={{name}}>Илья</span>
 					<span class={{message}}>Сообщение</span>
 				</div>
-			</div>
+				<span class={{time}}>Пт</span>
+			</li>
+			<li class={{channel}}>
+				<img class={{avatar}} src={{path}} alt={{alt}}>
+				<div class={{channelContent}}>
+					<span class={{name}}>Вадим</span>
+					<span class={{message}}>Сообщение</span>
+				</div>
+				<span class={{time}}>Ср</span>
+			</li>
 		</ul>
 	</section>
 	
@@ -21,8 +46,10 @@ export const tmpl = `
 		<ul class={{messages}}>
 		
 		</ul>
-		<input class={{input}} type="text" name="messages" required>
-		<button class={{button}} type="submit">Отправить</button>
+		<div class={{inputWrapper}}>
+      <input class={{input}} type="text" name="messages" required>
+      <button class={{button}} type="submit">Отправить</button>
+    </div>
 	</section>
 </main>
 `

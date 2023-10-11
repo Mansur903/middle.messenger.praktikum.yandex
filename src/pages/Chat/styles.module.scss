@@ -11,7 +11,7 @@
     width: 20%;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid $border;
 
     .avatar {
       width: 50px;
@@ -22,21 +22,34 @@
     .channelsHeader {
       display: flex;
       flex-direction: column;
+      border-bottom: 1px solid $border;
 
       .searchInput {
         box-sizing: border-box;
         height: 32px;
+        margin: 20px 10px 10px;
+        border-radius: 5px;
+        border: 1px solid $gray50;
+      }
+
+      .searchInput::placeholder {
+        text-align: center;
+      }
+
+      .profileLink {
+        color: $gray50;
         margin: 10px;
-        //width: 100%;
+        text-align: right;
+        text-decoration: none;
       }
     }
 
     .channel {
       display: flex;
       height: 70px;
-      border-top: 1px solid $border;
       border-bottom: 1px solid $border;
       margin: 10px;
+      position: relative;
 
       .channelContent {
         display: flex;
@@ -46,6 +59,19 @@
         .name {
           font-weight: bold;
         }
+
+        .message {
+          color: $gray50;
+          font-size: $fontSizeS;
+        }
+      }
+
+      .time {
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        color: $gray50;
+        font-size: $fontSizeXS;
       }
     }
   }
@@ -57,12 +83,37 @@
 
     .chatHeader {
       height: 70px;
-      border: 1px solid black;
+      border: 1px solid $border;
     }
 
     .messages {
       height: 100%;
-      border: 1px solid black;
+      border: 1px solid $border;
+    }
+
+    .inputWrapper {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      margin: 5px 5px;
+
+      .input {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 90%;
+        height: 70%;
+        margin: 10px;
+        background: $backgroundGrey;
+        border-radius: 10px;
+        border: 1px solid $border;
+      }
+      .button {
+        display: inline-block;
+        width: 8%;
+        overflow: clip;
+        height: 70%;
+        margin: 10px;
+      }
     }
   }
 }
