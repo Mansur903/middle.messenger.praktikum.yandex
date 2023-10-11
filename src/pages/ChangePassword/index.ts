@@ -1,22 +1,28 @@
 import Handlebars from 'handlebars'
 
+import Block from '../../utils/Block'
 import { tmpl } from './changePassword.tmpl'
 import styles from './styles.module.scss'
 import imgUrl from '../../images/default-avatar.jpeg'
 
-export const ChangePassword = () => {
+export class ChangePassword extends Block {
+	constructor() {
+		super('div', {})
+	}
 
-	return Handlebars.compile(tmpl)({
-		changePasswordContainer: styles.changePasswordContainer,
-		avatar: styles.avatar,
-		path: imgUrl,
-		alt: 'Аватар',
-		form: styles.form,
-		formList: styles.formList,
-		formListItem: styles.formListItem,
-		sign: styles.sign,
-		main: styles.main,
-		input: styles.input,
-		button: styles.button,
-	})
+	render() {
+		return this.compile(Handlebars.compile(tmpl)({
+			editProfileContainer: styles.editProfileContainer,
+			avatar: styles.avatar,
+			path: imgUrl,
+			alt: 'Аватар',
+			form: styles.form,
+			formList: styles.formList,
+			formListItem: styles.formListItem,
+			sign: styles.sign,
+			main: styles.main,
+			input: styles.input,
+			button: styles.button
+		}), this.props)
+	}
 }

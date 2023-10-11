@@ -1,15 +1,22 @@
 import Handlebars from 'handlebars'
 
+import Block from '../../utils/Block'
 import {tmpl} from './notFound.tmpl'
 import styles from './styles.module.scss'
 
-export const NotFound = () => {
 
-	return Handlebars.compile(tmpl)({
-		wrapper: styles.wrapper,
-		title: styles.title,
-		subTitle: styles.subTitle,
-		blueLink: styles.blueLink,
-		link: styles.link,
-	})
+export class NotFound extends Block {
+	constructor() {
+		super('div', {})
+	}
+
+	render() {
+		return this.compile(Handlebars.compile(tmpl)({
+			wrapper: styles.wrapper,
+			title: styles.title,
+			subTitle: styles.subTitle,
+			blueLink: styles.blueLink,
+			link: styles.link,
+		}), this.props)
+	}
 }
