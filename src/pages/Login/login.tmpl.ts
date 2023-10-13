@@ -6,9 +6,9 @@ export const tmpl = `
 	<div class={{loginContainer}}>
 		<h2 class={{header}}>Войти</h2>
 		<form>
-			<input class={{input}} type="text" placeholder="Логин" name="login" required>
-			<input class={{input}} type="password" placeholder="Пароль" name="password" required>
-			<button class={{button}} type="submit">Войти</button>
+		  {{{inputLoginCmp}}}
+			{{{inputPasswordCmp}}}
+			{{{buttonSubmitCmp}}}
 			<a href={{signUpPageAddress}}>{{signUpPageText}}</a>
 		</form>
 	</div>

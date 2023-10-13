@@ -11,12 +11,14 @@ export class NotFound extends Block {
 	}
 
 	render() {
-		return this.compile(Handlebars.compile(tmpl)({
+		const template = Handlebars.compile(tmpl)({
 			wrapper: styles.wrapper,
 			title: styles.title,
 			subTitle: styles.subTitle,
 			blueLink: styles.blueLink,
 			link: styles.link,
-		}), this.props)
+		})
+
+		return this.compile(template, this.props)
 	}
 }

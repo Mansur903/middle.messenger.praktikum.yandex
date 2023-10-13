@@ -1,8 +1,17 @@
 import Block from "../../utils/Block";
 
+interface ButtonProps {
+  label: string;
+  className: string;
+  type: string;
+  events: {
+    click: () => void;
+  }
+}
+
 export class Button extends Block {
-  constructor() {
-    super('button', { label: 'кнопка'})
+  constructor(props: ButtonProps) {
+    super('button', props)
   }
 
   render() {

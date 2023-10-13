@@ -76,8 +76,8 @@ class Block<P extends Record<string, any> = any> {
   }
 
   _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+    const { tagName, props } = this._meta;
+    this._element = this._createDocumentElement(tagName, props);
   }
 
   private _init() {
@@ -193,8 +193,15 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  _createDocumentElement(tagName: string) {
-    return document.createElement(tagName);
+  _createDocumentElement(tagName: string, props: P) {
+    const elem = document.createElement(tagName)
+    props.className ? elem.classList.add(props.className) : null
+    props.type ? elem.setAttribute('type', props.type) : null
+    props.placeholder ? elem.setAttribute('placeholder', props.placeholder) : null
+    props.name ? elem.setAttribute('name', props.name) : null
+    props.required ? elem.setAttribute('required', props.required) : null
+    props.required ? elem.setAttribute('required', props.required) : null
+    return elem
   }
 
   show() {
