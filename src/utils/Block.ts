@@ -200,7 +200,8 @@ class Block<P extends Record<string, any> = any> {
     props.placeholder ? elem.setAttribute('placeholder', props.placeholder) : null
     props.name ? elem.setAttribute('name', props.name) : null
     props.required ? elem.setAttribute('required', props.required) : null
-    props.required ? elem.setAttribute('required', props.required) : null
+    props.value ? elem.setAttribute('value', props.value) : null
+    props.disabled ? elem.setAttribute('disabled', props.disabled) : null
     return elem
   }
 

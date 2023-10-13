@@ -1,10 +1,10 @@
 export const tmpl = `
 	<head>
-  <title>Страница входа</title>
+  <title>{{titleText}}</title>
 </head>
 <main class={{main}}>
 	<div class={{loginContainer}}>
-		<h2 class={{header}}>Войти</h2>
+		<h2 class={{header}}>{{headerText}}</h2>
 		<form>
 		  {{{inputLoginCmp}}}
 			{{{inputPasswordCmp}}}

@@ -47,8 +47,8 @@ export const tmpl = `
 		
 		</ul>
 		<div class={{inputWrapper}}>
-      <input class={{input}} type="text" name="messages" required>
-      <button class={{button}} type="submit">Отправить</button>
+      {{{inputCmp}}}
+      {{{buttonSendCmp}}}
     </div>
 	</section>
 </main>

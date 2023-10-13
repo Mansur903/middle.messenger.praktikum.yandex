@@ -9,18 +9,18 @@ export const tmpl = `
 			<ul class={{formList}}>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Старый пароль</span>
-					<input class={{input}} type="password" value='123456' name="oldPassword" required>
+					{{{inputOldPassCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Новый пароль</span>
-					<input class={{input}} type="password" value='12345678' name="newPassword" required>
+					{{{inputNewPassCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Повторите новый пароль</span>
-					<input class={{input}} type="password" value='12345678' name="newPassword" required>
+					{{{inputNewPassConfirmCmp}}}
 				</li>
 			</ul>
-			<button class={{button}} type="submit">Сохранить</button>
+			{{{buttonSaveCmp}}}
 		</form>
 	</div>
 </main>

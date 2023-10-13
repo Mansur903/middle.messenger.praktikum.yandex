@@ -9,30 +9,30 @@ export const tmpl = `
 			<ul class={{formList}}>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Почта</span>
-					<input class={{input}} type="text" value="mansur98@yandex.ru" name="email">
+					{{{inputEmailCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Логин</span>
-					<input class={{input}} type="text" value="Mansur903" name="login">
+					{{{inputLoginCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Имя</span>
-					<input class={{input}} type="text" value="Мансур" name="first_name">
+					{{{inputFirstNameCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Фамилия</span>
-					<input class={{input}} type="text" value="Хуснутдинов" name="second_name">
+					{{{inputSecondNameCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Имя в чате</span>
-					<input class={{input}} type="text" value="Mansur" name="display_name">
+					{{{inputDisplayNameCmp}}}
 				</li>
 				<li class={{formListItem}}>
 					<span class={{sign}}>Телефон</span>
-					<input class={{input}} type="phone" value="+71234569999" name="phone">
+					{{{inputPhoneCmp}}}
 				</li>
 			</ul>
-			<button class={{button}} type="submit">Сохранить</button>
+			{{{buttonSaveCmp}}}
 		</form>
 	</div>
 </main>

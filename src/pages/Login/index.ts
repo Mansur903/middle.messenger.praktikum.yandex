@@ -40,6 +40,8 @@ export class Login extends Block {
 		return this.compile(tmpl, {
 			loginContainer: styles.loginContainer,
 			header: styles.header,
+			titleText: 'Страница входа',
+			headerText: 'Войти',
 			signUpPageAddress: '/signup',
 			signUpPageText: 'Нет аккаунта?',
 			main: styles.main,

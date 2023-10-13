@@ -3,6 +3,7 @@ import { tmpl } from './changePassword.tmpl'
 import styles from './styles.module.scss'
 import imgUrl from '../../images/default-avatar.jpeg'
 import {Input} from "../../components/Input";
+import {Button} from "../../components/Button";
 
 export class ChangePassword extends Block {
 	constructor() {
@@ -11,12 +12,37 @@ export class ChangePassword extends Block {
 
 	init() {
 		this.children.inputOldPassCmp = new Input({
-			placeholder: 'Логин',
 			name: 'oldPassword',
-			required: true,
+			value: 123456,
 			className: styles.input,
+			required: true,
 			type: 'password',
 			events: {click: () => console.log('login')},
+		})
+
+		this.children.inputNewPassCmp = new Input({
+			name: 'newPassword',
+			value: 12345678,
+			className: styles.input,
+			required: true,
+			type: 'password',
+			events: {click: () => console.log('login')},
+		})
+
+		this.children.inputNewPassConfirmCmp = new Input({
+			name: 'newPassword',
+			value: 12345678,
+			className: styles.input,
+			required: true,
+			type: 'password',
+			events: {click: () => console.log('login')},
+		})
+
+		this.children.buttonSaveCmp = new Button({
+			label: 'Сохранить',
+			className: styles.button,
+			type: 'submit',
+			events: {click: () => console.log('Сохранить')},
 		})
 	}
 
@@ -34,6 +60,10 @@ export class ChangePassword extends Block {
 			input: styles.input,
 			button: styles.button,
 			changePasswordContainer: styles.changePasswordContainer,
+			inputOldPassCmp: this.children.inputOldPassCmp,
+			inputNewPassCmp: this.children.inputNewPassCmp,
+			inputNewPassConfirmCmp: this.children.inputNewPassConfirmCmp,
+			buttonSubmitCmp: this.children.buttonSaveCmp
 		})
 	}
 }

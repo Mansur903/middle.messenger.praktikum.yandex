@@ -1,12 +1,14 @@
 import Block from "../../utils/Block";
 
 interface InputProps {
-  placeholder: string;
-  name: string;
-  required: boolean;
-  className: string;
-  type: string;
-  events: {
+  placeholder?: string;
+  name?: string;
+  required?: boolean;
+  className?: string;
+  type?: string;
+  value?: string | number;
+  disabled?: boolean,
+  events?: {
     click: () => void;
   }
 }

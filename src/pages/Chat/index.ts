@@ -1,17 +1,42 @@
-import Handlebars from 'handlebars'
-
 import Block from '../../utils/Block'
 import { tmpl } from './chat.tmpl.ts'
 import styles from './styles.module.scss'
 import imgUrl from '../../images/default-avatar.jpeg'
+import {Input} from "../../components/Input";
+import {Button} from "../../components/Button";
 
 export class Chat extends Block {
 	constructor() {
 		super('div', {})
 	}
 
+	init() {
+		this.children.inputCmp = new Input({
+			name: 'messages',
+			className: styles.input,
+			required: true,
+			type: 'text',
+			events: {click: () => console.log('send message')},
+		})
+
+		this.children.inputSearchCmp = new Input({
+			name: 'search',
+			className: styles.input,
+			type: 'text',
+			placeholder: 'Поиск',
+			events: {click: () => console.log('search')},
+		})
+
+		this.children.buttonSendCmp = new Button({
+			label: 'Отправить',
+			className: styles.button,
+			type: 'submit',
+			events: {click: () => console.log('Отправить')},
+		})
+	}
+
 	render() {
-		return this.compile(Handlebars.compile(tmpl)({
+		return this.compile(tmpl, {
 			main: styles.main,
 			avatar: styles.avatar,
 			channels: styles.channels,
@@ -32,6 +57,8 @@ export class Chat extends Block {
 			inputWrapper: styles.inputWrapper,
 			input: styles.input,
 			button: styles.button,
-		}), this.props)
+			inputCmp: this.children.inputCmp,
+			buttonSendCmp: this.children.buttonSendCmp
+		})
 	}
 }

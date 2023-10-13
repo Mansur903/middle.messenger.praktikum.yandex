@@ -1,10 +1,10 @@
 import Block from "../../utils/Block";
 
 interface ButtonProps {
-  label: string;
-  className: string;
-  type: string;
-  events: {
+  label?: string;
+  className?: string;
+  type?: string;
+  events?: {
     click: () => void;
   }
 }

@@ -1,9 +1,6 @@
-import Handlebars from 'handlebars'
-
 import Block from '../../utils/Block'
 import {tmpl} from './notFound.tmpl'
 import styles from './styles.module.scss'
-
 
 export class NotFound extends Block {
 	constructor() {
@@ -11,14 +8,12 @@ export class NotFound extends Block {
 	}
 
 	render() {
-		const template = Handlebars.compile(tmpl)({
+		return this.compile(tmpl, {
 			wrapper: styles.wrapper,
 			title: styles.title,
 			subTitle: styles.subTitle,
 			blueLink: styles.blueLink,
 			link: styles.link,
 		})
-
-		return this.compile(template, this.props)
 	}
 }

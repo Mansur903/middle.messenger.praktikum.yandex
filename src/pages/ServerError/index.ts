@@ -1,5 +1,3 @@
-import Handlebars from 'handlebars'
-
 import Block from '../../utils/Block'
 import {tmpl} from './serverError.tmpl'
 import styles from './styles.module.scss'
@@ -11,7 +9,7 @@ export class ServerError extends Block {
 	}
 
 	render() {
-		return this.compile(Handlebars.compile(tmpl)({
+		return this.compile(tmpl, {
 			wrapper: styles.wrapper,
 			title: styles.title,
 			subTitle: styles.subTitle,
@@ -20,6 +18,6 @@ export class ServerError extends Block {
 			text: 'Мы уже фиксим',
 			linkText: 'Назад к чатам',
 			link: styles.link
-		}), this.props)
+		})
 	}
 }
