@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import imgUrl from '../../images/default-avatar.jpeg'
 import {Input} from "../../components/Input";
 import {Button} from "../../components/Button";
+import {fieldsRegExps, getInputValues, validateField, validateForm} from "../../utils/Ancillary";
 
 export class EditProfile extends Block {
 	constructor() {
@@ -16,7 +17,8 @@ export class EditProfile extends Block {
 			className: styles.input,
 			type: 'text',
 			value: 'mansur98@yandex.ru',
-			events: {click: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.email,
+			events: {blur: () => validateField(this, 'email')},
 		})
 
 		this.children.inputLoginCmp = new Input({
@@ -24,7 +26,8 @@ export class EditProfile extends Block {
 			className: styles.input,
 			type: 'text',
 			value: 'Mansur903',
-			events: {click: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.login,
+			events: {blur: () => validateField(this, 'login')},
 		})
 
 		this.children.inputFirstNameCmp = new Input({
@@ -32,7 +35,8 @@ export class EditProfile extends Block {
 			className: styles.input,
 			type: 'text',
 			value: 'Мансур',
-			events: {click: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.firstSecondName,
+			events: {blur: () => validateField(this, 'first_name')},
 		})
 
 		this.children.inputSecondNameCmp = new Input({
@@ -40,7 +44,8 @@ export class EditProfile extends Block {
 			className: styles.input,
 			type: 'text',
 			value: 'Хуснутдинов',
-			events: {click: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.firstSecondName,
+			events: {blur: () => validateField(this, 'second_name')},
 		})
 
 		this.children.inputDisplayNameCmp = new Input({
@@ -48,7 +53,8 @@ export class EditProfile extends Block {
 			className: styles.input,
 			type: 'text',
 			value: 'Mansur',
-			events: {click: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.firstSecondName,
+			events: {blur: () => validateField(this, 'display_name')},
 		})
 
 		this.children.inputPhoneCmp = new Input({
@@ -56,14 +62,19 @@ export class EditProfile extends Block {
 			className: styles.input,
 			type: 'phone',
 			value: '+71234569999',
-			events: {click: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.phone,
+			events: {blur: () => validateField(this, 'phone')},
 		})
 
 		this.children.buttonSaveCmp = new Button({
 			label: 'Сохранить',
 			className: styles.button,
 			type: 'submit',
-			events: {click: () => console.log('Сохранить')},
+			events: {click: (e) => {
+					e.preventDefault()
+					if (!validateForm(this)) return
+					getInputValues(this)
+			}},
 		})
 	}
 

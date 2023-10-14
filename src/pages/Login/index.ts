@@ -3,7 +3,7 @@ import {tmpl} from './login.tmpl'
 import styles from './styles.module.scss'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
-import {getInputValues, validateField, validateForm} from '../../utils/Ancillary';
+import {fieldsRegExps, getInputValues, validateField, validateForm} from '../../utils/Ancillary';
 
 export class Login extends Block {
 	constructor() {
@@ -29,7 +29,7 @@ export class Login extends Block {
 			required: true,
 			className: styles.input,
 			type: 'text',
-			'data-regexp': '^(?!^\d+$)[a-zA-Z0-9_-]{3,20}$',
+			'data-regexp': fieldsRegExps.login,
 			events: {
 				blur: () => validateField(this, 'login')
 			},
@@ -41,7 +41,7 @@ export class Login extends Block {
 			required: true,
 			className: styles.input,
 			type: 'password',
-			'data-regexp': '^(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,40}$',
+			'data-regexp': fieldsRegExps.password,
 			events: {
 				blur: () => validateField(this, 'password')
 			},

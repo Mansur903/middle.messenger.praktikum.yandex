@@ -27,7 +27,7 @@ const ROUTES: Record<string, Block> = {
 window.addEventListener('DOMContentLoaded', () => {
 	const root = document.getElementById('app')!
 
-	const component = ROUTES[window.location.pathname];
+	const component = ROUTES[window.location.pathname] || new NotFound();
 
 	root.append(component.element!);
 	component.dispatchComponentDidMount();

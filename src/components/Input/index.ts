@@ -11,7 +11,8 @@ interface InputProps {
   events?: {
     blur: (e:KeyboardEvent) => void;
   },
-  'data-regexp'?: any
+  'data-regexp'?: string,
+  'data-additional'?: string,
   isValid?: () => boolean
 }
 

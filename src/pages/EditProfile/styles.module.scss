@@ -45,6 +45,8 @@
       width: 30%;
       padding: 8px;
       border: none;
+      margin-bottom: -1px;
+      border-bottom: 1px solid $gray8;
       color: $gray50;
       text-align: right
     }

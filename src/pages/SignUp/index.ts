@@ -1,8 +1,9 @@
 import Block from '../../utils/Block'
 import {tmpl} from './signup.tmpl'
 import styles from './styles.module.scss'
-import {Input} from "../../components/Input";
-import {Button} from "../../components/Button";
+import {Input} from '../../components/Input';
+import {Button} from '../../components/Button';
+import {fieldsRegExps, getInputValues, validateField, validateForm} from '../../utils/Ancillary';
 
 export class SignUp extends Block {
 	constructor() {
@@ -16,7 +17,8 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Почта',
 			required: true,
-			events: {focus: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.email,
+			events: {blur: () => validateField(this, 'email')},
 		})
 
 		this.children.inputLoginCmp = new Input({
@@ -25,7 +27,8 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Логин',
 			required: true,
-			events: {focus: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.login,
+			events: {blur: () => validateField(this, 'login')},
 		})
 
 		this.children.inputFirstNameCmp = new Input({
@@ -34,7 +37,8 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Имя',
 			required: true,
-			events: {focus: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.firstSecondName,
+			events: {blur: () => validateField(this, 'first_name')},
 		})
 
 		this.children.inputSecondNameCmp = new Input({
@@ -43,7 +47,8 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Фамилия',
 			required: true,
-			events: {focus: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.firstSecondName,
+			events: {blur: () => validateField(this, 'second_name')},
 		})
 
 		this.children.inputPhoneCmp = new Input({
@@ -52,7 +57,8 @@ export class SignUp extends Block {
 			type: 'phone',
 			placeholder: 'Телефон',
 			required: true,
-			events: {focus: () => console.log('qwerty')},
+			'data-regexp': fieldsRegExps.phone,
+			events: {blur: () => validateField(this, 'phone')},
 		})
 
 		this.children.inputOldPassCmp = new Input({
@@ -61,7 +67,9 @@ export class SignUp extends Block {
 			className: styles.input,
 			required: true,
 			type: 'password',
-			events: {focus: () => console.log('login')},
+			'data-regexp': fieldsRegExps.password,
+			'data-additional': 'setPassword',
+			events: {blur: () => validateField(this, 'password')},
 		})
 
 		this.children.inputNewPassCmp = new Input({
@@ -70,14 +78,33 @@ export class SignUp extends Block {
 			className: styles.input,
 			required: true,
 			type: 'password',
-			events: {focus: () => console.log('login')},
+			'data-regexp': fieldsRegExps.password,
+			'data-additional': 'confirmPassword',
+			events: {blur: () => {
+					const input = this.element?.querySelector('[data-additional="setPassword"]') as HTMLInputElement
+					const inputConfirm = this.element?.querySelector('[data-additional="confirmPassword"]') as HTMLInputElement
+					const regExpString = inputConfirm.getAttribute('data-regexp')
+					const regexp = regExpString ? new RegExp(regExpString) : null
+
+					if (regexp?.test(inputConfirm?.value) && input.value === inputConfirm.value) {
+						inputConfirm.style.borderColor = 'green';
+					} else {
+						inputConfirm.style.borderColor = 'red';
+					}
+			}},
 		})
 
 		this.children.buttonSignUpCmp = new Button({
 			label: 'Зарегистрироваться',
 			className: styles.signupButton,
 			type: 'submit',
-			events: {click: () => console.log('Сохранить')},
+			events: {
+				click: (e) => {
+					e.preventDefault()
+					if (!validateForm(this)) return
+					getInputValues(this)
+				}
+			},
 		})
 	}
 
