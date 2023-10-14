@@ -202,6 +202,7 @@ class Block<P extends Record<string, any> = any> {
     props.required ? elem.setAttribute('required', props.required) : null
     props.value ? elem.setAttribute('value', props.value) : null
     props.disabled ? elem.setAttribute('disabled', props.disabled) : null
+    props['data-regexp'] ? elem.setAttribute('data-regexp', props['data-regexp']) : null
     return elem
   }
 

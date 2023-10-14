@@ -9,13 +9,19 @@ interface InputProps {
   value?: string | number;
   disabled?: boolean,
   events?: {
-    click: () => void;
-  }
+    blur: (e:KeyboardEvent) => void;
+  },
+  'data-regexp'?: any
+  isValid?: () => boolean
 }
 
 export class Input extends Block {
   constructor(props: InputProps) {
     super('input', props)
+  }
+
+  get regexp() {
+    return this.props.validationRegExp
   }
 
   render() {

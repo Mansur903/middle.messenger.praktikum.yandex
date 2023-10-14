@@ -5,7 +5,7 @@ interface ButtonProps {
   className?: string;
   type?: string;
   events?: {
-    click: () => void;
+    click: (e:KeyboardEvent) => void;
   }
 }
 

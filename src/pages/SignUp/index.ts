@@ -16,7 +16,7 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Почта',
 			required: true,
-			events: {click: () => console.log('qwerty')},
+			events: {focus: () => console.log('qwerty')},
 		})
 
 		this.children.inputLoginCmp = new Input({
@@ -25,7 +25,7 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Логин',
 			required: true,
-			events: {click: () => console.log('qwerty')},
+			events: {focus: () => console.log('qwerty')},
 		})
 
 		this.children.inputFirstNameCmp = new Input({
@@ -34,7 +34,7 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Имя',
 			required: true,
-			events: {click: () => console.log('qwerty')},
+			events: {focus: () => console.log('qwerty')},
 		})
 
 		this.children.inputSecondNameCmp = new Input({
@@ -43,7 +43,7 @@ export class SignUp extends Block {
 			type: 'text',
 			placeholder: 'Фамилия',
 			required: true,
-			events: {click: () => console.log('qwerty')},
+			events: {focus: () => console.log('qwerty')},
 		})
 
 		this.children.inputPhoneCmp = new Input({
@@ -52,7 +52,7 @@ export class SignUp extends Block {
 			type: 'phone',
 			placeholder: 'Телефон',
 			required: true,
-			events: {click: () => console.log('qwerty')},
+			events: {focus: () => console.log('qwerty')},
 		})
 
 		this.children.inputOldPassCmp = new Input({
@@ -61,7 +61,7 @@ export class SignUp extends Block {
 			className: styles.input,
 			required: true,
 			type: 'password',
-			events: {click: () => console.log('login')},
+			events: {focus: () => console.log('login')},
 		})
 
 		this.children.inputNewPassCmp = new Input({
@@ -70,7 +70,7 @@ export class SignUp extends Block {
 			className: styles.input,
 			required: true,
 			type: 'password',
-			events: {click: () => console.log('login')},
+			events: {focus: () => console.log('login')},
 		})
 
 		this.children.buttonSignUpCmp = new Button({
