@@ -24,16 +24,16 @@ function queryStringify(data: object) {
 }
 
 export class HTTPTransport {
-  get = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.GET, data: queryStringify(options.data) }, options.timeout)
+  get = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.GET, data: queryStringify(options.data) })
     .catch((err) => console.log(err));
 
-  post = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.POST }, options.timeout).catch((err) => console.log(err));
+  post = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.POST }).catch((err) => console.log(err));
 
-  put = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout).catch((err) => console.log(err));
+  put = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.PUT }).catch((err) => console.log(err));
 
-  delete = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout).catch((err) => console.log(err));
+  delete = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.DELETE }).catch((err) => console.log(err));
 
-  request = (url:string, options:Options, timeout = 5000) => {
+  request = (url:string, options:Options) => {
     const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
