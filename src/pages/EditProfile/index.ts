@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import { tmpl } from './editProfile.tmpl.ts';
+import { tmpl } from './editProfile.tmpl';
 import styles from './styles.module.scss';
 import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';

@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import { tmpl } from './chat.tmpl.ts';
+import { tmpl } from './chat.tmpl';
 import styles from './styles.module.scss';
 import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
