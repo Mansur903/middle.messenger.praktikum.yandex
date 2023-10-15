@@ -1,6 +1,7 @@
+/* eslint-disable */
 enum METHODS {
   GET = 'GET',
-  POST =  'POST',
+  POST = 'POST',
   PUT = 'PUT',
   DELETE = 'DELETE'
 }
@@ -12,37 +13,28 @@ type Options = {
   headers?: Record<string, string>
 }
 function queryStringify(data: object) {
-  // Можно делать трансформацию GET-параметров в отдельной функции
-  if (!data) return ''
+  if (!data) return '';
 
-  const result = []
-  for (let key in data) {
-    result.push(`${key}=${data[key as keyof object]}`)
+  const result = [];
+  // eslint-disable-next-line guard-for-in,no-restricted-syntax
+  for (const key in data) {
+    result.push(`${key}=${data[key as keyof object]}`);
   }
-  return `?${result.join('&')}`
+  return `?${result.join('&')}`;
 }
 
 class HTTPTransport {
-  get = (url:string, options:Options) => {
+  get = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.GET, data: queryStringify(options.data) }, options.timeout)
+    .catch((err) => console.log(err));
 
-    return this.request(url, {...options, method: METHODS.GET, data: queryStringify(options.data)}, options.timeout).catch(err => console.log(err))
-  };
+  post = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.POST }, options.timeout).catch((err) => console.log(err));
 
-  post = (url:string, options:Options) => {
+  put = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.PUT }, options.timeout).catch((err) => console.log(err));
 
-    return this.request(url, {...options, method: METHODS.POST}, options.timeout).catch(err => console.log(err))
-  };
-
-  put = (url:string, options:Options) => {
-    return this.request(url, {...options, method: METHODS.PUT}, options.timeout).catch(err => console.log(err))
-  };
-
-  delete = (url:string, options:Options) => {
-    return this.request(url, {...options, method: METHODS.DELETE}, options.timeout).catch(err => console.log(err))
-  }
+  delete = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.DELETE }, options.timeout).catch((err) => console.log(err));
 
   request = (url:string, options:Options, timeout = 5000) => {
-    const {method, data, headers} = options;
+    const { method, data, headers } = options;
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
@@ -53,11 +45,11 @@ class HTTPTransport {
         xhr.open(method, url);
       }
 
-      for (let headerName in headers) {
+      for (const headerName in headers) {
         xhr.setRequestHeader(headerName, headers[headerName]);
       }
 
-      xhr.onload = function() {
+      xhr.onload = function () {
         resolve(xhr);
       };
 

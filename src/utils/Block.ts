@@ -6,17 +6,22 @@ import { EventBus } from './EventBus';
 // Нельзя создавать экземпляр данного класса
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
   } as const;
 
   public id = nanoid(6);
+
   protected props: P;
+
   public children: Record<string, Block>;
+
   private eventBus: () => EventBus;
+
   private _element: HTMLElement | null = null;
+
   private _meta: { tagName: string; props: P; };
 
   /** JSDoc
@@ -25,14 +30,14 @@ class Block<P extends Record<string, any> = any> {
    *
    * @returns {void}
    */
-  constructor(tagName = "div", propsWithChildren: P) {
+  constructor(tagName = 'div', propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this._meta = {
       tagName,
-      props: props as P
+      props: props as P,
     };
 
     this.children = children;
@@ -61,9 +66,9 @@ class Block<P extends Record<string, any> = any> {
   }
 
   _addEvents() {
-    const {events = {}} = this.props as P & { events: Record<string, () => void> };
+    const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
-    Object.keys(events).forEach(eventName => {
+    Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
@@ -99,7 +104,7 @@ class Block<P extends Record<string, any> = any> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
+    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
@@ -109,7 +114,6 @@ class Block<P extends Record<string, any> = any> {
   }
 
   protected componentDidUpdate(oldProps: P, newProps: P) {
-
     return true;
   }
 
@@ -177,10 +181,10 @@ class Block<P extends Record<string, any> = any> {
     return new Proxy(props, {
       get(target, prop: string) {
         const value = target[prop];
-        return typeof value === "function" ? value.bind(target) : value;
+        return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target, prop: string, value) {
-        const oldTarget = { ...target }
+        const oldTarget = { ...target };
 
         target[prop as keyof P] = value;
 
@@ -188,31 +192,32 @@ class Block<P extends Record<string, any> = any> {
         return true;
       },
       deleteProperty() {
-        throw new Error("Нет доступа");
-      }
+        throw new Error('Нет доступа');
+      },
     });
   }
 
   _createDocumentElement(tagName: string, props: P) {
-    const elem = document.createElement(tagName)
-    props.className ? elem.classList.add(props.className) : null
-    props.type ? elem.setAttribute('type', props.type) : null
-    props.placeholder ? elem.setAttribute('placeholder', props.placeholder) : null
-    props.name ? elem.setAttribute('name', props.name) : null
-    props.required ? elem.setAttribute('required', props.required) : null
-    props.value ? elem.setAttribute('value', props.value) : null
-    props.disabled ? elem.setAttribute('disabled', props.disabled) : null
-    props['data-regexp'] ? elem.setAttribute('data-regexp', props['data-regexp']) : null
-    props['data-additional'] ? elem.setAttribute('data-additional', props['data-additional']) : null
-    return elem
+    const elem = document.createElement(tagName);
+    props.className ? elem.classList.add(props.className) : null;
+    props.type ? elem.setAttribute('type', props.type) : null;
+    props.placeholder ? elem.setAttribute('placeholder', props.placeholder) : null;
+    props.name ? elem.setAttribute('name', props.name) : null;
+    props.required ? elem.setAttribute('required', props.required) : null;
+    props.value ? elem.setAttribute('value', props.value) : null;
+    props.disabled ? elem.setAttribute('disabled', props.disabled) : null;
+    props['data-regexp'] ? elem.setAttribute('data-regexp', props['data-regexp']) : null;
+    props['data-additional']
+      ? elem.setAttribute('data-additional', props['data-additional']) : null;
+    return elem;
   }
 
   show() {
-    this.getContent()!.style.display = "block";
+    this.getContent()!.style.display = 'block';
   }
 
   hide() {
-    this.getContent()!.style.display = "none";
+    this.getContent()!.style.display = 'none';
   }
 }
 
