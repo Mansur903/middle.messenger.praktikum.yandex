@@ -23,7 +23,7 @@ function queryStringify(data: object) {
   return `?${result.join('&')}`;
 }
 
-class HTTPTransport {
+export class HTTPTransport {
   get = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.GET, data: queryStringify(options.data) }, options.timeout)
     .catch((err) => console.log(err));
 
