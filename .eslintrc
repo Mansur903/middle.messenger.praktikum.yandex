@@ -15,7 +15,6 @@
     "no-unused-expressions": "off",
     "default-param-last": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
   },
   "settings": {
     "import/resolver": {
@@ -27,6 +26,7 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
+  "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser"
 }
 
