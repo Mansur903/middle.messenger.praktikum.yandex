@@ -14,7 +14,8 @@
     "class-methods-use-this": "off",
     "no-unused-expressions": "off",
     "default-param-last": "off",
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   },
   "settings": {
     "import/resolver": {
