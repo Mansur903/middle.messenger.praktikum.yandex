@@ -84,8 +84,10 @@ export class SignUp extends Block {
       'data-additional': 'confirmPassword',
       events: {
         blur: () => {
-          const input = this.element?.querySelector('[data-additional="setPassword"]') as HTMLInputElement;
-          const inputConfirm = this.element?.querySelector('[data-additional="confirmPassword"]') as HTMLInputElement;
+          const input = this
+            .element?.querySelector('[data-additional="setPassword"]') as HTMLInputElement;
+          const inputConfirm = this
+            .element?.querySelector('[data-additional="confirmPassword"]') as HTMLInputElement;
           const regExpString = inputConfirm.getAttribute('data-regexp');
           const regexp = regExpString ? new RegExp(regExpString) : null;
 

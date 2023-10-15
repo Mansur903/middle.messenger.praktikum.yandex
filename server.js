@@ -11,9 +11,7 @@ const __dirname = dirname(__filename);
 
 app.use(express.static('./dist'));
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}!`);
-});
+app.listen(PORT, () => (`Example app listening on port ${PORT}!`));
 
 app.use('/login', (req, res) => {
   res.status(200).sendFile(`${__dirname}/dist/index.html`);

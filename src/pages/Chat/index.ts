@@ -29,7 +29,6 @@ export class Chat extends Block {
       className: styles.input,
       type: 'text',
       placeholder: 'Поиск',
-      events: { blur: () => console.log('search') },
     });
 
     this.children.buttonSendCmp = new Button({
