@@ -17,7 +17,6 @@ export class ChangePassword extends Block {
       className: styles.input,
       required: true,
       type: 'password',
-      events: { blur: () => console.log('login') },
     });
 
     this.children.inputNewPassCmp = new Input({
@@ -26,7 +25,6 @@ export class ChangePassword extends Block {
       className: styles.input,
       required: true,
       type: 'password',
-      events: { blur: () => console.log('login') },
     });
 
     this.children.inputNewPassConfirmCmp = new Input({
@@ -35,14 +33,12 @@ export class ChangePassword extends Block {
       className: styles.input,
       required: true,
       type: 'password',
-      events: { blur: () => console.log('login') },
     });
 
     this.children.buttonSaveCmp = new Button({
       label: 'Сохранить',
       className: styles.button,
       type: 'submit',
-      events: { click: () => console.log('Сохранить') },
     });
   }
 
