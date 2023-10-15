@@ -1,0 +1,47 @@
+@import '../../styles/vars';
+@import '../../styles/typography';
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+
+  .signUpContainer {
+    width: 300px;
+    margin: 0 auto;
+    padding: 40px 20px 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+
+    .header {
+      margin: 10px 0 40px 0;
+      font-size: $fontSizeDisplayXS;
+    }
+
+    .input {
+      width: 90%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: none;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .signupButton {
+      width: 100%;
+      padding: 10px;
+      background-color: $primary;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+
+    .blueLink {
+      color: $primary
+    }
+  }
+}

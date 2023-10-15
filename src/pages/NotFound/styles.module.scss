@@ -1,0 +1,27 @@
+@import '../../styles/vars';
+@import '../../styles/typography';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .link {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  .title {
+    margin: 10px;
+  }
+
+  .subTitle {
+    margin-bottom: 60px;
+  }
+
+  .blueLink {
+    color: $primary
+  }
+}

@@ -1,0 +1,63 @@
+@import '../../styles/vars';
+@import '../../styles/typography';
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+
+  .changePasswordContainer {
+    width: 600px;
+    margin: 0 auto;
+    padding: 40px 20px 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+
+    .form {
+      margin: 0 25px
+    }
+
+    .avatar {
+      width: 100px;
+      border-radius: 100%;
+    }
+
+    .formList {
+      list-style: none;
+    }
+
+    .formListItem {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $gray8;
+      margin-bottom: 8px;
+    }
+
+    .sign {
+      line-height: 35px;
+      font-size: $fontSizeMD;
+    }
+
+    .input {
+      width: 30%;
+      padding: 8px;
+      border: none;
+      color: $gray50;
+      text-align: right
+    }
+
+    .button {
+      width: 50%;
+      padding: 10px;
+      background-color: $primary;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 70px 0 20px 0;
+    }
+  }
+}
