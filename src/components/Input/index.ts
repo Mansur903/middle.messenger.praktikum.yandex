@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 
 interface InputProps {
   placeholder?: string;
@@ -18,14 +18,14 @@ interface InputProps {
 
 export class Input extends Block {
   constructor(props: InputProps) {
-    super('input', props)
+    super('input', props);
   }
 
   get regexp() {
-    return this.props.validationRegExp
+    return this.props.validationRegExp;
   }
 
   render() {
-    return this.compile('', this.props)
+    return this.compile('', this.props);
   }
 }
