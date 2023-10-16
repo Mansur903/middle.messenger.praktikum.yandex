@@ -9,27 +9,45 @@ export const tmpl = `
       <ul class={{formList}}>
         <li class={{formListItem}}>
           <span class={{sign}}>Почта</span>
-          {{{inputEmailCmp}}}
+          <div class={{inputWrapper}}>
+            {{{inputEmailCmp}}}
+            {{{inputEmailErrorCmp}}}
+          </div>
         </li>
         <li class={{formListItem}}>
           <span class={{sign}}>Логин</span>
-          {{{inputLoginCmp}}}
+          <div class={{inputWrapper}}>
+            {{{inputLoginCmp}}}
+            {{{inputLoginErrorCmp}}}
+          </div>
         </li>
         <li class={{formListItem}}>
           <span class={{sign}}>Имя</span>
-          {{{inputFirstNameCmp}}}
+          <div class={{inputWrapper}}>
+            {{{inputFirstNameCmp}}}
+            {{{inputFirstNameErrorCmp}}}
+          </div>
         </li>
         <li class={{formListItem}}>
           <span class={{sign}}>Фамилия</span>
-          {{{inputSecondNameCmp}}}
+          <div class={{inputWrapper}}>
+            {{{inputSecondNameCmp}}}
+            {{{inputSecondNameErrorCmp}}}
+          </div>
         </li>
         <li class={{formListItem}}>
           <span class={{sign}}>Имя в чате</span>
-          {{{inputDisplayNameCmp}}}
+          <div class={{inputWrapper}}>
+            {{{inputDisplayNameCmp}}}
+            {{{inputDisplayNameErrorCmp}}}
+          </div>
         </li>
         <li class={{formListItem}}>
           <span class={{sign}}>Телефон</span>
-          {{{inputPhoneCmp}}}
+          <div class={{inputWrapper}}>
+            {{{inputPhoneCmp}}}
+            {{{inputPhoneErrorCmp}}}
+          </div>
         </li>
       </ul>
       {{{buttonSaveCmp}}}

@@ -4,8 +4,10 @@ import styles from './styles.module.scss';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import {
+  fieldsErrors,
   fieldsRegExps, getInputValues, validateField, validateForm,
 } from '../../utils/Ancillary';
+import { Error } from '../../components/Error';
 
 export class SignUp extends Block {
   constructor() {
@@ -20,8 +22,15 @@ export class SignUp extends Block {
       placeholder: 'Почта',
       required: true,
       'data-regexp': fieldsRegExps.email,
-      events: { blur: () => validateField(this, 'email') },
+      events: {
+        blur: () => {
+          validateField(this, 'email')
+            ? this.children.inputEmailErrorCmp.setProps({ text: '' })
+            : this.children.inputEmailErrorCmp.setProps({ text: fieldsErrors.email });
+        },
+      },
     });
+    this.children.inputEmailErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.inputLoginCmp = new Input({
       name: 'login',
@@ -30,8 +39,15 @@ export class SignUp extends Block {
       placeholder: 'Логин',
       required: true,
       'data-regexp': fieldsRegExps.login,
-      events: { blur: () => validateField(this, 'login') },
+      events: {
+        blur: () => {
+          validateField(this, 'login')
+            ? this.children.inputLoginErrorCmp.setProps({ text: '' })
+            : this.children.inputLoginErrorCmp.setProps({ text: fieldsErrors.login });
+        },
+      },
     });
+    this.children.inputLoginErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.inputFirstNameCmp = new Input({
       name: 'first_name',
@@ -40,8 +56,15 @@ export class SignUp extends Block {
       placeholder: 'Имя',
       required: true,
       'data-regexp': fieldsRegExps.firstSecondName,
-      events: { blur: () => validateField(this, 'first_name') },
+      events: {
+        blur: () => {
+          validateField(this, 'first_name')
+            ? this.children.inputFirstNameErrorCmp.setProps({ text: '' })
+            : this.children.inputFirstNameErrorCmp.setProps({ text: fieldsErrors.firstSecondName });
+        },
+      },
     });
+    this.children.inputFirstNameErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.inputSecondNameCmp = new Input({
       name: 'second_name',
@@ -50,8 +73,16 @@ export class SignUp extends Block {
       placeholder: 'Фамилия',
       required: true,
       'data-regexp': fieldsRegExps.firstSecondName,
-      events: { blur: () => validateField(this, 'second_name') },
+      events: {
+        blur: () => {
+          validateField(this, 'second_name')
+            ? this.children.inputSecondNameErrorCmp.setProps({ text: '' })
+            : this.children.inputSecondNameErrorCmp
+              .setProps({ text: fieldsErrors.firstSecondName });
+        },
+      },
     });
+    this.children.inputSecondNameErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.inputPhoneCmp = new Input({
       name: 'phone',
@@ -60,8 +91,15 @@ export class SignUp extends Block {
       placeholder: 'Телефон',
       required: true,
       'data-regexp': fieldsRegExps.phone,
-      events: { blur: () => validateField(this, 'phone') },
+      events: {
+        blur: () => {
+          validateField(this, 'phone')
+            ? this.children.inputPhoneErrorCmp.setProps({ text: '' })
+            : this.children.inputPhoneErrorCmp.setProps({ text: fieldsErrors.phone });
+        },
+      },
     });
+    this.children.inputPhoneErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.inputOldPassCmp = new Input({
       name: 'password',
@@ -71,8 +109,15 @@ export class SignUp extends Block {
       type: 'password',
       'data-regexp': fieldsRegExps.password,
       'data-additional': 'setPassword',
-      events: { blur: () => validateField(this, 'password') },
+      events: {
+        blur: () => {
+          validateField(this, 'phone')
+            ? this.children.inputPasswordErrorCmp.setProps({ text: '' })
+            : this.children.inputPasswordErrorCmp.setProps({ text: fieldsErrors.password });
+        },
+      },
     });
+    this.children.inputPasswordErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.inputNewPassCmp = new Input({
       name: 'password',
@@ -99,6 +144,7 @@ export class SignUp extends Block {
         },
       },
     });
+    this.children.inputConfirmPasswordErrorCmp = new Error({ text: '', className: styles.error });
 
     this.children.buttonSignUpCmp = new Button({
       label: 'Зарегистрироваться',
@@ -131,6 +177,13 @@ export class SignUp extends Block {
       inputOldPassCmp: this.children.inputOldPassCmp,
       inputNewPassCmp: this.children.inputNewPassCmp,
       buttonSignUpCmp: this.children.buttonSignUpCmp,
+      inputEmailErrorCmp: this.children.inputEmailErrorCmp,
+      inputLoginErrorCmp: this.children.inputLoginErrorCmp,
+      inputFirstNameErrorCmp: this.children.inputFirstNameErrorCmp,
+      inputSecondNameErrorCmp: this.children.inputSecondNameErrorCmp,
+      inputPhoneErrorCmp: this.children.inputPhoneErrorCmp,
+      inputPasswordErrorCmp: this.children.inputPasswordErrorCmp,
+      inputConfirmPasswordErrorCmp: this.children.inputConfirmPasswordErrorCmp,
     });
   }
 }

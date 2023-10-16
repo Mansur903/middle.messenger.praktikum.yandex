@@ -3,7 +3,9 @@ import { tmpl } from './login.tmpl';
 import styles from './styles.module.scss';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Error } from '../../components/Error';
 import {
+  fieldsErrors,
   fieldsRegExps, getInputValues, validateField, validateForm,
 } from '../../utils/Ancillary';
 
@@ -34,7 +36,11 @@ export class Login extends Block {
       type: 'text',
       'data-regexp': fieldsRegExps.login,
       events: {
-        blur: () => validateField(this, 'login'),
+        blur: () => {
+          validateField(this, 'login')
+            ? this.children.inputLoginErrorCmp.setProps({ text: '' })
+            : this.children.inputLoginErrorCmp.setProps({ text: fieldsErrors.login });
+        },
       },
     });
 
@@ -46,9 +52,16 @@ export class Login extends Block {
       type: 'password',
       'data-regexp': fieldsRegExps.password,
       events: {
-        blur: () => validateField(this, 'password'),
+        blur: () => {
+          validateField(this, 'password')
+            ? this.children.inputPasswordErrorCmp.setProps({ text: '' })
+            : this.children.inputPasswordErrorCmp.setProps({ text: fieldsErrors.password });
+        },
       },
     });
+
+    this.children.inputLoginErrorCmp = new Error({ text: '', className: styles.error });
+    this.children.inputPasswordErrorCmp = new Error({ text: '', className: styles.error });
   }
 
   render() {
@@ -63,7 +76,9 @@ export class Login extends Block {
       input: styles.input,
       buttonSubmitCmp: this.children.buttonSubmitCmp,
       inputLoginCmp: this.children.inputLoginCmp,
+      inputLoginErrorCmp: this.children.inputLoginErrorCmp,
       inputPasswordCmp: this.children.inputPasswordCmp,
+      inputPasswordErrorCmp: this.children.inputPasswordErrorCmp,
     });
   }
 }

@@ -21,10 +21,6 @@ export class Input extends Block {
     super('input', props);
   }
 
-  get regexp() {
-    return this.props.validationRegExp;
-  }
-
   render() {
     return this.compile('', this.props);
   }

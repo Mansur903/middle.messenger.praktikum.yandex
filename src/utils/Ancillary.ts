@@ -8,6 +8,16 @@ export const fieldsRegExps = {
   phone: '^\\+?\\d{10,15}$',
   notEmpty: '.+',
 };
+
+export const fieldsErrors = {
+  login: 'От 3 до 20 символов, разрешены латиница, цифры, дефис и нижнее подчёркивание',
+  email: 'Должен быть формат email',
+  password: 'От 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
+  phone: 'От 10 до 15 символов, состоит из цифр, может начинается с плюса',
+  message: 'Сообщение не может быть пустым',
+  firstSecondName: 'Латиница/кириллица, первая заглавная, без пробелов, цифр, спецсимволов',
+};
+
 export function getInputValues(me: Block) {
   const result: Record<string, string> = {};
   const inputs = me.element?.querySelectorAll('input');
