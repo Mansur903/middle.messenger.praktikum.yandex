@@ -12,6 +12,9 @@ type Options = {
   timeout?: number;
   headers?: Record<string, string>
 }
+
+type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+
 function queryStringify(data: object) {
   if (!data) return '';
 
@@ -24,14 +27,14 @@ function queryStringify(data: object) {
 }
 
 export class HTTPTransport {
-  get = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.GET, data: queryStringify(options.data) })
+  get: HTTPMethod = (url, options) => this.request(url, { ...options, method: METHODS.GET, data: queryStringify(options?.data) })
     .catch((err) => console.log(err));
 
-  post = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.POST }).catch((err) => console.log(err));
+  post: HTTPMethod = (url, options) => this.request(url, { ...options, method: METHODS.POST }).catch((err) => console.log(err));
 
-  put = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.PUT }).catch((err) => console.log(err));
+  put: HTTPMethod = (url, options) => this.request(url, { ...options, method: METHODS.PUT }).catch((err) => console.log(err));
 
-  delete = (url:string, options:Options) => this.request(url, { ...options, method: METHODS.DELETE }).catch((err) => console.log(err));
+  delete: HTTPMethod = (url, options) => this.request(url, { ...options, method: METHODS.DELETE }).catch((err) => console.log(err));
 
   request = (url:string, options:Options) => {
     const { method, data, headers } = options;
