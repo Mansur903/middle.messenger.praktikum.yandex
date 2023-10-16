@@ -1,0 +1,120 @@
+@import '../../styles/vars';
+@import '../../styles/typography';
+
+.main {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+
+  .channels {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $border;
+
+    .avatar {
+      width: 50px;
+      border-radius: 100%;
+      margin: 10px;
+    }
+
+    .channelsHeader {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid $border;
+
+      .searchInput {
+        box-sizing: border-box;
+        height: 32px;
+        margin: 20px 10px 10px;
+        border-radius: 5px;
+        border: 1px solid $gray50;
+      }
+
+      .searchInput::placeholder {
+        text-align: center;
+      }
+
+      .profileLink {
+        color: $gray50;
+        margin: 10px;
+        text-align: right;
+        text-decoration: none;
+      }
+    }
+
+    .channel {
+      display: flex;
+      height: 70px;
+      border-bottom: 1px solid $border;
+      margin: 10px;
+      position: relative;
+
+      .channelContent {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0 10px 5px;
+
+        .name {
+          font-weight: bold;
+        }
+
+        .message {
+          color: $gray50;
+          font-size: $fontSizeS;
+        }
+      }
+
+      .time {
+        position: absolute;
+        right: 5px;
+        top: 10px;
+        color: $gray50;
+        font-size: $fontSizeXS;
+      }
+    }
+  }
+
+  .chat {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    .chatHeader {
+      height: 70px;
+      border: 1px solid $border;
+    }
+
+    .messages {
+      height: 100%;
+      border: 1px solid $border;
+    }
+
+    .inputWrapper {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      margin: 5px 5px;
+
+      .input {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 90%;
+        height: 70%;
+        margin: 10px;
+        background: $backgroundGrey;
+        border-radius: 10px;
+        border: 1px solid $border;
+        padding: 5px;
+      }
+      .button {
+        display: inline-block;
+        width: 8%;
+        overflow: clip;
+        height: 70%;
+        margin: 10px;
+      }
+    }
+  }
+}
