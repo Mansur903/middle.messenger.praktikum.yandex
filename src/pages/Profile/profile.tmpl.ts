@@ -37,12 +37,14 @@ export const tmpl = `
     
     <ul class={{options}}>
       <li class={{optionsItem}}>
-        <a class="{{link}} {{blueLink}}" href='/editProfile'>Изменить данные</a>
+        {{{editProfileLinkCmp}}}
       </li>
       <li class={{optionsItem}}>
-        <a class="{{link}} {{blueLink}}" href='/changePassword'>Изменить пароль</a>
+        {{{editPasswordLinkCmp}}}
       </li>
-      <li class={{optionsItem}}><a class="{{link}} {{redLink}}" href='/main'>Выйти</a></li>
+      <li class={{optionsItem}}>
+        {{{closeLinkCmp}}}
+      </li>
     </ul>
   </div>
 </main>

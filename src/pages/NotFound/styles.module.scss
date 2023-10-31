@@ -9,8 +9,9 @@
   height: 100vh;
 
   .link {
-    color: inherit;
+    color: $primary;
     text-decoration: inherit;
+    cursor: pointer;
   }
 
   .title {
@@ -19,9 +20,5 @@
 
   .subTitle {
     margin-bottom: 60px;
-  }
-
-  .blueLink {
-    color: $primary
   }
 }

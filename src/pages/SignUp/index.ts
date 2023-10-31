@@ -8,6 +8,7 @@ import {
   fieldsRegExps, getInputValues, validateField, validateForm,
 } from '../../utils/Ancillary';
 import { Error } from '../../components/Error';
+import { Link } from '../../components/Link';
 
 export class SignUp extends Block {
   constructor() {
@@ -15,6 +16,12 @@ export class SignUp extends Block {
   }
 
   init() {
+    this.children.linkCmp = new Link('', {
+      to: '/login',
+      label: 'Войти',
+      className: styles.link,
+    });
+
     this.children.inputEmailCmp = new Input({
       name: 'email',
       className: styles.input,
@@ -184,6 +191,7 @@ export class SignUp extends Block {
       inputPhoneErrorCmp: this.children.inputPhoneErrorCmp,
       inputPasswordErrorCmp: this.children.inputPasswordErrorCmp,
       inputConfirmPasswordErrorCmp: this.children.inputConfirmPasswordErrorCmp,
+      linkCmp: this.children.linkCmp,
     });
   }
 }

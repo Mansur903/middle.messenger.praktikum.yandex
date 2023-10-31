@@ -3,6 +3,7 @@ import { tmpl } from './profile.tmpl';
 import styles from './styles.module.scss';
 import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
 
 export class Profile extends Block {
   constructor() {
@@ -10,6 +11,24 @@ export class Profile extends Block {
   }
 
   init() {
+    this.children.editProfileLinkCmp = new Link('', {
+      to: '/editProfile',
+      label: 'Изменить данные',
+      className: styles.link,
+    });
+
+    this.children.editPasswordLinkCmp = new Link('', {
+      to: '/changePassword',
+      label: 'Изменить пароль',
+      className: styles.link,
+    });
+
+    this.children.closeLinkCmp = new Link('', {
+      to: '/main',
+      label: 'Выйти',
+      className: styles.redLink,
+    });
+
     this.children.inputEmailCmp = new Input({
       name: 'email',
       className: styles.input,
@@ -84,6 +103,9 @@ export class Profile extends Block {
       inputSecondNameCmp: this.children.inputSecondNameCmp,
       inputDisplayNameCmp: this.children.inputDisplayNameCmp,
       inputPhoneCmp: this.children.inputPhoneCmp,
+      editProfileLinkCmp: this.children.editProfileLinkCmp,
+      editPasswordLinkCmp: this.children.editPasswordLinkCmp,
+      closeLinkCmp: this.children.closeLinkCmp,
     });
   }
 }

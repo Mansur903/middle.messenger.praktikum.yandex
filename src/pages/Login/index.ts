@@ -3,6 +3,7 @@ import { tmpl } from './login.tmpl';
 import styles from './styles.module.scss';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
 import { Error } from '../../components/Error';
 import {
   fieldsErrors,
@@ -15,6 +16,12 @@ export class Login extends Block {
   }
 
   init() {
+    this.children.linkCmp = new Link('', {
+      to: '/signup',
+      label: 'Нет аккаунта?',
+      className: styles.link,
+    });
+
     this.children.buttonSubmitCmp = new Button({
       label: 'Войти',
       className: styles.button,
@@ -79,6 +86,7 @@ export class Login extends Block {
       inputLoginErrorCmp: this.children.inputLoginErrorCmp,
       inputPasswordCmp: this.children.inputPasswordCmp,
       inputPasswordErrorCmp: this.children.inputPasswordErrorCmp,
+      linkCmp: this.children.linkCmp,
     });
   }
 }

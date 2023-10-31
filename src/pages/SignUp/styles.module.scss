@@ -52,8 +52,10 @@
       margin: 10px 0;
     }
 
-    .blueLink {
-      color: $primary
+    .link {
+      text-decoration: underline;
+      cursor: pointer;
+      color: $primary;
     }
   }
 }

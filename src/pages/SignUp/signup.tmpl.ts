@@ -21,7 +21,7 @@ export const tmpl = `
       {{{inputNewPassCmp}}}
       {{{inputConfirmPasswordErrorCmp}}}
       {{{buttonSignUpCmp}}}
-      <a class={{blueLink}} href="/login">Войти</a>
+      {{{linkCmp}}}
     </form>
   </div>
 </main>

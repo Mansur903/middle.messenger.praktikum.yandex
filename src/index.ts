@@ -14,7 +14,7 @@ import router from './utils/Router';
 enum Routes {
   MainPage = '/main',
   LoginPage = '/login',
-  NotFoundPage = '/notFound',
+  NotFoundPage = '/404',
   SignUpPage = '/signup',
   EditProfilePage = '/editProfile',
   ProfilePage = '/profile',
@@ -22,19 +22,6 @@ enum Routes {
   ServerErrorPage = '/serverError',
   ChatPage = '/chat'
 }
-
-// const ROUTES: Record<string, Block> = {
-//   '/': new Main(),
-//   '/main': new Main(),
-//   '/404': new NotFound(),
-//   '/login': new Login(),
-//   '/signup': new SignUp(),
-//   '/editProfile': new EditProfile(),
-//   '/profile': new Profile(),
-//   '/changePassword': new ChangePassword(),
-//   '/serverError': new ServerError(),
-//   '/chat': new Chat(),
-// };
 
 window.addEventListener('DOMContentLoaded', () => {
   router
@@ -48,33 +35,9 @@ window.addEventListener('DOMContentLoaded', () => {
     .use(Routes.ServerErrorPage, ServerError)
     .use(Routes.ChatPage, Chat);
 
-  let isProtectedRoute = true;
-
-  switch (window.location.pathname) {
-    case Routes.LoginPage:
-    case Routes.SignUpPage:
-      isProtectedRoute = false;
-      break;
-  }
-
   try {
     router.start();
-
-    // if (!isProtectedRoute) {
-    //   router.go(Routes.ProfilePage);
-    // }
   } catch (e) {
-    // console.log(e, 'Here');
-    router.start();
-
-    if (isProtectedRoute) {
-      router.go(Routes.LoginPage);
-    }
+    console.log(e, 'Here');
   }
-  // const root = document.getElementById('app')!;
-  //
-  // const component = ROUTES[window.location.pathname] || new NotFound();
-  //
-  // root.append(component.element!);
-  // component.dispatchComponentDidMount();
 });

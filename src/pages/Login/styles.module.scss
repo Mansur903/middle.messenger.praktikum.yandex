@@ -51,5 +51,11 @@
       cursor: pointer;
       margin: 70px 0 20px 0;
     }
+
+    .link {
+      text-decoration: underline;
+      cursor: pointer;
+      color: $primary;
+    }
   }
 }

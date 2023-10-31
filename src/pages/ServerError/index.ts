@@ -1,10 +1,19 @@
 import Block from '../../utils/Block';
 import { tmpl } from './serverError.tmpl';
 import styles from './styles.module.scss';
+import { Link } from '../../components/Link';
 
 export class ServerError extends Block {
   constructor() {
     super('div', {});
+  }
+
+  init() {
+    this.children.backLinkCmp = new Link('', {
+      to: '/main',
+      label: 'Назад к чатам',
+      className: styles.link,
+    });
   }
 
   render() {
@@ -17,6 +26,7 @@ export class ServerError extends Block {
       text: 'Мы уже фиксим',
       linkText: 'Назад к чатам',
       link: styles.link,
+      backLinkCmp: this.children.backLinkCmp,
     });
   }
 }

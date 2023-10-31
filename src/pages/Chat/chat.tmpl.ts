@@ -2,7 +2,7 @@ export const tmpl = `
 <main class={{main}}>
   <section class={{channels}}>
     <div class={{channelsHeader}}>
-    <a class={{profileLink}} href='#'>Профиль ></a>
+    {{{profileLinkCmp}}}
       <input class={{searchInput}} type="text" name="search" placeholder="Поиск">
     </div>
     <ul class={{channelsList}}>

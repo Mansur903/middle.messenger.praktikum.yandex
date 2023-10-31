@@ -7,6 +7,7 @@ import { Button } from '../../components/Button';
 import {
   fieldsRegExps, getInputValues, validateField, validateForm,
 } from '../../utils/Ancillary';
+import { Link } from '../../components/Link';
 
 export class Chat extends Block {
   constructor() {
@@ -14,6 +15,12 @@ export class Chat extends Block {
   }
 
   init() {
+    this.children.profileLinkCmp = new Link('', {
+      to: '/profile',
+      label: 'Профиль >',
+      className: styles.profileLink,
+    });
+
     this.children.inputCmp = new Input({
       name: 'messages',
       className: styles.input,
@@ -68,6 +75,7 @@ export class Chat extends Block {
       button: styles.button,
       inputCmp: this.children.inputCmp,
       buttonSendCmp: this.children.buttonSendCmp,
+      profileLinkCmp: this.children.profileLinkCmp,
     });
   }
 }
