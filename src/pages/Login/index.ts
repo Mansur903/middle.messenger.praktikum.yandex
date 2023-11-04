@@ -5,9 +5,10 @@ import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
 import { Link } from '../../components/Link';
 import { Error } from '../../components/Error';
+import AuthController from '../../controllers/AuthController';
 import {
   fieldsErrors,
-  fieldsRegExps, getInputValues, validateField, validateForm,
+  fieldsRegExps, validateField, validateForm,
 } from '../../utils/Ancillary';
 
 export class Login extends Block {
@@ -30,7 +31,14 @@ export class Login extends Block {
         click: (e) => {
           e.preventDefault();
           if (!validateForm(this)) return;
-          getInputValues(this);
+          const values = Object
+            .values(this.children)
+            .filter((child) => child instanceof Input)
+            .map((child) => ([(child as Input).getName(), (child as Input).getValue()]));
+
+          const data = Object.fromEntries(values);
+
+          AuthController.signin(data);
         },
       },
     });

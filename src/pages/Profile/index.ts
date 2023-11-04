@@ -4,10 +4,16 @@ import styles from './styles.module.scss';
 import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
 import { Link } from '../../components/Link';
+import AuthController from '../../controllers/AuthController';
+import { State, withStore } from '../../utils/Store';
 
-export class Profile extends Block {
+export class BaseProfile extends Block {
   constructor() {
     super('div', {});
+  }
+
+  componentDidMount() {
+    AuthController.fetchUser();
   }
 
   init() {
@@ -27,6 +33,9 @@ export class Profile extends Block {
       to: '/main',
       label: 'Выйти',
       className: styles.redLink,
+      events: {
+        click: () => { AuthController.logout(); },
+      },
     });
 
     this.children.inputEmailCmp = new Input({
@@ -76,6 +85,8 @@ export class Profile extends Block {
       value: '+71234569999',
       disabled: true,
     });
+
+    console.log(this.props);
   }
 
   render() {
@@ -109,3 +120,7 @@ export class Profile extends Block {
     });
   }
 }
+
+const mapStateToProps = (state: State) => ({ ...state.user });
+
+export const Profile = withStore(mapStateToProps)(BaseProfile);

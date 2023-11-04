@@ -13,13 +13,14 @@ class BaseLink extends Block {
   // @ts-ignore
   constructor(tagName, props: LinkProps) {
     super('a', {
-      ...props,
       events: {
         click: (event:MouseEvent) => {
           event.preventDefault();
+          console.log(1112);
           this.navigate();
         },
       },
+      ...props,
     });
   }
 

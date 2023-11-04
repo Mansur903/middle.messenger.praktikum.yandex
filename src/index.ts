@@ -10,6 +10,7 @@ import { ServerError } from './pages/ServerError';
 import { Chat } from './pages/Chat';
 import './styles/index.scss';
 import router from './utils/Router';
+import AuthController from './controllers/AuthController';
 
 enum Routes {
   MainPage = '/main',
@@ -23,7 +24,7 @@ enum Routes {
   ChatPage = '/chat'
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   router
     .use(Routes.MainPage, Main)
     .use(Routes.LoginPage, Login)
@@ -35,9 +36,32 @@ window.addEventListener('DOMContentLoaded', () => {
     .use(Routes.ServerErrorPage, ServerError)
     .use(Routes.ChatPage, Chat);
 
+  let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case Routes.MainPage:
+    case Routes.SignUpPage:
+      isProtectedRoute = false;
+      break;
+    default:
+  }
+
   try {
+    await AuthController.fetchUser();
+    console.log(111);
+
     router.start();
+
+    if (!isProtectedRoute) {
+      console.log(isProtectedRoute);
+      router.go(Routes.ProfilePage);
+    }
   } catch (e) {
     console.log(e, 'Here');
+    router.start();
+
+    if (isProtectedRoute) {
+      router.go(Routes.LoginPage);
+    }
   }
 });
