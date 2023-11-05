@@ -51,11 +51,19 @@ export function validateForm(me:Block) {
     if (regexp?.test(item?.value)) {
       item.style.borderColor = 'green';
     } else {
+      console.log(1)
       item.style.borderColor = 'red';
     }
     if (regexp?.test(item?.value) === false) isValid = false;
   });
   return isValid;
+}
+
+export function validateChangePasswordForm(me:Block) {
+  const inputs = me.element?.querySelectorAll('input');
+  let isValid = true;
+
+
 }
 
 export type Indexed<T = any> = {

@@ -7,20 +7,23 @@ import { Button } from '../../components/Button';
 import { Error } from '../../components/Error';
 import {
   fieldsErrors,
-  fieldsRegExps, getInputValues, validateField, validateForm,
+  fieldsRegExps, validateField, validateForm,
 } from '../../utils/Ancillary';
+import { State, store, withStore } from '../../utils/Store';
+import UsersController from '../../controllers/UsersController';
 
-export class EditProfile extends Block {
+export class BaseEditProfile extends Block {
   constructor() {
     super('div', {});
   }
 
   init() {
+    const { user } = store.getState();
     this.children.inputEmailCmp = new Input({
       name: 'email',
       className: styles.input,
       type: 'text',
-      value: 'mansur98@yandex.ru',
+      value: user?.email,
       'data-regexp': fieldsRegExps.email,
       events: {
         blur: () => {
@@ -36,7 +39,7 @@ export class EditProfile extends Block {
       name: 'login',
       className: styles.input,
       type: 'text',
-      value: 'Mansur903',
+      value: user?.login,
       'data-regexp': fieldsRegExps.login,
       events: {
         blur: () => {
@@ -52,7 +55,7 @@ export class EditProfile extends Block {
       name: 'first_name',
       className: styles.input,
       type: 'text',
-      value: 'Мансур',
+      value: user?.first_name,
       'data-regexp': fieldsRegExps.firstSecondName,
       events: {
         blur: () => {
@@ -68,7 +71,7 @@ export class EditProfile extends Block {
       name: 'second_name',
       className: styles.input,
       type: 'text',
-      value: 'Хуснутдинов',
+      value: user?.second_name,
       'data-regexp': fieldsRegExps.firstSecondName,
       events: {
         blur: () => {
@@ -85,7 +88,7 @@ export class EditProfile extends Block {
       name: 'display_name',
       className: styles.input,
       type: 'text',
-      value: 'Mansur',
+      value: user?.display_name,
       'data-regexp': fieldsRegExps.firstSecondName,
       events: {
         blur: () => {
@@ -102,7 +105,7 @@ export class EditProfile extends Block {
       name: 'phone',
       className: styles.input,
       type: 'phone',
-      value: '+71234569999',
+      value: user?.phone,
       'data-regexp': fieldsRegExps.phone,
       events: {
         blur: () => {
@@ -122,7 +125,14 @@ export class EditProfile extends Block {
         click: (e) => {
           e.preventDefault();
           if (!validateForm(this)) return;
-          getInputValues(this);
+          const values = Object
+            .values(this.children)
+            .filter((child) => child instanceof Input)
+            .map((child) => ([(child as Input).getName(), (child as Input).getValue()]));
+
+          const data = Object.fromEntries(values);
+
+          UsersController.editProfile(data);
         },
       },
     });
@@ -158,3 +168,6 @@ export class EditProfile extends Block {
     });
   }
 }
+
+const mapStateToProps = (state: State) => ({ ...state.user });
+export const EditProfile = withStore(mapStateToProps)(BaseEditProfile);

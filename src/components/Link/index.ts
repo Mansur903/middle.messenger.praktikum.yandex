@@ -16,7 +16,6 @@ class BaseLink extends Block {
       events: {
         click: (event:MouseEvent) => {
           event.preventDefault();
-          console.log(1112);
           this.navigate();
         },
       },

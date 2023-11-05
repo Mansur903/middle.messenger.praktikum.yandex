@@ -1,18 +1,15 @@
-import { API } from './api';
-import { Options } from '../utils/HTTPTransport';
+import { API } from './Api.ts';
 
-export interface ISignUpData extends Options {
-  data: {
-    first_name: string;
-    second_name: string;
-    login: string;
-    email: string;
-    password: string;
-    phone: string;
-  }
+export interface ISignUpData {
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
 }
 
-export interface ISignInData extends Options {
+export interface ISignInData {
   login: string;
   password: string;
 }

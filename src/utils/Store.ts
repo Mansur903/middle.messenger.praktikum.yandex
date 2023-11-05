@@ -21,8 +21,6 @@ class Store extends EventBus {
   set(path: string, value: unknown) {
     set(this.state, path, value);
 
-    console.log(this.state);
-
     this.emit(StorageEvent.UpdateState, this.state);
   }
 }

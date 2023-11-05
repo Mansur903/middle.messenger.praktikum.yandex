@@ -5,18 +5,20 @@ import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
 import { Link } from '../../components/Link';
 import AuthController from '../../controllers/AuthController';
-import { State, withStore } from '../../utils/Store';
+import { State, withStore, store } from '../../utils/Store';
 
 export class BaseProfile extends Block {
   constructor() {
     super('div', {});
   }
 
-  componentDidMount() {
-    AuthController.fetchUser();
-  }
+  // componentDidMount() {
+  //   console.log(1)
+  //   AuthController.fetchUser();
+  // }
 
   init() {
+    const { user } = store.getState();
     this.children.editProfileLinkCmp = new Link('', {
       to: '/editProfile',
       label: 'Изменить данные',
@@ -42,7 +44,7 @@ export class BaseProfile extends Block {
       name: 'email',
       className: styles.input,
       type: 'text',
-      value: 'mansur98@yandex.ru',
+      value: user?.email,
       disabled: true,
     });
 
@@ -50,7 +52,7 @@ export class BaseProfile extends Block {
       name: 'login',
       className: styles.input,
       type: 'text',
-      value: 'Mansur903',
+      value: user?.login,
       disabled: true,
     });
 
@@ -58,7 +60,7 @@ export class BaseProfile extends Block {
       name: 'first_name',
       className: styles.input,
       type: 'text',
-      value: 'Мансур',
+      value: user?.first_name,
       disabled: true,
     });
 
@@ -66,7 +68,7 @@ export class BaseProfile extends Block {
       name: 'second_name',
       className: styles.input,
       type: 'text',
-      value: 'Хуснутдинов',
+      value: user?.second_name,
       disabled: true,
     });
 
@@ -74,7 +76,7 @@ export class BaseProfile extends Block {
       name: 'display_name',
       className: styles.input,
       type: 'text',
-      value: 'Mansur',
+      value: user?.display_name,
       disabled: true,
     });
 
@@ -82,11 +84,9 @@ export class BaseProfile extends Block {
       name: 'phone',
       className: styles.input,
       type: 'phone',
-      value: '+71234569999',
+      value: user?.phone,
       disabled: true,
     });
-
-    console.log(this.props);
   }
 
   render() {

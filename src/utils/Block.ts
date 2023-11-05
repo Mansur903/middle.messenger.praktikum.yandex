@@ -18,11 +18,17 @@ class Block<P extends Record<string, any> = any> {
 
   public children: Record<string, Block>;
 
+  public callbacks: any;
+
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { tagName: string; props: P; };
+  private _meta: {
+    tagName: string;
+    props: P;
+    oldProps: P,
+  };
 
   /** JSDoc
    * @param {string} tagName
@@ -30,7 +36,7 @@ class Block<P extends Record<string, any> = any> {
    *
    * @returns {void}
    */
-  constructor(tagName = 'div', propsWithChildren: P) {
+  constructor(tagName: string = 'div', propsWithChildren: P) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -38,11 +44,13 @@ class Block<P extends Record<string, any> = any> {
     this._meta = {
       tagName,
       props: props as P,
+      oldProps: props as P,
     };
+
+    this.callbacks = [];
 
     this.children = children;
     this.props = this._makePropsProxy(props);
-
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
@@ -74,7 +82,7 @@ class Block<P extends Record<string, any> = any> {
   }
 
   _removeEvents() {
-    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+    const { events = {} } = this._meta.oldProps as P & { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
       this._element?.removeEventListener(eventName, events[eventName]);
@@ -118,6 +126,7 @@ class Block<P extends Record<string, any> = any> {
   private _componentDidUpdate() {
     if (this.componentDidUpdate()) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      this._meta.oldProps = this.props;
     }
   }
 

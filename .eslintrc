@@ -15,6 +15,12 @@
     "no-unused-expressions": "off",
     "default-param-last": "off",
     "no-use-before-define": "off",
+    "arrow-body-style": "off",
+    "no-shadow": "off",
+    "max-classes-per-file": "off",
+    "no-restricted-syntax": "off",
+    "no-continue": "off",
+    "no-prototype-builtins": "off"
   },
   "settings": {
     "import/resolver": {

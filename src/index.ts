@@ -48,7 +48,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   try {
     await AuthController.fetchUser();
-    console.log(111);
 
     router.start();
 

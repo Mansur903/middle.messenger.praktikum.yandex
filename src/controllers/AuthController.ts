@@ -8,7 +8,6 @@ class AuthController {
   async fetchUser() {
     try {
       const user = await this.api.getUser();
-      console.log(user);
       store.set('user', user);
     } catch (error) {
       console.log(error);
@@ -19,9 +18,7 @@ class AuthController {
   async signin(data: ISignInData) {
     try {
       await this.api.signin(data);
-      console.log(1);
       await this.fetchUser();
-      console.log(2);
       router.go('/profile');
     } catch (err) {
       console.log(err, 'signin err');
