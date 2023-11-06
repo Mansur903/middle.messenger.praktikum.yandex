@@ -165,6 +165,8 @@ export class BaseEditProfile extends Block {
       inputDisplayNameErrorCmp: this.children.inputDisplayNameErrorCmp,
       inputPhoneErrorCmp: this.children.inputPhoneErrorCmp,
       inputWrapper: styles.inputWrapper,
+      avatarContainer: styles.avatarContainer,
+      tooltip: styles.tooltip,
     });
   }
 }

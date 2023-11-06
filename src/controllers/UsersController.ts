@@ -1,7 +1,9 @@
 import { store } from '../utils/Store';
-import { IEditUserData, UsersAPI, IChangePasswordData } from '../api/UsersApi';
-import { AuthAPI } from '../api/AuthApi.ts';
-import router from '../utils/Router.ts';
+import {
+  IEditUserData, UsersAPI, IChangePasswordData, IChangeAvatar,
+} from '../api/UsersApi';
+import { AuthAPI } from '../api/AuthApi';
+import router from '../utils/Router';
 // import AuthController from './AuthController';
 
 class UsersController {
@@ -25,6 +27,14 @@ class UsersController {
     try {
       await this.usersApi.changePassword(data);
       router.go('/profile');
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async changeAvatar(data: IChangeAvatar) {
+    try {
+      await this.usersApi.changeAvatar(data);
     } catch (error) {
       console.log(error);
     }

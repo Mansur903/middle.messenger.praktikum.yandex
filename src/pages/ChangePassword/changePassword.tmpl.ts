@@ -19,6 +19,9 @@ export const tmpl = `
         <span class={{sign}}>Повторите новый пароль</span>
           {{{inputNewPassConfirmCmp}}}
         </li>
+        <li>
+            {{{passwordErrorCmp}}}
+        </li>
       </ul>
       {{{buttonSaveCmp}}}
     </form>

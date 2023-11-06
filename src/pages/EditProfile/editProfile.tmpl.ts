@@ -4,7 +4,10 @@ export const tmpl = `
 </head>
 <main class={{main}}>
   <div class={{editProfileContainer}}>
-    <img class={{avatar}} src={{path}} alt={{alt}}>
+    <div class={{avatarContainer}}>
+      <img class={{avatar}} src={{path}} alt={{alt}}>
+      <div class={{tooltip}}>Поменять аватар</div>
+    </div>
     <form class={{form}}>
       <ul class={{formList}}>
         <li class={{formListItem}}>

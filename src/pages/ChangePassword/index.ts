@@ -5,8 +5,9 @@ import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { State, withStore } from '../../utils/Store';
-import {fieldsRegExps, validateForm} from "../../utils/Ancillary.ts";
-import UsersController from "../../controllers/UsersController.ts";
+import { fieldsRegExps, validateChangePasswordForm } from '../../utils/Ancillary';
+import UsersController from '../../controllers/UsersController';
+import { Error } from '../../components/Error';
 
 export class BaseChangePassword extends Block {
   constructor() {
@@ -16,27 +17,25 @@ export class BaseChangePassword extends Block {
   init() {
     this.children.inputOldPassCmp = new Input({
       name: 'oldPassword',
-      value: 123456,
+      className: styles.input,
+      required: true,
+      type: 'password',
+    });
+
+    this.children.inputNewPassCmp = new Input({
+      name: 'newPassword',
       className: styles.input,
       required: true,
       type: 'password',
       'data-regexp': fieldsRegExps.password,
     });
 
-    this.children.inputNewPassCmp = new Input({
-      name: 'newPassword',
-      value: 12345678,
-      className: styles.input,
-      required: true,
-      type: 'password',
-    });
-
     this.children.inputNewPassConfirmCmp = new Input({
       name: 'newPassword',
-      value: 12345678,
       className: styles.input,
       required: true,
       type: 'password',
+      'data-regexp': fieldsRegExps.password,
     });
 
     this.children.buttonSaveCmp = new Button({
@@ -46,18 +45,19 @@ export class BaseChangePassword extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          if (!validateForm(this)) return;
+          if (!validateChangePasswordForm(this)) return;
           const values = Object
             .values(this.children)
             .filter((child) => child instanceof Input)
             .map((child) => ([(child as Input).getName(), (child as Input).getValue()]));
 
           const data = Object.fromEntries(values);
-
-          // UsersController.changePassword(data)
+          UsersController.changePassword(data);
         },
       },
     });
+
+    this.children.passwordErrorCmp = new Error({ text: '', className: styles.error });
   }
 
   render() {
@@ -78,6 +78,7 @@ export class BaseChangePassword extends Block {
       inputNewPassCmp: this.children.inputNewPassCmp,
       inputNewPassConfirmCmp: this.children.inputNewPassConfirmCmp,
       buttonSubmitCmp: this.children.buttonSaveCmp,
+      passwordErrorCmp: this.children.passwordErrorCmp,
     });
   }
 }

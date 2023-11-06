@@ -60,5 +60,13 @@
       cursor: pointer;
       margin: 70px 0 20px 0;
     }
+
+    .error {
+      font-size: 12px;
+      display: block;
+      width: 100%;
+      line-height: 12px;
+      color: red;
+    }
   }
 }

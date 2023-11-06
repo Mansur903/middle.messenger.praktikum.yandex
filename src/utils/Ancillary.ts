@@ -3,7 +3,7 @@ import Block from './Block';
 export const fieldsRegExps = {
   login: '^(?!^d+$)[a-zA-Z0-9_-]{3,20}$',
   email: '^[a-zA-Z0-9_-]+@[a-zA-Z]+[.][a-zA-Z]+$',
-  password: '^(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,40}$',
+  password: '^(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{8,40}$',
   firstSecondName: '^[А-ЯЁA-Z][А-ЯЁA-Zа-яёa-z]*(-[А-ЯЁA-Zа-яёa-z]+)*$',
   phone: '^\\+?\\d{10,15}$',
   notEmpty: '.+',
@@ -51,7 +51,7 @@ export function validateForm(me:Block) {
     if (regexp?.test(item?.value)) {
       item.style.borderColor = 'green';
     } else {
-      console.log(1)
+      console.log(1);
       item.style.borderColor = 'red';
     }
     if (regexp?.test(item?.value) === false) isValid = false;
@@ -61,9 +61,24 @@ export function validateForm(me:Block) {
 
 export function validateChangePasswordForm(me:Block) {
   const inputs = me.element?.querySelectorAll('input');
-  let isValid = true;
+  if (!inputs) return false;
+  const regExpString = inputs[1].getAttribute('data-regexp');
+  const regexp = regExpString ? new RegExp(regExpString) : null;
 
+  if (inputs[1].value !== inputs[2].value) {
+    inputs[1].style.borderColor = 'red';
+    inputs[2].style.borderColor = 'red';
+    me.children.passwordErrorCmp.setProps({ text: 'Старый и новый пароли должны совпадать' });
+    return false;
+  }
 
+  if (!regexp?.test(inputs[1].value)) {
+    inputs[1].style.borderColor = 'red';
+    me.children.passwordErrorCmp.setProps({ text: fieldsErrors.password });
+    return false;
+  }
+
+  return true;
 }
 
 export type Indexed<T = any> = {
