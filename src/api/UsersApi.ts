@@ -14,10 +14,6 @@ export interface IChangePasswordData {
     newPassword: string
 }
 
-export interface IChangeAvatar {
-    avatar: string
-}
-
 export class UsersAPI extends API {
   constructor() {
     super('/user');
@@ -31,7 +27,7 @@ export class UsersAPI extends API {
     return this.http.put('/password', data);
   }
 
-  changeAvatar(data: IChangeAvatar) {
+  changeAvatar(data: FormData) {
     return this.http.put('/profile/avatar', data);
   }
 }

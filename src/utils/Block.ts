@@ -228,6 +228,8 @@ class Block<P extends Record<string, any> = any> {
     props['data-regexp'] ? elem.setAttribute('data-regexp', props['data-regexp']) : null;
     props['data-additional']
       ? elem.setAttribute('data-additional', props['data-additional']) : null;
+    props.accept ? elem.setAttribute('accept', props.accept) : null;
+    props.id ? elem.setAttribute('id', props.id) : null;
     return elem;
   }
 

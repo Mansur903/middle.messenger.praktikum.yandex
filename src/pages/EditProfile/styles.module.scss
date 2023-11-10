@@ -20,30 +20,8 @@
       margin: 0 25px
     }
 
-    .avatarContainer {
-      position: relative;
+    .avatarWrapper {
       display: inline-block;
-    }
-
-    .avatar {
-      width: 100px;
-      border-radius: 100%;
-    }
-
-    .avatarContainer:hover {
-      opacity: 0.5;
-      cursor: pointer;
-    }
-
-    .avatarContainer:hover .tooltip {
-      opacity: 1;
-    }
-
-    .tooltip {
-      position: absolute;
-      top: 30%;
-      color: black;
-      opacity: 0;
     }
 
     .formList {
@@ -57,6 +35,7 @@
       margin-bottom: 8px;
 
       .inputWrapper {
+
         .input {
           width: 100%;
           padding: 8px 0 8px 0;

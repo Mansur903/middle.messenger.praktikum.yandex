@@ -1,6 +1,6 @@
 /* Стили для подложки */
 
-.overlay {
+.modalOverlay {
 
   /* Скрываем подложку  */
   opacity: 0;
@@ -24,19 +24,15 @@
   /* Скрываем окна  */
   opacity: 0;
   visibility: hidden;
-
-
   /*  Установаем ширину окна  */
   width: 100%;
-  max-width: 500px;
-
+  max-width: 350px;
   /*  Центрируем и задаем z-index */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 30; /* Должен быть выше чем у подложки*/
-
   /*  Побочные стили   */
   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
   text-align: center;
@@ -44,29 +40,62 @@
   border-radius: 3px;
   background-color: #fff;
   transition: 0.3s all;
+  /* Стили для кнопки закрытия */
+
+  .modalCross {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  .modalCross:hover {
+    opacity: 1;
+  }
+  .modalCross:before, .modalCross:after {
+    position: absolute;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+    top: -2px;
+    left: 7px;
+  }
+  .modalCross:before {
+    transform: rotate(45deg);
+  }
+  .modalCross:after {
+    transform: rotate(-45deg);
+  }
+
+  .modalContent {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .modalTitle {
+      margin-bottom: 20px;
+    }
+
+    .modalFileInput {
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    .modalConfirmButton {
+      margin-top: 20px;
+      width: 100px;
+      align-self: center;
+    }
+  }
 }
 
-/* Стили для кнопки закрытия */
-
-.modal__cross {
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  fill: #444;
-  cursor: pointer;
+.active{
+  opacity: 1;
+  visibility: visible;
 }
-
 
 /* Стили для кнопок. Мы ведь порядочные разработчики, негоже простые ссылки оставлять */
-
-a {
-  padding: 20px;
-  display: inline-block;
-  text-decoration: none;
-  background-color: #414b52;
-  margin: 10px;
-  color: #fff;
-  border-radius: 3px;
-}

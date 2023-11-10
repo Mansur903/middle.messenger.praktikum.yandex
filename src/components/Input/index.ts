@@ -13,7 +13,9 @@ interface InputProps {
   },
   'data-regexp'?: string,
   'data-additional'?: string,
-  isValid?: () => boolean
+  isValid?: () => boolean,
+  accept?: string,
+  id?: string,
 }
 
 export class Input extends Block {

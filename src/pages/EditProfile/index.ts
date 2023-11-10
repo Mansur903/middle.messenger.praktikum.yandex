@@ -11,6 +11,8 @@ import {
 } from '../../utils/Ancillary';
 import { State, store, withStore } from '../../utils/Store';
 import UsersController from '../../controllers/UsersController';
+import { Modal } from '../../components/Modal';
+import { Avatar } from '../../components/Avatar';
 
 export class BaseEditProfile extends Block {
   constructor() {
@@ -19,6 +21,10 @@ export class BaseEditProfile extends Block {
 
   init() {
     const { user } = store.getState();
+    const avatarPath = user?.avatar;
+    const fullPath = avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
+      : imgUrl;
+
     this.children.inputEmailCmp = new Input({
       name: 'email',
       className: styles.input,
@@ -136,12 +142,31 @@ export class BaseEditProfile extends Block {
         },
       },
     });
+
+    this.children.modal = new Modal({
+      title: 'Загрузите картинку',
+      content: 'blabla',
+      error: 'error',
+      buttonText: 'кнопка',
+      isActive: false,
+    });
+
+    this.children.avatar = new Avatar({
+      path: fullPath,
+      alt: 'Аватар',
+      tooltipText: 'Поменять аватар',
+      events: {
+        click: () => {
+          this.children.modal.setProps({ isActive: true });
+        },
+      },
+      className: styles.avatarWrapper,
+    });
   }
 
   render() {
     return this.compile(tmpl, {
       editProfileContainer: styles.editProfileContainer,
-      avatar: styles.avatar,
       path: imgUrl,
       alt: 'Аватар',
       form: styles.form,
@@ -167,6 +192,8 @@ export class BaseEditProfile extends Block {
       inputWrapper: styles.inputWrapper,
       avatarContainer: styles.avatarContainer,
       tooltip: styles.tooltip,
+      modal: this.children.modal,
+      avatar: this.children.avatar,
     });
   }
 }

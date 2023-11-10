@@ -20,7 +20,9 @@
     "max-classes-per-file": "off",
     "no-restricted-syntax": "off",
     "no-continue": "off",
-    "no-prototype-builtins": "off"
+    "no-prototype-builtins": "off",
+    "no-tabs": "off",
+    "indent": "off"
   },
   "settings": {
     "import/resolver": {

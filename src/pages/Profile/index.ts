@@ -12,13 +12,12 @@ export class BaseProfile extends Block {
     super('div', {});
   }
 
-  // componentDidMount() {
-  //   console.log(1)
-  //   AuthController.fetchUser();
-  // }
-
   init() {
     const { user } = store.getState();
+    const avatarPath = user?.avatar;
+    const fullPath = avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
+      : imgUrl;
+
     this.children.editProfileLinkCmp = new Link('', {
       to: '/editProfile',
       label: 'Изменить данные',

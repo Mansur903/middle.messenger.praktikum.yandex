@@ -1,10 +1,9 @@
 import { store } from '../utils/Store';
 import {
-  IEditUserData, UsersAPI, IChangePasswordData, IChangeAvatar,
+  IEditUserData, UsersAPI, IChangePasswordData,
 } from '../api/UsersApi';
 import { AuthAPI } from '../api/AuthApi';
 import router from '../utils/Router';
-// import AuthController from './AuthController';
 
 class UsersController {
   private authApi = new AuthAPI();
@@ -32,7 +31,7 @@ class UsersController {
     }
   }
 
-  async changeAvatar(data: IChangeAvatar) {
+  async changeAvatar(data: FormData) {
     try {
       await this.usersApi.changeAvatar(data);
     } catch (error) {
