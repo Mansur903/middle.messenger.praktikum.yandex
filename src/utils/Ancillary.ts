@@ -51,7 +51,6 @@ export function validateForm(me:Block) {
     if (regexp?.test(item?.value)) {
       item.style.borderColor = 'green';
     } else {
-      console.log(1);
       item.style.borderColor = 'red';
     }
     if (regexp?.test(item?.value) === false) isValid = false;

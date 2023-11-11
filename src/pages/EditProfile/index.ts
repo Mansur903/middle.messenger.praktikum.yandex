@@ -21,9 +21,6 @@ export class BaseEditProfile extends Block {
 
   init() {
     const { user } = store.getState();
-    const avatarPath = user?.avatar;
-    const fullPath = avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
-      : imgUrl;
 
     this.children.inputEmailCmp = new Input({
       name: 'email',
@@ -152,7 +149,7 @@ export class BaseEditProfile extends Block {
     });
 
     this.children.avatar = new Avatar({
-      path: fullPath,
+      path: this.getAvatarPath(),
       alt: 'Аватар',
       tooltipText: 'Поменять аватар',
       events: {
@@ -164,7 +161,16 @@ export class BaseEditProfile extends Block {
     });
   }
 
+  getAvatarPath() {
+    const { user } = store.getState();
+    const avatarPath = user?.avatar;
+    return avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
+      : imgUrl;
+  }
+
   render() {
+    this.children.avatar.setProps({ path: this.getAvatarPath() });
+
     return this.compile(tmpl, {
       editProfileContainer: styles.editProfileContainer,
       path: imgUrl,

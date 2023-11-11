@@ -14,9 +14,6 @@ export class BaseProfile extends Block {
 
   init() {
     const { user } = store.getState();
-    const avatarPath = user?.avatar;
-    const fullPath = avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
-      : imgUrl;
 
     this.children.editProfileLinkCmp = new Link('', {
       to: '/editProfile',
@@ -88,11 +85,18 @@ export class BaseProfile extends Block {
     });
   }
 
+  getAvatarPath() {
+    const { user } = store.getState();
+    const avatarPath = user?.avatar;
+    return avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
+      : imgUrl;
+  }
+
   render() {
     return this.compile(tmpl, {
       profileContainer: styles.profileContainer,
       avatar: styles.avatar,
-      path: imgUrl,
+      path: this.getAvatarPath(),
       alt: 'Аватар',
       form: styles.form,
       formList: styles.formList,
