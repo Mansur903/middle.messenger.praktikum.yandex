@@ -138,8 +138,9 @@ class Block<P extends Record<string, any> = any> {
     if (!nextProps) {
       return;
     }
-
-    Object.assign(this.props, nextProps);
+    console.log(this.props)
+    console.log(nextProps)
+    console.log(Object.assign(this.props, nextProps));
   };
 
   get element() {

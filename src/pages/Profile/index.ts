@@ -6,6 +6,7 @@ import { Input } from '../../components/Input';
 import { Link } from '../../components/Link';
 import AuthController from '../../controllers/AuthController';
 import { State, withStore, store } from '../../utils/Store';
+import { Avatar } from '../../components/Avatar';
 
 export class BaseProfile extends Block {
   constructor() {
@@ -17,6 +18,11 @@ export class BaseProfile extends Block {
     const avatarPath = user?.avatar;
     const fullPath = avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
       : imgUrl;
+
+    this.children.avatarCmp = new Avatar({
+      path: fullPath,
+      alt: 'Аватар',
+    });
 
     this.children.editProfileLinkCmp = new Link('', {
       to: '/editProfile',
@@ -116,6 +122,7 @@ export class BaseProfile extends Block {
       editProfileLinkCmp: this.children.editProfileLinkCmp,
       editPasswordLinkCmp: this.children.editPasswordLinkCmp,
       closeLinkCmp: this.children.closeLinkCmp,
+      avatarCmp: this.children.avatarCmp,
     });
   }
 }

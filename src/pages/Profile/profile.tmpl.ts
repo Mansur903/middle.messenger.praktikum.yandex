@@ -4,7 +4,7 @@ export const tmpl = `
 </head>
 <main class={{main}}>
   <div class={{profileContainer}}>
-    <img class={{avatar}} src={{path}} alt={{alt}}>
+    {{{avatarCmp}}}
     <h2 class={{header}}>{{name}}</h2>
     <form class={{form}}>
       <ul class={{formList}}>
