@@ -29,13 +29,10 @@ export const withStore = (mapStateToProps: (data: State) => any) => {
   return (Component: typeof Block) => {
     return class extends Component {
       constructor(props: any) {
-        // console.log({...mapStateToProps(store.getState())})
         super('', { ...props, ...mapStateToProps(store.getState()) });
 
         store.on(StorageEvent.UpdateState, () => {
           const newProps = mapStateToProps(store.getState());
-          // console.log(1);
-          console.log({ newProps });
           this.setProps(newProps);
         });
       }

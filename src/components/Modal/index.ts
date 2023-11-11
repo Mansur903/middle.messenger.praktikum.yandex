@@ -32,7 +32,9 @@ export class Modal extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          this.close();
+          this.setProps({
+            isActive: false,
+          });
         },
       },
     });
@@ -59,15 +61,8 @@ export class Modal extends Block {
           form.append('avatar', avatar.files[0]);
 
           UsersController.changeAvatar(form);
-          this.close();
         },
       },
-    });
-  }
-
-  close() {
-    this.setProps({
-      isActive: false,
     });
   }
 

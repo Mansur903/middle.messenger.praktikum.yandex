@@ -4,7 +4,7 @@ export const tmpl = `
 </head>
 <main class={{main}}>
   <div class={{editProfileContainer}}>
-    {{{avatarCmp}}}
+    {{{avatar}}}
     <form class={{form}}>
       <ul class={{formList}}>
         <li class={{formListItem}}>

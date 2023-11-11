@@ -6,7 +6,7 @@ interface AvatarProps {
   size?: number;
 	path: string,
 	alt: string,
-	tooltipText?: string,
+	tooltipText: string,
 	events?: {
 		click: (e:KeyboardEvent) => void;
 	},
