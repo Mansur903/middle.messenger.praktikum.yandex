@@ -6,6 +6,7 @@ import { Input } from '../../components/Input';
 import { Link } from '../../components/Link';
 import AuthController from '../../controllers/AuthController';
 import { State, withStore, store } from '../../utils/Store';
+import { BackButton } from '../../components/BackButton';
 
 export class BaseProfile extends Block {
   constructor() {
@@ -83,6 +84,10 @@ export class BaseProfile extends Block {
       value: user?.phone,
       disabled: true,
     });
+
+    this.children.backButtonCmp = new BackButton({
+      to: '/chat',
+    });
   }
 
   getAvatarPath() {
@@ -120,6 +125,7 @@ export class BaseProfile extends Block {
       editProfileLinkCmp: this.children.editProfileLinkCmp,
       editPasswordLinkCmp: this.children.editPasswordLinkCmp,
       closeLinkCmp: this.children.closeLinkCmp,
+      backButtonCmp: this.children.backButtonCmp,
     });
   }
 }

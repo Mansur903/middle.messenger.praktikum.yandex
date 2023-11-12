@@ -13,7 +13,7 @@ import router from './utils/Router';
 import AuthController from './controllers/AuthController';
 
 enum Routes {
-  MainPage = '/main',
+  MainPage = '/',
   LoginPage = '/login',
   NotFoundPage = '/404',
   SignUpPage = '/signup',
@@ -39,8 +39,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   let isProtectedRoute = true;
 
   switch (window.location.pathname) {
-    case Routes.MainPage:
     case Routes.SignUpPage:
+    case Routes.LoginPage:
       isProtectedRoute = false;
       break;
     default:

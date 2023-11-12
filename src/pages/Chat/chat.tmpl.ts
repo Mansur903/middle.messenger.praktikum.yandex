@@ -6,6 +6,7 @@ export const tmpl = `
       <input class={{searchInput}} type="text" name="search" placeholder="Поиск">
     </div>
     <ul class={{channelsList}}>
+      {{{channelCmp}}}
       <li class={{channel}}>
         <img class={{avatar}} src={{path}} alt={{alt}}>
         <div class={{channelContent}}>

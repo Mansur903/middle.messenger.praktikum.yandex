@@ -1,0 +1,31 @@
+@import '../../styles/vars';
+@import '../../styles/typography';
+
+.avatar {
+  width: 50px;
+  border-radius: 100%;
+  margin: 10px;
+}
+
+.channelContent {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 10px 5px;
+
+  .name {
+    font-weight: bold;
+  }
+
+  .message {
+    color: $gray50;
+    font-size: $fontSizeS;
+  }
+}
+
+.time {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  color: $gray50;
+  font-size: $fontSizeXS;
+}

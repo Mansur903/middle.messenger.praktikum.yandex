@@ -10,7 +10,7 @@ export class ServerError extends Block {
 
   init() {
     this.children.backLinkCmp = new Link('', {
-      to: '/main',
+      to: '/',
       label: 'Назад к чатам',
       className: styles.link,
     });

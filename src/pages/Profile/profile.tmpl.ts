@@ -2,6 +2,7 @@ export const tmpl = `
 <head>
   <title>Страница профиля</title>
 </head>
+{{{backButtonCmp}}}
 <main class={{main}}>
   <div class={{profileContainer}}>
     <img class={{avatar}} src={{path}} alt={{alt}}>

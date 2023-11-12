@@ -8,13 +8,52 @@ import {
   fieldsRegExps, getInputValues, validateField, validateForm,
 } from '../../utils/Ancillary';
 import { Link } from '../../components/Link';
+import { Channel } from '../../components/Channel';
 
 export class Chat extends Block {
   constructor() {
     super('div', {});
   }
 
+  getTestData() {
+    return [
+      {
+        id: 123,
+        title: 'my-chat',
+        avatar: '/123/avatar1.jpg',
+        unread_count: 15,
+        created_by: 12345,
+        last_message: {
+          user: {
+            first_name: 'Petya',
+            second_name: 'Pupkin',
+            avatar: '/path/to/avatar.jpg',
+            email: 'my@email.com',
+            login: 'userLogin',
+            phone: '8(911)-222-33-22',
+          },
+          time: '2020-01-02T14:22:22.000Z',
+          content: 'this is message content',
+        },
+      },
+    ];
+  }
+
   init() {
+    const data = this.getTestData();
+
+    this.children.channelCmp = new Channel({
+      path: data[0].avatar,
+      alt: 'Аватарка',
+      channelName: data[0].title,
+      lastMessage: data[0].last_message.content,
+      lastMessageTime: data[0].last_message.time,
+      events: {
+        click: () => console.log(1),
+      },
+      className: styles.channel,
+    });
+
     this.children.profileLinkCmp = new Link('', {
       to: '/profile',
       label: 'Профиль >',
@@ -76,6 +115,7 @@ export class Chat extends Block {
       inputCmp: this.children.inputCmp,
       buttonSendCmp: this.children.buttonSendCmp,
       profileLinkCmp: this.children.profileLinkCmp,
+      channelCmp: this.children.channelCmp,
     });
   }
 }
