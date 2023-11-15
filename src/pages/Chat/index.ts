@@ -32,7 +32,64 @@ export class Chat extends Block {
             login: 'userLogin',
             phone: '8(911)-222-33-22',
           },
-          time: '2020-01-02T14:22:22.000Z',
+          time: '10:15',
+          content: 'this is message content',
+        },
+      },
+      {
+        id: 123,
+        title: 'my-chat',
+        avatar: '/123/avatar1.jpg',
+        unread_count: 15,
+        created_by: 12345,
+        last_message: {
+          user: {
+            first_name: 'Petya',
+            second_name: 'Pupkin',
+            avatar: '/path/to/avatar.jpg',
+            email: 'my@email.com',
+            login: 'userLogin',
+            phone: '8(911)-222-33-22',
+          },
+          time: '10:15',
+          content: 'this is message content',
+        },
+      },
+      {
+        id: 123,
+        title: 'my-chat',
+        avatar: '/123/avatar1.jpg',
+        unread_count: 15,
+        created_by: 12345,
+        last_message: {
+          user: {
+            first_name: 'Petya',
+            second_name: 'Pupkin',
+            avatar: '/path/to/avatar.jpg',
+            email: 'my@email.com',
+            login: 'userLogin',
+            phone: '8(911)-222-33-22',
+          },
+          time: '10:15',
+          content: 'this is message content',
+        },
+      },
+      {
+        id: 123,
+        title: 'my-chat',
+        avatar: '/123/avatar1.jpg',
+        unread_count: 15,
+        created_by: 12345,
+        last_message: {
+          user: {
+            first_name: 'Petya',
+            second_name: 'Pupkin',
+            avatar: '/path/to/avatar.jpg',
+            email: 'my@email.com',
+            login: 'userLogin',
+            phone: '8(911)-222-33-22',
+          },
+          time: '10:15',
           content: 'this is message content',
         },
       },
@@ -41,6 +98,29 @@ export class Chat extends Block {
 
   init() {
     const data = this.getTestData();
+    const preparedData = data.map((item) => ({
+      path: item.avatar,
+      alt: 'Аватарка',
+      channelName: item.title,
+      lastMessage: item.last_message.content,
+      lastMessageTime: item.last_message.time,
+      className: styles.channel,
+    }));
+    // console.log({ preparedData });
+
+    // this.children.channelCmp = new Channel({
+    //   path: data[0].avatar,
+    //   alt: 'Аватарка',
+    //   channelName: data[0].title,
+    //   lastMessage: data[0].last_message.content,
+    //   lastMessageTime: data[0].last_message.time,
+    //   events: {
+    //     click: () => console.log(1),
+    //   },
+    //   className: styles.channel,
+    // });
+    // console.log(preparedData.map((channel) => new Channel(channel)))
+    this.children.channels = preparedData.map((channel) => new Channel(channel));
 
     this.children.channelCmp = new Channel({
       path: data[0].avatar,

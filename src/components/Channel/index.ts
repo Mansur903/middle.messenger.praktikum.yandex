@@ -18,9 +18,7 @@ export class Channel extends Block {
     super('li', props);
   }
 
-  init() {
-    console.log(1);
-  }
+  init() {}
 
   render() {
     return this.compile(`

@@ -16,7 +16,7 @@ class Block<P extends Record<string, any> = any> {
 
   protected props: P;
 
-  public children: Record<string, Block>;
+  public children: Record<string, Block | Block[]>;
 
   public callbacks: any;
 
@@ -58,9 +58,9 @@ class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block>} {
+  _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block | Block[]>} {
     const props: Record<string, unknown> = {};
-    const children: Record<string, Block> = {};
+    const children: Record<string, Block | Block[]> = {};
 
     Object.entries(childrenAndProps).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -120,7 +120,13 @@ class Block<P extends Record<string, any> = any> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((item) => item.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
   }
 
   private _componentDidUpdate() {
@@ -162,7 +168,13 @@ class Block<P extends Record<string, any> = any> {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      if (Array.isArray(component)) {
+        console.log([name, component])
+        contextAndStubs[name] = component.map((item) => `<div data-id="${item.id}"></div>`);
+        console.log({contextAndStubs})
+      } else {
+        contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
+      }
     });
 
     const html = Handlebars.compile(template)(contextAndStubs);
@@ -170,17 +182,32 @@ class Block<P extends Record<string, any> = any> {
     const temp = document.createElement('template');
 
     temp.innerHTML = html;
-
+    // console.log({temp})
     Object.entries(this.children).forEach(([_, component]) => {
-      const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
+      console.log(component)
+      if (Array.isArray(component)) {
+        const stubs = component.map((item) => {
+          console.log(temp.content.querySelector(`[data-id="${item.id}"]`))
+          return temp.content.querySelector(`[data-id="${item.id}"]`)
+        });
+        if (!stubs.length) {
+          return;
+        }
+        stubs.forEach((stub, index) => {
+          component[index].getContent()?.append(...Array.from(stub!.childNodes));
+          stub!.replaceWith(component[index].getContent()!);
+        });
+      } else {
+        const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
-      if (!stub) {
-        return;
+        if (!stub) {
+          return;
+        }
+
+        component.getContent()?.append(...Array.from(stub.childNodes));
+
+        stub.replaceWith(component.getContent()!);
       }
-
-      component.getContent()?.append(...Array.from(stub.childNodes));
-
-      stub.replaceWith(component.getContent()!);
     });
 
     return temp.content;
