@@ -10,7 +10,7 @@ export class ServerError extends Block {
 
   init() {
     this.children.backLinkCmp = new Link('', {
-      to: '/',
+      to: '/chat',
       label: 'Назад к чатам',
       className: styles.link,
     });
@@ -18,15 +18,8 @@ export class ServerError extends Block {
 
   render() {
     return this.compile(tmpl, {
-      wrapper: styles.wrapper,
-      title: styles.title,
-      subTitle: styles.subTitle,
-      blueLink: styles.blueLink,
       value: '500',
       text: 'Мы уже фиксим',
-      linkText: 'Назад к чатам',
-      link: styles.link,
-      backLinkCmp: this.children.backLinkCmp,
     });
   }
 }

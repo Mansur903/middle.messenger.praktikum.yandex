@@ -10,19 +10,13 @@ export class NotFound extends Block {
 
   init() {
     this.children.backLinkCmp = new Link('', {
-      to: '/',
+      to: '/chat',
       label: 'Назад к чатам',
       className: styles.link,
     });
   }
 
   render() {
-    return this.compile(tmpl, {
-      wrapper: styles.wrapper,
-      title: styles.title,
-      subTitle: styles.subTitle,
-      blueLink: styles.blueLink,
-      backLinkCmp: this.children.backLinkCmp,
-    });
+    return this.compile(tmpl, {});
   }
 }

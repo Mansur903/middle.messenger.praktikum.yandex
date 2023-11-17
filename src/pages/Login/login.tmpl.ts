@@ -1,10 +1,15 @@
+import styles from './styles.module.scss';
+
 export const tmpl = `
 <head>
   <title>{{titleText}}</title>
 </head>
-<main class={{main}}>
-  <div class={{loginContainer}}>
-    <h2 class={{header}}>{{headerText}}</h2>
+<main class=${styles.main}>
+
+  <div class=${styles.loginContainer}>
+  
+    <h2 class=${styles.header}>{{headerText}}</h2>
+    
     <form>
       {{{inputLoginCmp}}}
       {{{inputLoginErrorCmp}}}
@@ -13,6 +18,7 @@ export const tmpl = `
       {{{buttonSubmitCmp}}}
       {{{linkCmp}}}
     </form>
+    
   </div>
 </main>
 `;

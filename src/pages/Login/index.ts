@@ -53,8 +53,8 @@ export class Login extends Block {
       events: {
         blur: () => {
           validateField(this, 'login')
-            ? this.children.inputLoginErrorCmp.setProps({ text: '' })
-            : this.children.inputLoginErrorCmp.setProps({ text: fieldsErrors.login });
+            ? (this.children.inputLoginErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputLoginErrorCmp as Block).setProps({ text: fieldsErrors.login });
         },
       },
     });
@@ -69,8 +69,8 @@ export class Login extends Block {
       events: {
         blur: () => {
           validateField(this, 'password')
-            ? this.children.inputPasswordErrorCmp.setProps({ text: '' })
-            : this.children.inputPasswordErrorCmp.setProps({ text: fieldsErrors.password });
+            ? (this.children.inputPasswordErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputPasswordErrorCmp as Block).setProps({ text: fieldsErrors.password });
         },
       },
     });
@@ -81,20 +81,8 @@ export class Login extends Block {
 
   render() {
     return this.compile(tmpl, {
-      loginContainer: styles.loginContainer,
-      header: styles.header,
       titleText: 'Страница входа',
       headerText: 'Войти',
-      signUpPageAddress: '/signup',
-      signUpPageText: 'Нет аккаунта?',
-      main: styles.main,
-      input: styles.input,
-      buttonSubmitCmp: this.children.buttonSubmitCmp,
-      inputLoginCmp: this.children.inputLoginCmp,
-      inputLoginErrorCmp: this.children.inputLoginErrorCmp,
-      inputPasswordCmp: this.children.inputPasswordCmp,
-      inputPasswordErrorCmp: this.children.inputPasswordErrorCmp,
-      linkCmp: this.children.linkCmp,
     });
   }
 }

@@ -169,9 +169,7 @@ class Block<P extends Record<string, any> = any> {
 
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
-        console.log([name, component])
         contextAndStubs[name] = component.map((item) => `<div data-id="${item.id}"></div>`);
-        console.log({contextAndStubs})
       } else {
         contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
       }
@@ -184,11 +182,9 @@ class Block<P extends Record<string, any> = any> {
     temp.innerHTML = html;
     // console.log({temp})
     Object.entries(this.children).forEach(([_, component]) => {
-      console.log(component)
       if (Array.isArray(component)) {
         const stubs = component.map((item) => {
-          console.log(temp.content.querySelector(`[data-id="${item.id}"]`))
-          return temp.content.querySelector(`[data-id="${item.id}"]`)
+          return temp.content.querySelector(`[data-id="${item.id}"]`);
         });
         if (!stubs.length) {
           return;

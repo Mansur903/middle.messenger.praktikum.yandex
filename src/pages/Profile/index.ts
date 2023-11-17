@@ -98,34 +98,12 @@ export class BaseProfile extends Block {
   }
 
   render() {
+    const { user } = store.getState();
+
     return this.compile(tmpl, {
-      profileContainer: styles.profileContainer,
-      avatar: styles.avatar,
-      path: this.getAvatarPath(),
-      alt: 'Аватар',
-      form: styles.form,
-      formList: styles.formList,
-      formListItem: styles.formListItem,
-      sign: styles.sign,
-      name: 'Мансур',
-      options: styles.options,
-      optionsItem: styles.optionsItem,
-      blueLink: styles.blueLink,
-      redLink: styles.redLink,
-      main: styles.main,
-      link: styles.link,
-      header: styles.header,
-      input: styles.input,
-      inputEmailCmp: this.children.inputEmailCmp,
-      inputLoginCmp: this.children.inputLoginCmp,
-      inputFirstNameCmp: this.children.inputFirstNameCmp,
-      inputSecondNameCmp: this.children.inputSecondNameCmp,
-      inputDisplayNameCmp: this.children.inputDisplayNameCmp,
-      inputPhoneCmp: this.children.inputPhoneCmp,
-      editProfileLinkCmp: this.children.editProfileLinkCmp,
-      editPasswordLinkCmp: this.children.editPasswordLinkCmp,
-      closeLinkCmp: this.children.closeLinkCmp,
-      backButtonCmp: this.children.backButtonCmp,
+      avatarPath: this.getAvatarPath(),
+      avatarAlt: 'Аватар',
+      headerName: user?.first_name,
     });
   }
 }

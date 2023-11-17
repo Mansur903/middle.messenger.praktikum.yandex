@@ -1,51 +1,67 @@
+import styles from './styles.module.scss';
+
 export const tmpl = `
 <head>
   <title>Страница профиля</title>
 </head>
 {{{backButtonCmp}}}
-<main class={{main}}>
-  <div class={{profileContainer}}>
-    <img class={{avatar}} src={{path}} alt={{alt}}>
-    <h2 class={{header}}>{{name}}</h2>
-    <form class={{form}}>
-      <ul class={{formList}}>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Почта</span>
+<main class=${styles.main}>
+  <div class=${styles.profileContainer}>
+  
+    <img class=${styles.avatar} src={{avatarPath}} alt={{avatarAlt}}>
+    <h2 class=${styles.header}>{{headerName}}</h2>
+    
+    <form class=${styles.form}>
+    
+      <ul class=${styles.formList}>
+      
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Почта</span>
           {{{inputEmailCmp}}}
         </li>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Логин</span>
+        
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Логин</span>
           {{{inputLoginCmp}}}
         </li>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Имя</span>
+        
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Имя</span>
           {{{inputFirstNameCmp}}}
         </li>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Фамилия</span>
+        
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Фамилия</span>
           {{{inputSecondNameCmp}}}
         </li>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Имя в чате</span>
+        
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Имя в чате</span>
           {{{inputDisplayNameCmp}}}
         </li>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Телефон</span>
+        
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Телефон</span>
           {{{inputPhoneCmp}}}
         </li>
+        
       </ul>
     </form>
     
-    <ul class={{options}}>
-      <li class={{optionsItem}}>
+    <ul class=${styles.options}>
+    
+      <li class=${styles.optionsItem}>
         {{{editProfileLinkCmp}}}
       </li>
-      <li class={{optionsItem}}>
+      
+      <li class=${styles.optionsItem}>
         {{{editPasswordLinkCmp}}}
       </li>
-      <li class={{optionsItem}}>
+      
+      <li class=${styles.optionsItem}>
         {{{closeLinkCmp}}}
       </li>
+      
     </ul>
   </div>
 </main>

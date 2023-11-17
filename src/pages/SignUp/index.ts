@@ -33,8 +33,8 @@ export class SignUp extends Block {
       events: {
         blur: () => {
           validateField(this, 'email')
-            ? this.children.inputEmailErrorCmp.setProps({ text: '' })
-            : this.children.inputEmailErrorCmp.setProps({ text: fieldsErrors.email });
+            ? (this.children.inputEmailErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputEmailErrorCmp as Block).setProps({ text: fieldsErrors.email });
         },
       },
     });
@@ -50,8 +50,8 @@ export class SignUp extends Block {
       events: {
         blur: () => {
           validateField(this, 'login')
-            ? this.children.inputLoginErrorCmp.setProps({ text: '' })
-            : this.children.inputLoginErrorCmp.setProps({ text: fieldsErrors.login });
+            ? (this.children.inputLoginErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputLoginErrorCmp as Block).setProps({ text: fieldsErrors.login });
         },
       },
     });
@@ -67,8 +67,8 @@ export class SignUp extends Block {
       events: {
         blur: () => {
           validateField(this, 'first_name')
-            ? this.children.inputFirstNameErrorCmp.setProps({ text: '' })
-            : this.children.inputFirstNameErrorCmp.setProps({ text: fieldsErrors.firstSecondName });
+            ? (this.children.inputFirstNameErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputFirstNameErrorCmp as Block).setProps({ text: fieldsErrors.firstSecondName });
         },
       },
     });
@@ -84,8 +84,9 @@ export class SignUp extends Block {
       events: {
         blur: () => {
           validateField(this, 'second_name')
-            ? this.children.inputSecondNameErrorCmp.setProps({ text: '' })
-            : this.children.inputSecondNameErrorCmp
+            ? (this.children.inputSecondNameErrorCmp as Block)
+              .setProps({ text: '' })
+            : (this.children.inputSecondNameErrorCmp as Block)
               .setProps({ text: fieldsErrors.firstSecondName });
         },
       },
@@ -102,8 +103,8 @@ export class SignUp extends Block {
       events: {
         blur: () => {
           validateField(this, 'phone')
-            ? this.children.inputPhoneErrorCmp.setProps({ text: '' })
-            : this.children.inputPhoneErrorCmp.setProps({ text: fieldsErrors.phone });
+            ? (this.children.inputPhoneErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputPhoneErrorCmp as Block).setProps({ text: fieldsErrors.phone });
         },
       },
     });
@@ -120,8 +121,8 @@ export class SignUp extends Block {
       events: {
         blur: () => {
           validateField(this, 'phone')
-            ? this.children.inputPasswordErrorCmp.setProps({ text: '' })
-            : this.children.inputPasswordErrorCmp.setProps({ text: fieldsErrors.password });
+            ? (this.children.inputPasswordErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputPasswordErrorCmp as Block).setProps({ text: fieldsErrors.password });
         },
       },
     });
@@ -178,29 +179,7 @@ export class SignUp extends Block {
 
   render() {
     return this.compile(tmpl, {
-      signUpContainer: styles.signUpContainer,
-      header: styles.header,
       signUpPageAddress: '/signup',
-      blueLink: styles.blueLink,
-      main: styles.main,
-      input: styles.input,
-      signupButton: styles.signupButton,
-      inputEmailCmp: this.children.inputEmailCmp,
-      inputLoginCmp: this.children.inputLoginCmp,
-      inputFirstNameCmp: this.children.inputFirstNameCmp,
-      inputSecondNameCmp: this.children.inputSecondNameCmp,
-      inputPhoneCmp: this.children.inputPhoneCmp,
-      inputOldPassCmp: this.children.inputOldPassCmp,
-      inputNewPassCmp: this.children.inputNewPassCmp,
-      buttonSignUpCmp: this.children.buttonSignUpCmp,
-      inputEmailErrorCmp: this.children.inputEmailErrorCmp,
-      inputLoginErrorCmp: this.children.inputLoginErrorCmp,
-      inputFirstNameErrorCmp: this.children.inputFirstNameErrorCmp,
-      inputSecondNameErrorCmp: this.children.inputSecondNameErrorCmp,
-      inputPhoneErrorCmp: this.children.inputPhoneErrorCmp,
-      inputPasswordErrorCmp: this.children.inputPasswordErrorCmp,
-      inputConfirmPasswordErrorCmp: this.children.inputConfirmPasswordErrorCmp,
-      linkCmp: this.children.linkCmp,
     });
   }
 }

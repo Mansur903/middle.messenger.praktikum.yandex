@@ -1,30 +1,41 @@
+import styles from './styles.module.scss';
+
 export const tmpl = `
 <head>
 <title>Страница изменения пароля</title>
 </head>
-<main class={{main}}>
-  <div class={{changePasswordContainer}}>
-    <img class={{avatar}} src={{path}} alt={{alt}}>
-    <form class={{form}}>
-      <ul class={{formList}}>
-      <li class={{formListItem}}>
-        <span class={{sign}}>Старый пароль</span>
+<main class=${styles.main}>
+  <div class=${styles.changePasswordContainer}>
+  
+    <img class=${styles.avatar} src={{path}} alt={{alt}}>
+    
+    <form class=${styles.form}>
+    
+      <ul class=${styles.formList}>
+      
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Старый пароль</span>
           {{{inputOldPassCmp}}}
         </li>
-        <li class={{formListItem}}>
-          <span class={{sign}}>Новый пароль</span>
+        
+        <li class=${styles.formListItem}>
+          <span class=${styles.sign}>Новый пароль</span>
           {{{inputNewPassCmp}}}
         </li>
-        <li class={{formListItem}}>
-        <span class={{sign}}>Повторите новый пароль</span>
+        
+        <li class=${styles.formListItem}>
+        <span class=${styles.sign}>Повторите новый пароль</span>
           {{{inputNewPassConfirmCmp}}}
         </li>
+        
         <li>
             {{{passwordErrorCmp}}}
         </li>
+        
       </ul>
       {{{buttonSaveCmp}}}
     </form>
+    
   </div>
 </main>
 `;

@@ -31,8 +31,8 @@ export class BaseEditProfile extends Block {
       events: {
         blur: () => {
           validateField(this, 'email')
-            ? this.children.inputEmailErrorCmp.setProps({ text: '' })
-            : this.children.inputEmailErrorCmp.setProps({ text: fieldsErrors.email });
+            ? (this.children.inputEmailErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputEmailErrorCmp as Block).setProps({ text: fieldsErrors.email });
         },
       },
     });
@@ -47,8 +47,8 @@ export class BaseEditProfile extends Block {
       events: {
         blur: () => {
           validateField(this, 'login')
-            ? this.children.inputLoginErrorCmp.setProps({ text: '' })
-            : this.children.inputLoginErrorCmp.setProps({ text: fieldsErrors.login });
+            ? (this.children.inputLoginErrorCmp as Block).setProps({ text: '' })
+            : (this.children.inputLoginErrorCmp as Block).setProps({ text: fieldsErrors.login });
         },
       },
     });
@@ -63,8 +63,10 @@ export class BaseEditProfile extends Block {
       events: {
         blur: () => {
           validateField(this, 'first_name')
-            ? this.children.inputFirstNameErrorCmp.setProps({ text: '' })
-            : this.children.inputFirstNameErrorCmp.setProps({ text: fieldsErrors.firstSecondName });
+            ? (this.children.inputFirstNameErrorCmp as Block)
+              .setProps({ text: '' })
+            : (this.children.inputFirstNameErrorCmp as Block)
+              .setProps({ text: fieldsErrors.firstSecondName });
         },
       },
     });
@@ -79,8 +81,9 @@ export class BaseEditProfile extends Block {
       events: {
         blur: () => {
           validateField(this, 'second_name')
-            ? this.children.inputSecondNameErrorCmp.setProps({ text: '' })
-            : this.children.inputSecondNameErrorCmp
+            ? (this.children.inputSecondNameErrorCmp as Block)
+              .setProps({ text: '' })
+            : (this.children.inputSecondNameErrorCmp as Block)
               .setProps({ text: fieldsErrors.firstSecondName });
         },
       },
@@ -96,8 +99,9 @@ export class BaseEditProfile extends Block {
       events: {
         blur: () => {
           validateField(this, 'display_name')
-            ? this.children.inputDisplayNameErrorCmp.setProps({ text: '' })
-            : this.children.inputDisplayNameErrorCmp
+            ? (this.children.inputDisplayNameErrorCmp as Block)
+              .setProps({ text: '' })
+            : (this.children.inputDisplayNameErrorCmp as Block)
               .setProps({ text: fieldsErrors.firstSecondName });
         },
       },
@@ -113,8 +117,10 @@ export class BaseEditProfile extends Block {
       events: {
         blur: () => {
           validateField(this, 'phone')
-            ? this.children.inputPhoneErrorCmp.setProps({ text: '' })
-            : this.children.inputPhoneErrorCmp.setProps({ text: fieldsErrors.phone });
+            ? (this.children.inputPhoneErrorCmp as Block)
+              .setProps({ text: '' })
+            : (this.children.inputPhoneErrorCmp as Block)
+              .setProps({ text: fieldsErrors.phone });
         },
       },
     });
@@ -154,7 +160,7 @@ export class BaseEditProfile extends Block {
       tooltipText: 'Поменять аватар',
       events: {
         click: () => {
-          this.children.modal.setProps({ isActive: true });
+          (this.children.modal as Block).setProps({ isActive: true });
         },
       },
       className: styles.avatarWrapper,
@@ -169,38 +175,9 @@ export class BaseEditProfile extends Block {
   }
 
   render() {
-    this.children.avatar.setProps({ path: this.getAvatarPath() });
+    (this.children.avatar as Block).setProps({ path: this.getAvatarPath() });
 
-    return this.compile(tmpl, {
-      editProfileContainer: styles.editProfileContainer,
-      path: imgUrl,
-      alt: 'Аватар',
-      form: styles.form,
-      formList: styles.formList,
-      formListItem: styles.formListItem,
-      sign: styles.sign,
-      main: styles.main,
-      input: styles.input,
-      button: styles.button,
-      inputEmailCmp: this.children.inputEmailCmp,
-      inputLoginCmp: this.children.inputLoginCmp,
-      inputFirstNameCmp: this.children.inputFirstNameCmp,
-      inputSecondNameCmp: this.children.inputSecondNameCmp,
-      inputDisplayNameCmp: this.children.inputDisplayNameCmp,
-      inputPhoneCmp: this.children.inputPhoneCmp,
-      buttonSaveCmp: this.children.buttonSaveCmp,
-      inputEmailErrorCmp: this.children.inputEmailErrorCmp,
-      inputLoginErrorCmp: this.children.inputLoginErrorCmp,
-      inputFirstNameErrorCmp: this.children.inputFirstNameErrorCmp,
-      inputSecondNameErrorCmp: this.children.inputSecondNameErrorCmp,
-      inputDisplayNameErrorCmp: this.children.inputDisplayNameErrorCmp,
-      inputPhoneErrorCmp: this.children.inputPhoneErrorCmp,
-      inputWrapper: styles.inputWrapper,
-      avatarContainer: styles.avatarContainer,
-      tooltip: styles.tooltip,
-      modal: this.children.modal,
-      avatar: this.children.avatar,
-    });
+    return this.compile(tmpl, {});
   }
 }
 

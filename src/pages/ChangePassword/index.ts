@@ -62,23 +62,8 @@ export class BaseChangePassword extends Block {
 
   render() {
     return this.compile(tmpl, {
-      editProfileContainer: styles.editProfileContainer,
-      avatar: styles.avatar,
       path: imgUrl,
       alt: 'Аватар',
-      form: styles.form,
-      formList: styles.formList,
-      formListItem: styles.formListItem,
-      sign: styles.sign,
-      main: styles.main,
-      input: styles.input,
-      button: styles.button,
-      changePasswordContainer: styles.changePasswordContainer,
-      inputOldPassCmp: this.children.inputOldPassCmp,
-      inputNewPassCmp: this.children.inputNewPassCmp,
-      inputNewPassConfirmCmp: this.children.inputNewPassConfirmCmp,
-      buttonSubmitCmp: this.children.buttonSaveCmp,
-      passwordErrorCmp: this.children.passwordErrorCmp,
     });
   }
 }

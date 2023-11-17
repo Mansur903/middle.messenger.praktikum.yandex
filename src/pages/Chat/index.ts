@@ -1,7 +1,6 @@
 import Block from '../../utils/Block';
 import { tmpl } from './chat.tmpl';
 import styles from './styles.module.scss';
-import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import {
@@ -9,6 +8,7 @@ import {
 } from '../../utils/Ancillary';
 import { Link } from '../../components/Link';
 import { Channel } from '../../components/Channel';
+// import ChatsController from '../../controllers/ChatsController';
 
 export class Chat extends Block {
   constructor() {
@@ -106,21 +106,8 @@ export class Chat extends Block {
       lastMessageTime: item.last_message.time,
       className: styles.channel,
     }));
-    // console.log({ preparedData });
 
-    // this.children.channelCmp = new Channel({
-    //   path: data[0].avatar,
-    //   alt: 'Аватарка',
-    //   channelName: data[0].title,
-    //   lastMessage: data[0].last_message.content,
-    //   lastMessageTime: data[0].last_message.time,
-    //   events: {
-    //     click: () => console.log(1),
-    //   },
-    //   className: styles.channel,
-    // });
-    // console.log(preparedData.map((channel) => new Channel(channel)))
-    this.children.channels = preparedData.map((channel) => new Channel(channel));
+    this.children.channelsCmp = preparedData.map((channel) => new Channel(channel));
 
     this.children.channelCmp = new Channel({
       path: data[0].avatar,
@@ -171,31 +158,6 @@ export class Chat extends Block {
   }
 
   render() {
-    return this.compile(tmpl, {
-      main: styles.main,
-      avatar: styles.avatar,
-      channels: styles.channels,
-      chat: styles.chat,
-      chatHeader: styles.chatHeader,
-      messages: styles.messages,
-      path: imgUrl,
-      alt: 'Аватар',
-      channel: styles.channel,
-      channelContent: styles.channelContent,
-      name: styles.name,
-      channelsHeader: styles.channelsHeader,
-      searchInput: styles.searchInput,
-      channelsList: styles.channelsList,
-      time: styles.time,
-      profileLink: styles.profileLink,
-      message: styles.message,
-      inputWrapper: styles.inputWrapper,
-      input: styles.input,
-      button: styles.button,
-      inputCmp: this.children.inputCmp,
-      buttonSendCmp: this.children.buttonSendCmp,
-      profileLinkCmp: this.children.profileLinkCmp,
-      channelCmp: this.children.channelCmp,
-    });
+    return this.compile(tmpl, {});
   }
 }
