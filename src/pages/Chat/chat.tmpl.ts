@@ -1,13 +1,14 @@
 import styles from './styles.module.scss';
 
 export const tmpl = `
+{{{addChatModal}}}
 <main class=${styles.main}>
 
   <section class=${styles.channels}>
   
     <div class=${styles.channelsHeader}>
     {{{profileLinkCmp}}}
-      <input class=${styles.searchInput} type="text" name="search" placeholder="Поиск">
+    {{{createChatCmp}}}
     </div>
     
     <ul class=${styles.channelsList}>
@@ -28,4 +29,5 @@ export const tmpl = `
   
   </section>
 </main>
+{{{addChatModal}}}
 `;

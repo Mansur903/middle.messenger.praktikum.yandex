@@ -4,6 +4,7 @@ export const tmpl = `
 <head>
   <title>Страница редактирования профиля</title>
 </head>
+{{{backButtonCmp}}}
 <main class=${styles.main}>
 
   <div class=${styles.editProfileContainer}>

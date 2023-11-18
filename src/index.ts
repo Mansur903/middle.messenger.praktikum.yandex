@@ -11,6 +11,7 @@ import { Chat } from './pages/Chat';
 import './styles/index.scss';
 import router from './utils/Router';
 import AuthController from './controllers/AuthController';
+import ChatsController from './controllers/ChatsController';
 
 enum Routes {
   MainPage = '/',
@@ -48,6 +49,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   try {
     await AuthController.fetchUser();
+    await ChatsController.getChats();
 
     router.start();
 

@@ -67,13 +67,13 @@ export function validateChangePasswordForm(me:Block) {
   if (inputs[1].value !== inputs[2].value) {
     inputs[1].style.borderColor = 'red';
     inputs[2].style.borderColor = 'red';
-    me.children.passwordErrorCmp.setProps({ text: 'Старый и новый пароли должны совпадать' });
+    (me.children.passwordErrorCmp as Block).setProps({ text: 'Старый и новый пароли должны совпадать' });
     return false;
   }
 
   if (!regexp?.test(inputs[1].value)) {
     inputs[1].style.borderColor = 'red';
-    me.children.passwordErrorCmp.setProps({ text: fieldsErrors.password });
+    (me.children.passwordErrorCmp as Block).setProps({ text: fieldsErrors.password });
     return false;
   }
 

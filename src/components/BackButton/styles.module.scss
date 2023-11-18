@@ -9,6 +9,7 @@
   width: 70px;
   height: 100%;
   background-color: $gray5;
+  transition: background-color 0.2s ease;
 }
 
 .backButtonBlock:hover {

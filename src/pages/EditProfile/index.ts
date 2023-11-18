@@ -11,8 +11,9 @@ import {
 } from '../../utils/Ancillary';
 import { State, store, withStore } from '../../utils/Store';
 import UsersController from '../../controllers/UsersController';
-import { Modal } from '../../components/Modal';
+import { ChangeAvatarModal } from '../../components/Modals/ChangeAvatarModal';
 import { Avatar } from '../../components/Avatar';
+import { BackButton } from '../../components/BackButton';
 
 export class BaseEditProfile extends Block {
   constructor() {
@@ -146,9 +147,8 @@ export class BaseEditProfile extends Block {
       },
     });
 
-    this.children.modal = new Modal({
+    this.children.modalmodal = new ChangeAvatarModal({
       title: 'Загрузите картинку',
-      content: 'blabla',
       error: 'error',
       buttonText: 'кнопка',
       isActive: false,
@@ -164,6 +164,10 @@ export class BaseEditProfile extends Block {
         },
       },
       className: styles.avatarWrapper,
+    });
+
+    this.children.backButtonCmp = new BackButton({
+      to: '/profile',
     });
   }
 

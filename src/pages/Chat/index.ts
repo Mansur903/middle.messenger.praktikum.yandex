@@ -4,127 +4,47 @@ import styles from './styles.module.scss';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import {
-  fieldsRegExps, getInputValues, validateField, validateForm,
+ fieldsRegExps, getInputValues, validateField, validateForm,
 } from '../../utils/Ancillary';
 import { Link } from '../../components/Link';
 import { Channel } from '../../components/Channel';
-// import ChatsController from '../../controllers/ChatsController';
+import { State, store, withStore } from '../../utils/Store';
+import { AddChatModal } from '../../components/Modals/AddChatModal';
 
-export class Chat extends Block {
+export class BaseChat extends Block {
   constructor() {
     super('div', {});
   }
 
-  getTestData() {
-    return [
-      {
-        id: 123,
-        title: 'my-chat',
-        avatar: '/123/avatar1.jpg',
-        unread_count: 15,
-        created_by: 12345,
-        last_message: {
-          user: {
-            first_name: 'Petya',
-            second_name: 'Pupkin',
-            avatar: '/path/to/avatar.jpg',
-            email: 'my@email.com',
-            login: 'userLogin',
-            phone: '8(911)-222-33-22',
-          },
-          time: '10:15',
-          content: 'this is message content',
-        },
-      },
-      {
-        id: 123,
-        title: 'my-chat',
-        avatar: '/123/avatar1.jpg',
-        unread_count: 15,
-        created_by: 12345,
-        last_message: {
-          user: {
-            first_name: 'Petya',
-            second_name: 'Pupkin',
-            avatar: '/path/to/avatar.jpg',
-            email: 'my@email.com',
-            login: 'userLogin',
-            phone: '8(911)-222-33-22',
-          },
-          time: '10:15',
-          content: 'this is message content',
-        },
-      },
-      {
-        id: 123,
-        title: 'my-chat',
-        avatar: '/123/avatar1.jpg',
-        unread_count: 15,
-        created_by: 12345,
-        last_message: {
-          user: {
-            first_name: 'Petya',
-            second_name: 'Pupkin',
-            avatar: '/path/to/avatar.jpg',
-            email: 'my@email.com',
-            login: 'userLogin',
-            phone: '8(911)-222-33-22',
-          },
-          time: '10:15',
-          content: 'this is message content',
-        },
-      },
-      {
-        id: 123,
-        title: 'my-chat',
-        avatar: '/123/avatar1.jpg',
-        unread_count: 15,
-        created_by: 12345,
-        last_message: {
-          user: {
-            first_name: 'Petya',
-            second_name: 'Pupkin',
-            avatar: '/path/to/avatar.jpg',
-            email: 'my@email.com',
-            login: 'userLogin',
-            phone: '8(911)-222-33-22',
-          },
-          time: '10:15',
-          content: 'this is message content',
-        },
-      },
-    ];
-  }
-
   init() {
-    const data = this.getTestData();
-    const preparedData = data.map((item) => ({
-      path: item.avatar,
-      alt: 'Аватарка',
-      channelName: item.title,
-      lastMessage: item.last_message.content,
-      lastMessageTime: item.last_message.time,
-      className: styles.channel,
-    }));
-
-    this.children.channelsCmp = preparedData.map((channel) => new Channel(channel));
-
-    this.children.channelCmp = new Channel({
-      path: data[0].avatar,
-      alt: 'Аватарка',
-      channelName: data[0].title,
-      lastMessage: data[0].last_message.content,
-      lastMessageTime: data[0].last_message.time,
-      events: {
-        click: () => console.log(1),
-      },
-      className: styles.channel,
-    });
+    const { chats } = store.getState();
+    console.log(chats);
+    if (chats) {
+      this.children.channelsCmp = chats.map((channel) => new Channel({ ...channel, className: styles.channelCmp }));
+    }
 
     this.children.profileLinkCmp = new Link('', {
       to: '/profile',
       label: 'Профиль >',
       className: styles.profileLink,
+    });
+
+    this.children.addChatModal = new AddChatModal({
+      title: 'Создать чат',
+      error: 'error',
+      buttonText: 'кнопка',
+      isActive: false,
+    });
+
+    this.children.createChatCmp = new Button({
+      label: 'Создать чат >',
+      className: styles.createChatButton,
+      events: {
+        click: (e) => {
+          e.preventDefault();
+          (this.children.addChatModal as Block).setProps({ isActive: true });
+        },
+      },
     });
 
     this.children.inputCmp = new Input({
@@ -161,3 +81,7 @@ export class Chat extends Block {
     return this.compile(tmpl, {});
   }
 }
+
+const mapStateToProps = (state: State) => ({ ...state.chats });
+
+export const Chat = withStore(mapStateToProps)(BaseChat);

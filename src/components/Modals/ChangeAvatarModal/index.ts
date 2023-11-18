@@ -1,13 +1,12 @@
 import Handlebars from 'handlebars';
-import Block from '../../utils/Block';
+import Block from '../../../utils/Block';
 import styles from './styles.module.scss';
-import { Button } from '../Button';
-import { Input } from '../Input';
-import UsersController from '../../controllers/UsersController';
+import { Button } from '../../Button';
+import { Input } from '../../Input';
+import UsersController from '../../../controllers/UsersController';
 
 interface ModalProps {
     title: string;
-    content: string;
     error: string;
     buttonText: string;
     isActive: boolean;
@@ -21,7 +20,7 @@ Handlebars.registerHelper('overlayShow', () => {
   return `${styles.modalOverlay} ${styles.active}`;
 });
 
-export class Modal extends Block {
+export class ChangeAvatarModal extends Block {
   constructor(props: ModalProps) {
     super('div', props);
   }
@@ -81,8 +80,8 @@ export class Modal extends Block {
         {{/if}}
         data-modal="1">
            {{{closeButton}}}
-           <form id="avatarForm" class={{modalContent}}>
-             <p class={{modalTitle}}>{{title}}</p>
+           <form id="avatarForm" class=${styles.modalContent}>
+             <p class=${styles.modalTitle}>{{title}}</p>
              {{{chooseFileInput}}}
              {{{confirmButton}}}
            </form>
@@ -100,10 +99,6 @@ export class Modal extends Block {
       modalHide: styles.modal,
       overlayHide: styles.modalOverlay,
       modalCross: styles.modalCross,
-      modalTitle: styles.modalTitle,
-      closeButton: this.children.closeButton,
-      modalContent: styles.modalContent,
-      confirmButton: this.children.confirmButton,
     });
   }
 }

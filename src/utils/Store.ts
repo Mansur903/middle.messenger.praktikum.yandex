@@ -1,10 +1,12 @@
 import { IUser } from '../api/AuthApi';
-import { EventBus } from './EventBus.ts';
-import { set } from './Ancillary.ts';
+import { EventBus } from './EventBus';
+import { set } from './Ancillary';
 import Block from './Block';
+import { IChats } from '../api/ChatsApi';
 
 export interface State {
   user?: IUser
+  chats?: IChats[]
 }
 
 enum StorageEvent {

@@ -4,10 +4,11 @@ import styles from './styles.module.scss';
 import imgUrl from '../../images/default-avatar.jpeg';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
-import { State, withStore } from '../../utils/Store';
+import { State, store, withStore } from '../../utils/Store';
 import { fieldsRegExps, validateChangePasswordForm } from '../../utils/Ancillary';
 import UsersController from '../../controllers/UsersController';
 import { Error } from '../../components/Error';
+import { BackButton } from '../../components/BackButton';
 
 export class BaseChangePassword extends Block {
   constructor() {
@@ -58,11 +59,22 @@ export class BaseChangePassword extends Block {
     });
 
     this.children.passwordErrorCmp = new Error({ text: '', className: styles.error });
+
+    this.children.backButtonCmp = new BackButton({
+      to: '/profile',
+    });
+  }
+
+  getAvatarPath() {
+    const { user } = store.getState();
+    const avatarPath = user?.avatar;
+    return avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
+      : imgUrl;
   }
 
   render() {
     return this.compile(tmpl, {
-      path: imgUrl,
+      path: this.getAvatarPath(),
       alt: 'Аватар',
     });
   }
