@@ -8,6 +8,7 @@ export interface IChats {
   events?: {
     click: (e:KeyboardEvent) => void;
   },
+  id: number
   className?: string;
 }
 

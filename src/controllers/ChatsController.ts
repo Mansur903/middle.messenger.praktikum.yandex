@@ -22,6 +22,13 @@ class ChatsController {
       console.log(error);
     }
   }
+
+  selectChat(data: { id:number, avatar:string, title:string }) {
+    const { id, avatar, title } = data;
+    store.set('selectedChat.id', id);
+    store.set('selectedChat.title', title);
+    store.set('selectedChat.avatar', avatar);
+  }
 }
 
 export default new ChatsController();

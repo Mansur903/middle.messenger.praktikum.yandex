@@ -1,6 +1,7 @@
 import Block from '../../utils/Block';
 import styles from './styles.module.scss';
 import imgUrl from '../../images/default-avatar.jpeg';
+import ChatsController from '../../controllers/ChatsController';
 
 interface ChannelProps {
   avatar: string,
@@ -18,7 +19,13 @@ export class Channel extends Block {
     super('li', props);
   }
 
-  init() {}
+  init() {
+    this.props.events = {
+      click: () => {
+        ChatsController.selectChat(this.props);
+      },
+    };
+  }
 
   getAvatarPath() {
     return this.props.avatar || imgUrl;

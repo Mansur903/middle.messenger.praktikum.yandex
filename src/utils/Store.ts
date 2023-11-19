@@ -7,6 +7,7 @@ import { IChats } from '../api/ChatsApi';
 export interface State {
   user?: IUser
   chats?: IChats[]
+  selectedChat?: { id:number, avatar:string, title:string }
 }
 
 enum StorageEvent {

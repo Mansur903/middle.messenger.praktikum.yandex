@@ -10,11 +10,13 @@ import { Link } from '../../components/Link';
 import { Channel } from '../../components/Channel';
 import { State, store, withStore } from '../../utils/Store';
 import { AddChatModal } from '../../components/Modals/AddChatModal';
+import imgUrl from '../../images/default-avatar.jpeg';
 
 export class BaseChat extends Block {
   constructor() {
     super('div', {
       isAddChatModalActive: false,
+      isChatSelected: false,
     });
   }
 
@@ -73,16 +75,34 @@ export class BaseChat extends Block {
     });
   }
 
+  getChatAvatarPath() {
+    const { selectedChat } = store.getState();
+    if (!selectedChat) return null;
+    const avatarPath = selectedChat?.avatar;
+    return avatarPath ? `https://ya-praktikum.tech/api/v2/resources${avatarPath}`
+     : imgUrl;
+  }
+
   render() {
-    const { chats } = store.getState();
+    const { chats, selectedChat } = store.getState();
+
     if (chats) {
-      this.children.channelsCmp = chats.map((channel) => new Channel({ ...channel, className: styles.channelCmp }));
+      this.children.channelsCmp = chats.map((channel) => new Channel({
+        ...channel,
+        className: styles.channelCmp,
+      }));
     }
 
-    return this.compile(tmpl, {});
+    return this.compile(tmpl, {
+      title: selectedChat?.title,
+      path: this.getChatAvatarPath(),
+    });
   }
 }
 
-const mapStateToProps = (state: State) => ({ ...state.chats });
+const mapStateToProps = (state: State) => ({
+  chats: { ...state.chats },
+  selectedChat: state.selectedChat,
+});
 
 export const Chat = withStore(mapStateToProps)(BaseChat);

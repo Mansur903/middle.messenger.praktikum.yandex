@@ -25,14 +25,6 @@
       flex-direction: column;
       border-bottom: 1px solid $border;
 
-      //.searchInput {
-      //  box-sizing: border-box;
-      //  height: 32px;
-      //  margin: 20px 10px 10px;
-      //  border-radius: 5px;
-      //  border: 1px solid $gray50;
-      //}
-
       .createChatButton {
         color: $gray50;
         margin: 10px;
@@ -55,7 +47,7 @@
 
       .profileLink {
         color: $gray50;
-        margin: 10px;
+        margin: 10px 10px 0 10px;
         padding-bottom: 10px;
         text-align: center;
         text-decoration: none;
@@ -69,42 +61,15 @@
       }
     }
 
-    .channelsList {
+    .channelCmp {
+      display: flex;
+      cursor: pointer;
+      background-color: white;
+      transition: background-color 0.1s ease;
+    }
 
-      .channelCmp {
-        display: flex;
-      }
-
-      .channel {
-        display: flex;
-        height: 70px;
-        border-bottom: 1px solid $border;
-        margin: 10px;
-        position: relative;
-
-        .channelContent {
-          display: flex;
-          flex-direction: column;
-          margin: 10px 0 10px 5px;
-
-          .name {
-            font-weight: bold;
-          }
-
-          .message {
-            color: $gray50;
-            font-size: $fontSizeS;
-          }
-        }
-
-        .time {
-          position: absolute;
-          right: 5px;
-          top: 10px;
-          color: $gray50;
-          font-size: $fontSizeXS;
-        }
-      }
+    .channelCmp:hover {
+      background-color: $gray4;
     }
   }
 
@@ -114,8 +79,20 @@
     flex-direction: column;
 
     .chatHeader {
-      height: 45px;
+      height: 70px;
       border: 1px solid $border;
+      display: flex;
+
+      .chatHeaderAvatar {
+        width: 40px;
+        height: 40px;
+        margin: 10px 20px;
+        border-radius: 50%;
+      }
+
+      .chatTitle {
+        align-self: center;
+      }
     }
 
     .messages {

@@ -21,7 +21,10 @@ export const tmpl = `
 
   <section class=${styles.chat}>
   
-    <div class=${styles.chatHeader}></div>
+    <div class=${styles.chatHeader}>
+      <img class=${styles.chatHeaderAvatar} src={{path}} alt='Аватар' onerror='this.style.display = "none"'>
+      <div class=${styles.chatTitle}>{{{title}}}</div>
+    </div>
     <ul class=${styles.messages}></ul>
     
     <div class=${styles.inputWrapper}>
