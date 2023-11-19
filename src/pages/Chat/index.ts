@@ -13,16 +13,12 @@ import { AddChatModal } from '../../components/Modals/AddChatModal';
 
 export class BaseChat extends Block {
   constructor() {
-    super('div', {});
+    super('div', {
+      isAddChatModalActive: false,
+    });
   }
 
   init() {
-    const { chats } = store.getState();
-    console.log(chats);
-    if (chats) {
-      this.children.channelsCmp = chats.map((channel) => new Channel({ ...channel, className: styles.channelCmp }));
-    }
-
     this.children.profileLinkCmp = new Link('', {
       to: '/profile',
       label: 'Профиль >',
@@ -78,6 +74,11 @@ export class BaseChat extends Block {
   }
 
   render() {
+    const { chats } = store.getState();
+    if (chats) {
+      this.children.channelsCmp = chats.map((channel) => new Channel({ ...channel, className: styles.channelCmp }));
+    }
+
     return this.compile(tmpl, {});
   }
 }

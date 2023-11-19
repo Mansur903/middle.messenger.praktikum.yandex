@@ -12,7 +12,9 @@ export const tmpl = `
     </div>
     
     <ul class=${styles.channelsList}>
-      {{{channelsCmp}}}
+      {{#each channelsCmp}}
+        {{{this}}}
+      {{/each}}
     </ul>
     
   </section>
