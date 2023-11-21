@@ -1,5 +1,4 @@
 /* Стили для подложки */
-
 .modalOverlay {
 
   /* Скрываем подложку  */
@@ -16,11 +15,7 @@
   transition: .3s all;
 }
 
-
-/* Стили для модальных окон */
-
 .modal {
-
   /* Скрываем окна  */
   opacity: 0;
   visibility: hidden;
@@ -40,8 +35,8 @@
   border-radius: 3px;
   background-color: #fff;
   transition: 0.3s all;
-  /* Стили для кнопки закрытия */
 
+  /* Стили для кнопки закрытия */
   .modalCross {
     position: absolute;
     right: 10px;
@@ -97,5 +92,3 @@
   opacity: 1;
   visibility: visible;
 }
-
-/* Стили для кнопок. Мы ведь порядочные разработчики, негоже простые ссылки оставлять */

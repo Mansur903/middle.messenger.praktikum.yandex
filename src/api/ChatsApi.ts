@@ -24,4 +24,12 @@ export class ChatsAPI extends API {
   createChat(payload: object) {
     return this.http.post('', payload);
   }
+
+  addUser(ids: number[]) {
+    return this.http.put('/users', ids);
+  }
+
+  removeUser(ids: number[]) {
+    return this.http.delete('/users', ids);
+  }
 }

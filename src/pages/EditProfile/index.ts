@@ -147,7 +147,7 @@ export class BaseEditProfile extends Block {
       },
     });
 
-    this.children.modalmodal = new ChangeAvatarModal({
+    this.children.modal = new ChangeAvatarModal({
       title: 'Загрузите картинку',
       error: 'error',
       buttonText: 'кнопка',

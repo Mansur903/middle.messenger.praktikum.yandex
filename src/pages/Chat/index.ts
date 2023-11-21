@@ -9,8 +9,10 @@ import {
 import { Link } from '../../components/Link';
 import { Channel } from '../../components/Channel';
 import { State, store, withStore } from '../../utils/Store';
-import { AddChatModal } from '../../components/Modals/AddChatModal';
 import imgUrl from '../../images/default-avatar.jpeg';
+import { RemoveUsersFromChat } from '../../components/Modals/RemoveUserFromChat';
+import { AddChatModal } from '../../components/Modals/AddChatModal';
+import { AddUsersToChat } from '../../components/Modals/AddUsersToChat';
 
 export class BaseChat extends Block {
   constructor() {
@@ -25,24 +27,6 @@ export class BaseChat extends Block {
       to: '/profile',
       label: 'Профиль >',
       className: styles.profileLink,
-    });
-
-    this.children.addChatModal = new AddChatModal({
-      title: 'Создать чат',
-      error: 'error',
-      buttonText: 'кнопка',
-      isActive: false,
-    });
-
-    this.children.createChatCmp = new Button({
-      label: 'Создать чат >',
-      className: styles.createChatButton,
-      events: {
-        click: (e) => {
-          e.preventDefault();
-          (this.children.addChatModal as Block).setProps({ isActive: true });
-        },
-      },
     });
 
     this.children.inputCmp = new Input({
@@ -70,6 +54,54 @@ export class BaseChat extends Block {
         click: () => {
           if (!validateForm(this)) return;
           getInputValues(this);
+        },
+      },
+    });
+
+    this.children.addChatModal = new AddChatModal({
+      title: 'Создать чат',
+      isActive: false,
+      buttonText: 'Добавить',
+    });
+
+    this.children.modalRemoveUserFromChat = new RemoveUsersFromChat({
+      title: 'Удалить пользователей из чата (если сразу несколько, то через запятую)',
+      isActive: false,
+      buttonText: 'Удалить',
+    });
+
+    this.children.modalAddUserToChat = new AddUsersToChat({
+      title: 'Добавить пользователя в чат (если сразу несколько, то через запятую)',
+      isActive: false,
+      buttonText: 'Добавить',
+    });
+
+    this.children.createChatCmp = new Button({
+      label: 'Создать чат >',
+      className: styles.createChatButton,
+      events: {
+        click: () => {
+          (this.children.addChatModal as Block).setProps({ isActive: true });
+        },
+      },
+    });
+
+    this.children.buttonRemoveUserFromChat = new Button({
+      label: 'Удалить пользователя',
+      className: styles.buttonRemoveUserFromChat,
+      events: {
+        click: () => {
+          (this.children.modalRemoveUserFromChat as Block).setProps({ isActive: true });
+        },
+      },
+    });
+
+    this.children.buttonAddUserToChat = new Button({
+      label: 'Добавить пользователя',
+      className: styles.buttonAddUserToChat,
+      events: {
+        click: () => {
+          (this.children.modalAddUserToChat as Block).setProps({ isActive: true });
         },
       },
     });

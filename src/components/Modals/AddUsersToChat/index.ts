@@ -12,15 +12,15 @@ interface ModalProps {
   isActive: boolean;
 }
 
-Handlebars.registerHelper('modalShowAddChat', () => {
+Handlebars.registerHelper('modalShowAddUserToChat', () => {
   return `${styles.modal} ${styles.active}`;
 });
 
-Handlebars.registerHelper('overlayShowAddChat', () => {
+Handlebars.registerHelper('overlayShowAddUserToChat', () => {
   return `${styles.modalOverlay} ${styles.active}`;
 });
 
-export class AddChatModal extends Block {
+export class AddUsersToChat extends Block {
   constructor(props: ModalProps) {
     super('div', props);
   }
@@ -39,8 +39,8 @@ export class AddChatModal extends Block {
     this.children.chatNameInput = new Input({
       required: true,
       type: 'text',
-      className: styles.modalChatNameInput,
-      placeholder: 'Напишите название чата',
+      className: styles.modalInput,
+      placeholder: 'Введите id',
       id: 'chatName',
     });
 
@@ -69,9 +69,9 @@ export class AddChatModal extends Block {
     return this.compile(`
         <div
         {{#if isActive}}
-        class='{{modalShowAddChat}}'
+        class='{{modalShowAddUserToChat}}'
         {{else}}
-        class='{{modalHideAddChat}}'
+        class='{{modalHideAddUserToChat}}'
         {{/if}}
         data-modal="1">
            {{{closeButton}}}
@@ -84,15 +84,15 @@ export class AddChatModal extends Block {
         
         <div
          {{#if isActive}}
-          class='{{overlayShowAddChat}}'
+          class='{{overlayShowAddUserToChat}}'
           {{else}}
-          class='{{overlayHideAddChat}}'
+          class='{{overlayHideAddUserToChat}}'
           {{/if}}
          id="overlay-modal"></div>
 `, {
       ...this.props,
-      modalHideAddChat: styles.modal,
-      overlayHideAddChat: styles.modalOverlay,
+      modalHideAddUserToChat: styles.modal,
+      overlayHideAddUserToChat: styles.modalOverlay,
       modalCross: styles.modalCross,
     });
   }

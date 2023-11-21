@@ -10,17 +10,18 @@ interface ModalProps {
   error?: string;
   buttonText: string;
   isActive: boolean;
+  onClose?: () => void;
 }
 
-Handlebars.registerHelper('modalShowAddChat', () => {
+Handlebars.registerHelper('modalShowRemoveUserFromChat', () => {
   return `${styles.modal} ${styles.active}`;
 });
 
-Handlebars.registerHelper('overlayShowAddChat', () => {
+Handlebars.registerHelper('overlayShowRemoveUserFromChat', () => {
   return `${styles.modalOverlay} ${styles.active}`;
 });
 
-export class AddChatModal extends Block {
+export class RemoveUsersFromChat extends Block {
   constructor(props: ModalProps) {
     super('div', props);
   }
@@ -29,8 +30,7 @@ export class AddChatModal extends Block {
     this.children.closeButton = new Button({
       className: styles.modalCross,
       events: {
-        click: (e) => {
-          e.preventDefault();
+        click: () => {
           this.close();
         },
       },
@@ -40,12 +40,12 @@ export class AddChatModal extends Block {
       required: true,
       type: 'text',
       className: styles.modalChatNameInput,
-      placeholder: 'Напишите название чата',
+      placeholder: 'Введите id',
       id: 'chatName',
     });
 
     this.children.confirmButton = new Button({
-      label: 'Добавить',
+      label: 'Удалить',
       type: 'submit',
       className: styles.modalConfirmButton,
       events: {
@@ -69,9 +69,9 @@ export class AddChatModal extends Block {
     return this.compile(`
         <div
         {{#if isActive}}
-        class='{{modalShowAddChat}}'
+          class='{{modalShowRemoveUserFromChat}}'
         {{else}}
-        class='{{modalHideAddChat}}'
+          class='{{modalHideRemoveUserFromChat}}'
         {{/if}}
         data-modal="1">
            {{{closeButton}}}
@@ -84,15 +84,15 @@ export class AddChatModal extends Block {
         
         <div
          {{#if isActive}}
-          class='{{overlayShowAddChat}}'
+          class='{{overlayShowRemoveUserFromChat}}'
           {{else}}
-          class='{{overlayHideAddChat}}'
-          {{/if}}
+          class='{{overlayHideRemoveUserFromChat}}'
+         {{/if}}
          id="overlay-modal"></div>
 `, {
       ...this.props,
-      modalHideAddChat: styles.modal,
-      overlayHideAddChat: styles.modalOverlay,
+      modalHideRemoveUserFromChat: styles.modal,
+      overlayHideRemoveUserFromChat: styles.modalOverlay,
       modalCross: styles.modalCross,
     });
   }

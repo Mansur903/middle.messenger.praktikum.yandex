@@ -66,10 +66,16 @@
       cursor: pointer;
       background-color: white;
       transition: background-color 0.1s ease;
+      border-bottom: 1px solid $border;
+      margin: 0 10px 0 10px;
     }
 
     .channelCmp:hover {
       background-color: $gray4;
+    }
+
+    .channelsList {
+      margin-top: 20px
     }
   }
 
@@ -92,6 +98,30 @@
 
       .chatTitle {
         align-self: center;
+      }
+
+      .buttonAddUserToChat {
+        width: 100px;
+        height: 40px;
+        margin: 10px;
+        background-color: $primary;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        padding: 5px;
+        cursor: pointer;
+      }
+
+      .buttonRemoveUserFromChat {
+        width: 100px;
+        height: 40px;
+        margin: 10px;
+        background-color: $warning;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        padding: 5px;
+        cursor: pointer;
       }
     }
 

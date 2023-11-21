@@ -2,6 +2,8 @@ import styles from './styles.module.scss';
 
 export const tmpl = `
 {{{addChatModal}}}
+{{{modalAddUserToChat}}}
+{{{modalRemoveUserFromChat}}}
 <main class=${styles.main}>
 
   <section class=${styles.channels}>
@@ -24,6 +26,8 @@ export const tmpl = `
     <div class=${styles.chatHeader}>
       <img class=${styles.chatHeaderAvatar} src={{path}} alt='Аватар' onerror='this.style.display = "none"'>
       <div class=${styles.chatTitle}>{{{title}}}</div>
+      {{{buttonAddUserToChat}}}
+      {{{buttonRemoveUserFromChat}}}
     </div>
     <ul class=${styles.messages}></ul>
     
@@ -34,5 +38,4 @@ export const tmpl = `
   
   </section>
 </main>
-{{{addChatModal}}}
 `;
