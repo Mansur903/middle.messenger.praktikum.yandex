@@ -17,7 +17,6 @@ import { AddUsersToChat } from '../../components/Modals/AddUsersToChat';
 export class BaseChat extends Block {
   constructor() {
     super('div', {
-      isAddChatModalActive: false,
       isChatSelected: false,
     });
   }
@@ -122,12 +121,14 @@ export class BaseChat extends Block {
       this.children.channelsCmp = chats.map((channel) => new Channel({
         ...channel,
         className: styles.channelCmp,
+        onSelect: () => this.setProps({ isChatSelected: true }),
       }));
     }
 
     return this.compile(tmpl, {
       title: selectedChat?.title,
       path: this.getChatAvatarPath(),
+      isChatSelected: this.props.isChatSelected,
     });
   }
 }

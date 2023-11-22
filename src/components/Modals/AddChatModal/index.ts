@@ -85,9 +85,9 @@ export class AddChatModal extends Block {
         <div
          {{#if isActive}}
           class='{{overlayShowAddChat}}'
-          {{else}}
+         {{else}}
           class='{{overlayHideAddChat}}'
-          {{/if}}
+         {{/if}}
          id="overlay-modal"></div>
 `, {
       ...this.props,

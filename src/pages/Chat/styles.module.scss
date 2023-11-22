@@ -88,6 +88,7 @@
       height: 70px;
       border: 1px solid $border;
       display: flex;
+      justify-content: space-between;
 
       .chatHeaderAvatar {
         width: 40px;
@@ -122,6 +123,14 @@
         color: white;
         padding: 5px;
         cursor: pointer;
+      }
+
+      .chatHeaderButtons {
+
+      }
+
+      .chatHeaderChannelInfo {
+        display: flex;
       }
     }
 

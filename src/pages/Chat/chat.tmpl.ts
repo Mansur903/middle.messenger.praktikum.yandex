@@ -18,16 +18,23 @@ export const tmpl = `
         {{{this}}}
       {{/each}}
     </ul>
-    
+  
   </section>
 
   <section class=${styles.chat}>
   
     <div class=${styles.chatHeader}>
-      <img class=${styles.chatHeaderAvatar} src={{path}} alt='Аватар' onerror='this.style.display = "none"'>
-      <div class=${styles.chatTitle}>{{{title}}}</div>
-      {{{buttonAddUserToChat}}}
-      {{{buttonRemoveUserFromChat}}}
+      <div class=${styles.chatHeaderChannelInfo}>
+        <img class=${styles.chatHeaderAvatar} src={{path}} alt='Аватар' onerror='this.style.display = "none"'>
+        <div class=${styles.chatTitle}>{{{title}}}</div>
+      </div>
+      
+      <div class=${styles.chatHeaderButtons}>
+      {{#if isChatSelected}}
+        {{{buttonAddUserToChat}}}
+        {{{buttonRemoveUserFromChat}}}
+      {{/if}}
+      </div>
     </div>
     <ul class=${styles.messages}></ul>
     

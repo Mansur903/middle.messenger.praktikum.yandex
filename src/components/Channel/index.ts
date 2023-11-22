@@ -12,6 +12,7 @@ interface ChannelProps {
     click: (e:KeyboardEvent) => void;
   },
   className?: string;
+  onSelect: () => void
 }
 
 export class Channel extends Block {
@@ -22,6 +23,7 @@ export class Channel extends Block {
   init() {
     this.props.events = {
       click: () => {
+        this.props.onSelect();
         ChatsController.selectChat(this.props);
       },
     };
