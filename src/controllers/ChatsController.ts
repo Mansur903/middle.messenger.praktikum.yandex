@@ -29,6 +29,26 @@ class ChatsController {
     store.set('selectedChat.title', title);
     store.set('selectedChat.avatar', avatar);
   }
+
+  async addUser(data: {users:number[], chatId:number}) {
+    try {
+      await this.chatsApi.addUser(data);
+      const chats = await this.chatsApi.getChats();
+      store.set('chats', chats);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async removeUser(data: {users:number[], chatId:number}) {
+    try {
+      await this.chatsApi.removeUser(data);
+      const chats = await this.chatsApi.getChats();
+      store.set('chats', chats);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ChatsController();

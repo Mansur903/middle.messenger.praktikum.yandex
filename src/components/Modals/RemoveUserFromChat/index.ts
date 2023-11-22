@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { Button } from '../../Button';
 import { Input } from '../../Input';
 import ChatsController from '../../../controllers/ChatsController';
+import { store } from '../../../utils/Store';
 
 interface ModalProps {
   title: string;
@@ -41,7 +42,7 @@ export class RemoveUsersFromChat extends Block {
       type: 'text',
       className: styles.modalChatNameInput,
       placeholder: 'Введите id',
-      id: 'chatName',
+      id: 'usersDelete',
     });
 
     this.children.confirmButton = new Button({
@@ -51,8 +52,12 @@ export class RemoveUsersFromChat extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          const chatName = document.getElementById('chatName') as HTMLInputElement;
-          ChatsController.createChat(chatName.value);
+          const usersId = document.getElementById('usersDelete') as HTMLInputElement;
+          const usersArray = usersId.value.split(',').map((id) => Number(id));
+          const { selectedChat } = store.getState();
+          if (usersArray && selectedChat) {
+            ChatsController.removeUser({ users: usersArray, chatId: selectedChat?.id });
+          }
           this.close();
         },
       },

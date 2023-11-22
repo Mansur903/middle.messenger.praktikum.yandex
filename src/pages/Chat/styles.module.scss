@@ -70,6 +70,15 @@
       margin: 0 10px 0 10px;
     }
 
+    .channelCmpSelected {
+      display: flex;
+      cursor: pointer;
+      background-color: $gray4;
+      transition: background-color 0.1s ease;
+      border-bottom: 1px solid $border;
+      margin: 0 10px 0 10px;
+    }
+
     .channelCmp:hover {
       background-color: $gray4;
     }

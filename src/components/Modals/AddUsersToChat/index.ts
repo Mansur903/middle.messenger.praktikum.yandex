@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { Button } from '../../Button';
 import { Input } from '../../Input';
 import ChatsController from '../../../controllers/ChatsController';
+import { store } from '../../../utils/Store.ts';
 
 interface ModalProps {
   title: string;
@@ -36,12 +37,12 @@ export class AddUsersToChat extends Block {
       },
     });
 
-    this.children.chatNameInput = new Input({
+    this.children.usersIdInput = new Input({
       required: true,
       type: 'text',
       className: styles.modalInput,
       placeholder: 'Введите id',
-      id: 'chatName',
+      id: 'usersAdd',
     });
 
     this.children.confirmButton = new Button({
@@ -51,8 +52,12 @@ export class AddUsersToChat extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          const chatName = document.getElementById('chatName') as HTMLInputElement;
-          ChatsController.createChat(chatName.value);
+          const usersId = document.getElementById('usersAdd') as HTMLInputElement;
+          const usersArray = usersId.value.split(',').map((id) => Number(id));
+          const { selectedChat } = store.getState();
+          if (usersArray && selectedChat) {
+            ChatsController.addUser({ users: usersArray, chatId: selectedChat?.id });
+          }
           this.close();
         },
       },
@@ -77,7 +82,7 @@ export class AddUsersToChat extends Block {
            {{{closeButton}}}
            <form id="avatarForm" class=${styles.modalContent}>
              <p class=${styles.modalTitle}>{{title}}</p>
-             {{{chatNameInput}}}
+             {{{usersIdInput}}}
              {{{confirmButton}}}
            </form>
         </div>

@@ -120,7 +120,7 @@ export class BaseChat extends Block {
     if (chats) {
       this.children.channelsCmp = chats.map((channel) => new Channel({
         ...channel,
-        className: styles.channelCmp,
+        className: channel.id === selectedChat?.id ? styles.channelCmpSelected : styles.channelCmp,
         onSelect: () => this.setProps({ isChatSelected: true }),
       }));
     }
