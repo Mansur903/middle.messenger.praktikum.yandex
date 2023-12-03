@@ -36,7 +36,10 @@ export const tmpl = `
       {{/if}}
       </div>
     </div>
-    <ul class=${styles.messages}></ul>
+    
+    <ul class=${styles.messages}>
+    
+    </ul>
     
     <div class=${styles.inputWrapper}>
       {{{inputCmp}}}

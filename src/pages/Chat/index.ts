@@ -116,7 +116,7 @@ export class BaseChat extends Block {
 
   render() {
     const { chats, selectedChat } = store.getState();
-
+    console.log(store.getState());
     if (chats) {
       this.children.channelsCmp = chats.map((channel) => new Channel({
         ...channel,

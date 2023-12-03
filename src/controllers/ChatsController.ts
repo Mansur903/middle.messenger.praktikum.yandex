@@ -23,11 +23,18 @@ class ChatsController {
     }
   }
 
-  selectChat(data: { id:number, avatar:string, title:string }) {
+  async selectChat(data: { id:number, avatar:string, title:string }) {
     const { id, avatar, title } = data;
     store.set('selectedChat.id', id);
     store.set('selectedChat.title', title);
     store.set('selectedChat.avatar', avatar);
+    try {
+      const response = await this.chatsApi.getToken(id);
+      const { token } = response;
+      store.set('selectedChat.token', token);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async addUser(data: {users:number[], chatId:number}) {

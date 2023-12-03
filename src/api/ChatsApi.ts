@@ -32,4 +32,8 @@ export class ChatsAPI extends API {
   removeUser(payload: {users:number[], chatId:number}) {
     return this.http.delete('/users', payload);
   }
+
+  getToken(chatId:number):Promise<{token:string}> {
+    return this.http.post(`/token/${chatId}`);
+  }
 }
