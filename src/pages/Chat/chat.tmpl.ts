@@ -22,7 +22,6 @@ export const tmpl = `
   </section>
 
   <section class=${styles.chat}>
-  
     <div class=${styles.chatHeader}>
       <div class=${styles.chatHeaderChannelInfo}>
         <img class=${styles.chatHeaderAvatar} src={{path}} alt='Аватар' onerror='this.style.display = "none"'>
@@ -37,15 +36,12 @@ export const tmpl = `
       </div>
     </div>
     
-    <ul class=${styles.messages}>
-    
-    </ul>
+    {{{messagesCmp}}}
     
     <div class=${styles.inputWrapper}>
       {{{inputCmp}}}
       {{{buttonSendCmp}}}
     </div>
-  
   </section>
 </main>
 `;

@@ -23,8 +23,7 @@ export class Channel extends Block {
   init() {
     this.props.events = {
       click: () => {
-        this.props.onSelect();
-        ChatsController.selectChat(this.props);
+        ChatsController.selectChat(this.props).then(() => this.props.onSelect());
       },
     };
   }
@@ -38,7 +37,7 @@ export class Channel extends Block {
       <img class=${styles.avatar} src=${this.getAvatarPath()} alt='Аватар'>
       <div class=${styles.channelContent}>
         <span class=${styles.name}>{{title}}</span>
-        <span class=${styles.message}>{{last_message}}</span>
+        <span class=${styles.message}>{{last_message.content}}</span>
       </div>
       <span class=${styles.time}>{{lastMessageTime}}</span>
 `, {

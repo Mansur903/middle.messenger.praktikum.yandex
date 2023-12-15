@@ -30,7 +30,7 @@ export class Login extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          if (!validateForm(this)) return;
+          // if (!validateForm(this)) return;
           const values = Object
             .values(this.children)
             .filter((child) => child instanceof Input)
@@ -50,13 +50,13 @@ export class Login extends Block {
       className: styles.input,
       type: 'text',
       'data-regexp': fieldsRegExps.login,
-      events: {
-        blur: () => {
-          validateField(this, 'login')
-            ? (this.children.inputLoginErrorCmp as Block).setProps({ text: '' })
-            : (this.children.inputLoginErrorCmp as Block).setProps({ text: fieldsErrors.login });
-        },
-      },
+      // events: {
+      //   blur: () => {
+      //     validateField(this, 'login')
+      //       ? (this.children.inputLoginErrorCmp as Block).setProps({ text: '' })
+      //       : (this.children.inputLoginErrorCmp as Block).setProps({ text: fieldsErrors.login });
+      //   },
+      // },
     });
 
     this.children.inputPasswordCmp = new Input({
@@ -66,13 +66,13 @@ export class Login extends Block {
       className: styles.input,
       type: 'password',
       'data-regexp': fieldsRegExps.password,
-      events: {
-        blur: () => {
-          validateField(this, 'password')
-            ? (this.children.inputPasswordErrorCmp as Block).setProps({ text: '' })
-            : (this.children.inputPasswordErrorCmp as Block).setProps({ text: fieldsErrors.password });
-        },
-      },
+      // events: {
+      //   blur: () => {
+      //     validateField(this, 'password')
+      //       ? (this.children.inputPasswordErrorCmp as Block).setProps({ text: '' })
+      //       : (this.children.inputPasswordErrorCmp as Block).setProps({ text: fieldsErrors.password });
+      //   },
+      // },
     });
 
     this.children.inputLoginErrorCmp = new Error({ text: '', className: styles.error });

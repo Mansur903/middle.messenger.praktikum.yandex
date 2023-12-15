@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import {
- fieldsRegExps, getInputValues, validateField, validateForm,
+ fieldsRegExps, validateField, validateForm,
 } from '../../utils/Ancillary';
 import { Link } from '../../components/Link';
 import { Channel } from '../../components/Channel';
@@ -13,6 +13,7 @@ import imgUrl from '../../images/default-avatar.jpeg';
 import { RemoveUsersFromChat } from '../../components/Modals/RemoveUserFromChat';
 import { AddChatModal } from '../../components/Modals/AddChatModal';
 import { AddUsersToChat } from '../../components/Modals/AddUsersToChat';
+import { Messages } from '../../components/Messages/index.ts';
 
 export class BaseChat extends Block {
   constructor() {
@@ -22,6 +23,13 @@ export class BaseChat extends Block {
   }
 
   init() {
+    // const { user } = store.getState();
+
+    this.children.messagesCmp = new Messages({
+      className: styles.messages,
+      messages: [],
+    });
+
     this.children.profileLinkCmp = new Link('', {
       to: '/profile',
       label: 'Профиль >',
@@ -38,13 +46,6 @@ export class BaseChat extends Block {
       events: { blur: () => validateField(this, 'messages') },
     });
 
-    this.children.inputSearchCmp = new Input({
-      name: 'search',
-      className: styles.input,
-      type: 'text',
-      placeholder: 'Поиск',
-    });
-
     this.children.buttonSendCmp = new Button({
       label: 'Отправить',
       className: styles.button,
@@ -52,7 +53,12 @@ export class BaseChat extends Block {
       events: {
         click: () => {
           if (!validateForm(this)) return;
-          getInputValues(this);
+          const input = this.element?.querySelector('input[name=messages]') as HTMLInputElement;
+
+          this.props.socket.send(JSON.stringify({
+            content: input?.value,
+            type: 'message',
+          }));
         },
       },
     });
@@ -115,13 +121,57 @@ export class BaseChat extends Block {
   }
 
   render() {
+    const me = this;
     const { chats, selectedChat } = store.getState();
-    console.log(store.getState());
+
+    console.log(this.children);
+
     if (chats) {
       this.children.channelsCmp = chats.map((channel) => new Channel({
         ...channel,
         className: channel.id === selectedChat?.id ? styles.channelCmpSelected : styles.channelCmp,
-        onSelect: () => this.setProps({ isChatSelected: true }),
+        onSelect: () => {
+          this.setProps({ isChatSelected: true });
+          const { selectedChat, user } = store.getState();
+
+          const chatId = selectedChat?.id;
+          const userId = user?.id;
+          const token = selectedChat?.token;
+
+          const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
+          this.props.socket = socket;
+
+          console.log({ chatId, userId, token });
+
+          socket.addEventListener('open', () => {
+            console.log('Соединение установлено');
+
+            socket.send(JSON.stringify({
+              content: '0',
+              type: 'get old',
+            }));
+          });
+
+          socket.addEventListener('close', (event) => {
+            if (event.wasClean) {
+              console.log('Соединение закрыто чисто');
+            } else {
+              console.log('Обрыв соединения');
+            }
+
+            console.log(`Код: ${event.code} | Причина: ${event}`);
+          });
+
+          socket.addEventListener('error', () => {
+            console.log('Ошибка');
+          });
+
+          socket.addEventListener('message', (event) => {
+            const messages = JSON.parse(event.data);
+
+            (me.children.messagesCmp as Block).setProps({ messages });
+          });
+        },
       }));
     }
 

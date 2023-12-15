@@ -146,6 +146,9 @@
     .messages {
       height: 100%;
       border: 1px solid $border;
+      list-style: none;
+      display: flex;
+      flex-direction: column-reverse;
     }
 
     .inputWrapper {
