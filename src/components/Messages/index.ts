@@ -18,19 +18,23 @@ export class Messages extends Block {
   }
 
   render() {
-    const { user } = store.getState()
-    console.log(user)
-    console.log('render messages');
-    console.log(this.props);
+    const { user } = store.getState();
 
     if (this.props.messages) {
-      console.log(this.props.messages);
-      this.children.messagesCmp = this.props.messages.map((message: MessageProps) => {
-        return new Message({
-          content: message.content,
-          className: message.user_id === user?.id ? styles.messageOutcoming : styles.messageIncoming,
+      if (Array.isArray(this.props.messages)) {
+        this.children.messagesCmp = this.props.messages.map((message: MessageProps) => {
+          return new Message({
+            content: message.content,
+            className: message.user_id === user?.id ? styles.messageOutcoming : styles.messageIncoming,
+          });
         });
-      });
+      } else {
+        const { content, user_id } = this.props.messages;
+        this.children.messagesCmp = [new Message({
+          content,
+          className: user_id === user?.id ? styles.messageOutcoming : styles.messageIncoming,
+        }), ...this.children.messagesCmp as Block<any>[]];
+      }
     }
 
     return this.compile(`

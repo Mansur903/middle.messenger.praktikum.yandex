@@ -10,10 +10,9 @@ import { Link } from '../../components/Link';
 import { Channel } from '../../components/Channel';
 import { State, store, withStore } from '../../utils/Store';
 import imgUrl from '../../images/default-avatar.jpeg';
-import { RemoveUsersFromChat } from '../../components/Modals/RemoveUserFromChat';
 import { AddChatModal } from '../../components/Modals/AddChatModal';
-import { AddUsersToChat } from '../../components/Modals/AddUsersToChat';
-import { Messages } from '../../components/Messages/index.ts';
+import { Messages } from '../../components/Messages';
+import { ChatTooltip } from '../../components/ChatTooltip';
 
 export class BaseChat extends Block {
   constructor() {
@@ -23,8 +22,6 @@ export class BaseChat extends Block {
   }
 
   init() {
-    // const { user } = store.getState();
-
     this.children.messagesCmp = new Messages({
       className: styles.messages,
       messages: [],
@@ -51,7 +48,8 @@ export class BaseChat extends Block {
       className: styles.button,
       type: 'submit',
       events: {
-        click: () => {
+        click: (event) => {
+          event.preventDefault();
           if (!validateForm(this)) return;
           const input = this.element?.querySelector('input[name=messages]') as HTMLInputElement;
 
@@ -59,24 +57,16 @@ export class BaseChat extends Block {
             content: input?.value,
             type: 'message',
           }));
+
+          if (input.value) {
+            input.value = '';
+          }
         },
       },
     });
 
     this.children.addChatModal = new AddChatModal({
       title: 'Создать чат',
-      isActive: false,
-      buttonText: 'Добавить',
-    });
-
-    this.children.modalRemoveUserFromChat = new RemoveUsersFromChat({
-      title: 'Удалить пользователей из чата (если сразу несколько, то через запятую)',
-      isActive: false,
-      buttonText: 'Удалить',
-    });
-
-    this.children.modalAddUserToChat = new AddUsersToChat({
-      title: 'Добавить пользователя в чат (если сразу несколько, то через запятую)',
       isActive: false,
       buttonText: 'Добавить',
     });
@@ -89,6 +79,10 @@ export class BaseChat extends Block {
           (this.children.addChatModal as Block).setProps({ isActive: true });
         },
       },
+    });
+
+    this.children.chatTooltipCmp = new ChatTooltip({
+      isActive: false,
     });
 
     this.children.buttonRemoveUserFromChat = new Button({
@@ -124,8 +118,6 @@ export class BaseChat extends Block {
     const me = this;
     const { chats, selectedChat } = store.getState();
 
-    console.log(this.children);
-
     if (chats) {
       this.children.channelsCmp = chats.map((channel) => new Channel({
         ...channel,
@@ -140,8 +132,6 @@ export class BaseChat extends Block {
 
           const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${userId}/${chatId}/${token}`);
           this.props.socket = socket;
-
-          console.log({ chatId, userId, token });
 
           socket.addEventListener('open', () => {
             console.log('Соединение установлено');
@@ -168,7 +158,6 @@ export class BaseChat extends Block {
 
           socket.addEventListener('message', (event) => {
             const messages = JSON.parse(event.data);
-
             (me.children.messagesCmp as Block).setProps({ messages });
           });
         },

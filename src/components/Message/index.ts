@@ -11,10 +11,6 @@ export class Message extends Block {
     super('li', props);
   }
 
-  init() {
-    console.log(this.props);
-  }
-
   render() {
     return this.compile(`
       ${this.props.content}

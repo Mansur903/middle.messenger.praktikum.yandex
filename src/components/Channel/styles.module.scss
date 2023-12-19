@@ -19,6 +19,8 @@
   .message {
     color: $gray50;
     font-size: $fontSizeS;
+
+    overflow-y: clip;
   }
 }
 

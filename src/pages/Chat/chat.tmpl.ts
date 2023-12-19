@@ -30,18 +30,17 @@ export const tmpl = `
       
       <div class=${styles.chatHeaderButtons}>
       {{#if isChatSelected}}
-        {{{buttonAddUserToChat}}}
-        {{{buttonRemoveUserFromChat}}}
+        {{{chatTooltipCmp}}}
       {{/if}}
       </div>
     </div>
     
     {{{messagesCmp}}}
     
-    <div class=${styles.inputWrapper}>
+    <form class=${styles.inputWrapper}>
       {{{inputCmp}}}
       {{{buttonSendCmp}}}
-    </div>
+    </form>
   </section>
 </main>
 `;
