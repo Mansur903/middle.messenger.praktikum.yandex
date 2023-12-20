@@ -14,7 +14,7 @@ export const tmpl = `
       {{{inputLoginCmp}}}
       {{{inputLoginErrorCmp}}}
       {{{inputPasswordCmp}}}
-      {{{inputPasswordErrorCmp}}}
+      {{{loginErrorCmp}}}
       {{{buttonSubmitCmp}}}
       {{{linkCmp}}}
     </form>
