@@ -10,7 +10,7 @@ interface LinkProps extends PropsWithRouter {
 }
 
 class BaseLink extends Block {
-  constructor(tagName = 'a', props: LinkProps) {
+  constructor(tagName:string, props: LinkProps) {
     super(tagName, {
       events: {
         click: (event:MouseEvent) => {

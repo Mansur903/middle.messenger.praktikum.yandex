@@ -27,7 +27,7 @@ export class BaseChat extends Block {
       messages: [],
     });
 
-    this.children.profileLinkCmp = new Link('', {
+    this.children.profileLinkCmp = new Link('a', {
       to: '/profile',
       label: 'Профиль >',
       className: styles.profileLink,

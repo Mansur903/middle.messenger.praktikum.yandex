@@ -4,6 +4,7 @@ import {
 } from '../api/UsersApi';
 import { AuthAPI } from '../api/AuthApi';
 import router from '../utils/Router';
+import { Routes } from '../index.ts';
 
 class UsersController {
   private authApi = new AuthAPI();
@@ -15,7 +16,7 @@ class UsersController {
       await this.usersApi.editProfile(data);
       const user = await this.authApi.getUser();
       store.set('user', user);
-      router.go('/profile');
+      router.go(Routes.ProfilePage);
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +25,7 @@ class UsersController {
   async changePassword(data: IChangePasswordData) {
     try {
       await this.usersApi.changePassword(data);
-      router.go('/profile');
+      router.go(Routes.ProfilePage);
     } catch (error) {
       console.log(error);
     }

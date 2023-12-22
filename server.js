@@ -25,11 +25,11 @@ app.use('/404', (req, res) => {
   res.status(200).sendFile(`${__dirname}/dist/index.html`);
 });
 
-app.use('/signup', (req, res) => {
+app.use('/sign-up', (req, res) => {
   res.status(200).sendFile(`${__dirname}/dist/index.html`);
 });
 
-app.use('/editProfile', (req, res) => {
+app.use('/settings', (req, res) => {
   res.status(200).sendFile(`${__dirname}/dist/index.html`);
 });
 

@@ -2,6 +2,7 @@ import ChatsController from './ChatsController';
 import { ISignInData, ISignUpData, AuthAPI } from '../api/AuthApi';
 import { store } from '../utils/Store';
 import router from '../utils/Router';
+import { Routes } from '../index.ts';
 
 class AuthController {
   private api = new AuthAPI();
@@ -9,12 +10,8 @@ class AuthController {
   public errorMessage = '';
 
   async fetchUser() {
-    try {
-      const user = await this.api.getUser();
-      store.set('user', user);
-    } catch (error) {
-      console.log(error);
-    }
+    const user = await this.api.getUser();
+    store.set('user', user);
   }
 
   async signin(data: ISignInData) {
@@ -22,7 +19,7 @@ class AuthController {
       await this.api.signin(data);
       await this.fetchUser();
       await ChatsController.getChats();
-      router.go('/chat');
+      router.go(Routes.ChatPage);
     } catch (err) {
       this.errorMessage = 'Неверный логин или пароль';
       console.log(err, 'signin err');
@@ -34,7 +31,7 @@ class AuthController {
       await this.api.signup(data);
       await this.fetchUser();
       await ChatsController.getChats();
-      router.go('/chat');
+      router.go(Routes.ChatPage);
     } catch (err) {
       console.log(err, 'signup err');
     }
@@ -44,7 +41,7 @@ class AuthController {
     try {
       await this.api.logout();
       store.set('user', undefined);
-      router.go('/login');
+      router.go(Routes.LoginPage);
     } catch (err) {
       console.log(err, 'logout err');
     }

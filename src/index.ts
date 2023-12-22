@@ -13,16 +13,16 @@ import router from './utils/Router';
 import AuthController from './controllers/AuthController';
 import ChatsController from './controllers/ChatsController';
 
-enum Routes {
+export enum Routes {
   MainPage = '/',
   LoginPage = '/login',
   NotFoundPage = '/404',
-  SignUpPage = '/signup',
-  EditProfilePage = '/editProfile',
+  SignUpPage = '/sign-up',
+  EditProfilePage = '/settings',
   ProfilePage = '/profile',
   ChangePasswordPage = '/changePassword',
   ServerErrorPage = '/serverError',
-  ChatPage = '/chat'
+  ChatPage = '/messenger'
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -45,6 +45,10 @@ window.addEventListener('DOMContentLoaded', async () => {
       isProtectedRoute = false;
       break;
     default:
+  }
+
+  if (!(Object.values(Routes) as string[]).includes(window.location.pathname)) {
+    router.go(Routes.NotFoundPage);
   }
 
   try {

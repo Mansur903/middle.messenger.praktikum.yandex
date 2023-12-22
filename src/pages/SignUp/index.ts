@@ -17,7 +17,7 @@ export class SignUp extends Block {
   }
 
   init() {
-    this.children.linkCmp = new Link('', {
+    this.children.linkCmp = new Link('a', {
       to: '/login',
       label: 'Войти',
       className: styles.link,

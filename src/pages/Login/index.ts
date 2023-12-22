@@ -19,8 +19,8 @@ export class Login extends Block {
   init() {
     this.children.loginErrorCmp = new Error({ text: '', className: styles.loginError });
 
-    this.children.linkCmp = new Link('', {
-      to: '/signup',
+    this.children.linkCmp = new Link('a', {
+      to: '/sign-up',
       label: 'Нет аккаунта?',
       className: styles.link,
     });

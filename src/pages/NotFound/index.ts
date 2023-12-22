@@ -9,8 +9,8 @@ export class NotFound extends Block {
   }
 
   init() {
-    this.children.backLinkCmp = new Link('', {
-      to: '/chat',
+    this.children.backLinkCmp = new Link('a', {
+      to: '/messenger',
       label: 'Назад к чатам',
       className: styles.link,
     });

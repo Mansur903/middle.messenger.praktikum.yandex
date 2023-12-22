@@ -16,19 +16,19 @@ export class BaseProfile extends Block {
   init() {
     const { user } = store.getState();
 
-    this.children.editProfileLinkCmp = new Link('', {
-      to: '/editProfile',
+    this.children.editProfileLinkCmp = new Link('a', {
+      to: '/settings',
       label: 'Изменить данные',
       className: styles.link,
     });
 
-    this.children.editPasswordLinkCmp = new Link('', {
+    this.children.editPasswordLinkCmp = new Link('a', {
       to: '/changePassword',
       label: 'Изменить пароль',
       className: styles.link,
     });
 
-    this.children.closeLinkCmp = new Link('', {
+    this.children.closeLinkCmp = new Link('a', {
       to: '/main',
       label: 'Выйти',
       className: styles.redLink,
@@ -86,7 +86,7 @@ export class BaseProfile extends Block {
     });
 
     this.children.backButtonCmp = new BackButton({
-      to: '/chat',
+      to: '/messenger',
     });
   }
 
