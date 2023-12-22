@@ -1,4 +1,4 @@
-import ChatsController from './ChatsController.ts';
+import ChatsController from './ChatsController';
 import { ISignInData, ISignUpData, AuthAPI } from '../api/AuthApi';
 import { store } from '../utils/Store';
 import router from '../utils/Router';
@@ -24,8 +24,7 @@ class AuthController {
       await ChatsController.getChats();
       router.go('/chat');
     } catch (err) {
-      // @ts-ignore
-      this.errorMessage = err.reason;
+      this.errorMessage = 'Неверный логин или пароль';
       console.log(err, 'signin err');
     }
   }

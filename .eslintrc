@@ -22,7 +22,9 @@
     "no-continue": "off",
     "no-prototype-builtins": "off",
     "no-tabs": "off",
-    "indent": "off"
+    "indent": "off",
+    "camelcase": "off",
+    "no-console": "off"
   },
   "settings": {
     "import/resolver": {

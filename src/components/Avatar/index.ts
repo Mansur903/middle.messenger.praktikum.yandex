@@ -1,6 +1,5 @@
 import Block from '../../utils/Block';
 import styles from './styles.module.scss';
-import { Button } from '../Button';
 
 interface AvatarProps {
   size?: number;
@@ -16,18 +15,6 @@ interface AvatarProps {
 export class Avatar extends Block {
   constructor(props: AvatarProps) {
     super('div', props);
-  }
-
-  init() {
-    this.children.closeButton = new Button({
-      className: styles.modalCross,
-      events: {
-        click: (e) => {
-          e.preventDefault();
-					console.log(1111);
-        },
-      },
-    });
   }
 
   render() {

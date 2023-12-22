@@ -1,4 +1,4 @@
-import { API } from './Api.ts';
+import { API } from './Api';
 
 export interface ISignUpData {
   first_name: string;
