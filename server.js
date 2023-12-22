@@ -17,6 +17,10 @@ app.use('/login', (req, res) => {
   res.status(200).sendFile(`${__dirname}/dist/index.html`);
 });
 
+app.use('/messenger', (req, res) => {
+  res.status(200).sendFile(`${__dirname}/dist/index.html`);
+});
+
 app.use('/main', (req, res) => {
   res.status(200).sendFile(`${__dirname}/dist/index.html`);
 });
