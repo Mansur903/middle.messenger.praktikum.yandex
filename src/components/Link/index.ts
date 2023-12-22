@@ -10,9 +10,8 @@ interface LinkProps extends PropsWithRouter {
 }
 
 class BaseLink extends Block {
-  // @ts-ignore
-  constructor(tagName, props: LinkProps) {
-    super('a', {
+  constructor(tagName = 'a', props: LinkProps) {
+    super(tagName, {
       events: {
         click: (event:MouseEvent) => {
           event.preventDefault();
