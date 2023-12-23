@@ -1,0 +1,19 @@
+.messageIncoming {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px 10px 10px 0;
+  background-color: #f0f0f0;
+  margin: 10px 0 0 20px;
+}
+
+.messageOutcoming {
+  display: flex;
+  align-items: center;
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px 10px 0 10px;
+  background-color: #e4edfd;
+  margin: 10px 20px 0 auto;
+}

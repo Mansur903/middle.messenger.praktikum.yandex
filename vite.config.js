@@ -1,5 +1,8 @@
-import image from 'vite-image'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { defineConfig } from 'vite';
 
-export default {
-	plugins: [ image() ]
-}
+export default defineConfig({
+  server: {
+    port: 3000,
+  },
+});

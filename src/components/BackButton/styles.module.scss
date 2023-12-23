@@ -1,0 +1,23 @@
+@import '../../styles/vars';
+
+.backButtonBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  width: 70px;
+  height: 100%;
+  background-color: $gray5;
+  transition: background-color 0.2s ease;
+}
+
+.backButtonBlock:hover {
+  background-color: $gray20;
+  cursor: pointer;
+}
+
+.backArrow {
+  width: 30px;
+  height: 30px;
+}
