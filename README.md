@@ -6,9 +6,10 @@
 
 Ссылки на задеплоенные страницы в Netlify: 
 - Логин: https://deploy--effervescent-speculoos-d15f09.netlify.app/login
-- Регистрация: https://deploy--effervescent-speculoos-d15f09.netlify.app/signup
+- Регистрация: https://deploy--effervescent-speculoos-d15f09.netlify.app/sign-up
 - Профиль: https://deploy--effervescent-speculoos-d15f09.netlify.app/profile
-- Изменить профиль: https://deploy--effervescent-speculoos-d15f09.netlify.app/editProfile
+- Чат: https://deploy--effervescent-speculoos-d15f09.netlify.app/messenger
+- Изменить профиль: https://deploy--effervescent-speculoos-d15f09.netlify.app/settings
 - Изменить пароль: https://deploy--effervescent-speculoos-d15f09.netlify.app/changePassword
 - 404: https://deploy--effervescent-speculoos-d15f09.netlify.app/404
 - 500: https://deploy--effervescent-speculoos-d15f09.netlify.app/serverError
