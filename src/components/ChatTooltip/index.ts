@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { RemoveUsersFromChat } from '../Modals/RemoveUserFromChat';
 import { AddUsersToChat } from '../Modals/AddUsersToChat';
 import { DeleteChat } from '../Modals/DeleteChatModal';
+import {store} from "../../utils/Store.ts";
 
 interface ChatTooltipProps {
   className?: string,
@@ -33,7 +34,7 @@ export class ChatTooltip extends Block {
     });
 
     this.children.modalRemoveUserFromChat = new RemoveUsersFromChat({
-      title: 'Удалить пользователей из чата (если сразу несколько, то через запятую)',
+      title: 'Удалить пользователей из чата',
       isActive: false,
       buttonText: 'Удалить',
     });
@@ -55,7 +56,8 @@ export class ChatTooltip extends Block {
       className: styles.buttonRemoveUserFromChat,
       events: {
         click: () => {
-          (this.children.modalRemoveUserFromChat as Block).setProps({ isActive: true });
+          const { selectedChatUsers } = store.getState();
+          (this.children.modalRemoveUserFromChat as Block).setProps({ isActive: true, selectedChatUsers });
         },
       },
     });

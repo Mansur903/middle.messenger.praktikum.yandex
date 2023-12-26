@@ -25,11 +25,11 @@ export const tmpl = `
     <div class=${styles.chatHeader}>
       {{{chatHeaderChannelInfo}}}
       
-      <div class=${styles.chatHeaderButtons}>
       {{#if isChatSelected}}
-        {{{chatTooltipCmp}}}
+        <div class=${styles.chatHeaderButtons}>
+          {{{chatTooltipCmp}}}
+        </div>
       {{/if}}
-      </div>
     </div>
     
     {{{messagesCmp}}}

@@ -2,9 +2,9 @@ import Handlebars from 'handlebars';
 import Block from '../../../utils/Block';
 import styles from './styles.module.scss';
 import { Button } from '../../Button';
-import { Input } from '../../Input';
 import ChatsController from '../../../controllers/ChatsController';
 import { store } from '../../../utils/Store';
+import { InputCheckbox } from '../../InputCheckbox';
 
 interface ModalProps {
   title: string;
@@ -12,6 +12,7 @@ interface ModalProps {
   buttonText: string;
   isActive: boolean;
   onClose?: () => void;
+  users?: object[];
 }
 
 Handlebars.registerHelper('modalShowRemoveUserFromChat', () => {
@@ -37,13 +38,13 @@ export class RemoveUsersFromChat extends Block {
       },
     });
 
-    this.children.chatNameInput = new Input({
-      required: true,
-      type: 'text',
-      className: styles.modalChatNameInput,
-      placeholder: 'Введите id',
-      id: 'usersDelete',
-    });
+    // this.children.chatNameInput = new Input({
+    //   required: true,
+    //   type: 'text',
+    //   className: styles.modalChatNameInput,
+    //   placeholder: 'Введите id',
+    //   id: 'usersDelete',
+    // });
 
     this.children.confirmButton = new Button({
       label: 'Удалить',
@@ -52,8 +53,8 @@ export class RemoveUsersFromChat extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          const usersId = document.getElementById('usersDelete') as HTMLInputElement;
-          const usersArray = usersId.value.split(',').map((id) => Number(id));
+          const usersArray = Array.from(document.querySelectorAll('input[type="checkbox"]'))
+            .map((item) => Number(item.id));
           const { selectedChat } = store.getState();
           if (usersArray && selectedChat) {
             ChatsController.removeUser({ users: usersArray, chatId: selectedChat?.id });
@@ -71,6 +72,17 @@ export class RemoveUsersFromChat extends Block {
   }
 
   render() {
+    const { selectedChatUsers } = store.getState();
+
+    if (selectedChatUsers) {
+      console.log({ selectedChatUsers });
+      this.children.usersCmp = selectedChatUsers.map((item: { first_name: string, id: string }) => new InputCheckbox({
+        type: 'checkbox',
+        name: item.first_name,
+        id: item.id,
+      }));
+    }
+
     return this.compile(`
         <div
         {{#if isActive}}
@@ -82,7 +94,9 @@ export class RemoveUsersFromChat extends Block {
            {{{closeButton}}}
            <form id="avatarForm" class=${styles.modalContent}>
              <p class=${styles.modalTitle}>{{title}}</p>
-             {{{chatNameInput}}}
+             {{#each usersCmp}}
+                {{{this}}}
+             {{/each}}
              {{{confirmButton}}}
            </form>
         </div>

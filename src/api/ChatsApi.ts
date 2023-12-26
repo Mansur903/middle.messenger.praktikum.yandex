@@ -44,4 +44,8 @@ export class ChatsAPI extends API {
   deleteChat(id: number) {
     return this.http.delete('', { chatId: id });
   }
+
+  getChatUsers(chatId: number) {
+    return this.http.get(`/${chatId}/users`);
+  }
 }
