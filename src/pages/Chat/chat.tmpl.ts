@@ -23,10 +23,7 @@ export const tmpl = `
 
   <section class=${styles.chat}>
     <div class=${styles.chatHeader}>
-      <div class=${styles.chatHeaderChannelInfo}>
-        <img class=${styles.chatHeaderAvatar} src={{path}} alt='Аватар' onerror='this.style.display = "none"'>
-        <div class=${styles.chatTitle}>{{{title}}}</div>
-      </div>
+      {{{chatHeaderChannelInfo}}}
       
       <div class=${styles.chatHeaderButtons}>
       {{#if isChatSelected}}

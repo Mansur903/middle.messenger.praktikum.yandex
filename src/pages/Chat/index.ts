@@ -13,6 +13,7 @@ import imgUrl from '../../images/default-avatar.jpeg';
 import { AddChatModal } from '../../components/Modals/AddChatModal';
 import { Messages } from '../../components/Messages';
 import { ChatTooltip } from '../../components/ChatTooltip';
+import { ChatHeaderChannelInfo } from '../../components/ChatHeaderChannelInfo';
 
 export class BaseChat extends Block {
   constructor() {
@@ -104,6 +105,10 @@ export class BaseChat extends Block {
         },
       },
     });
+
+    this.children.chatHeaderChannelInfo = new ChatHeaderChannelInfo({
+      className: styles.chatHeaderChannelInfo,
+    });
   }
 
   getChatAvatarPath() {
@@ -157,7 +162,14 @@ export class BaseChat extends Block {
           });
 
           socket.addEventListener('message', (event) => {
-            const messages = JSON.parse(event.data);
+            let messages = {};
+
+            try {
+              messages = JSON.parse(event.data);
+            } catch (error) {
+              console.log(error);
+            }
+
             (me.children.messagesCmp as Block).setProps({ messages });
           });
         },
