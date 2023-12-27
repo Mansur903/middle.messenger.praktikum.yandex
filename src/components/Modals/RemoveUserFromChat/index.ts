@@ -38,14 +38,6 @@ export class RemoveUsersFromChat extends Block {
       },
     });
 
-    // this.children.chatNameInput = new Input({
-    //   required: true,
-    //   type: 'text',
-    //   className: styles.modalChatNameInput,
-    //   placeholder: 'Введите id',
-    //   id: 'usersDelete',
-    // });
-
     this.children.confirmButton = new Button({
       label: 'Удалить',
       type: 'submit',
@@ -80,6 +72,7 @@ export class RemoveUsersFromChat extends Block {
         type: 'checkbox',
         name: item.first_name,
         id: item.id,
+        className: styles.checkbox,
       }));
     }
 
