@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { RemoveUsersFromChat } from '../Modals/RemoveUserFromChat';
 import { AddUsersToChat } from '../Modals/AddUsersToChat';
 import { DeleteChat } from '../Modals/DeleteChatModal';
-import {store} from "../../utils/Store.ts";
+import { store } from '../../utils/Store.ts';
 
 interface ChatTooltipProps {
   className?: string,

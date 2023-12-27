@@ -172,7 +172,7 @@ export class BaseChat extends Block {
               console.log(error);
             }
 
-            (me.children.messagesCmp as Block).setProps({messages});
+            (me.children.messagesCmp as Block).setProps({ messages });
           });
         },
       }));
