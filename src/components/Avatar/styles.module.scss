@@ -1,0 +1,26 @@
+.avatar {
+  width: 100px;
+  border-radius: 100%;
+}
+
+.avatarContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.avatarContainer:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.avatarContainer:hover .tooltip {
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  top: 30%;
+  color: black;
+  opacity: 0;
+}
+

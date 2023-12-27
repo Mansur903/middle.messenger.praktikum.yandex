@@ -21,6 +21,28 @@
       font-size: $fontSizeDisplayXS;
     }
 
+    .error {
+      font-size: 12px;
+      display: block;
+      width: 100%;
+      line-height: 12px;
+      text-align: left;
+      margin-left: 10px;
+      position: relative;
+      top: -10px;
+      color: red;
+    }
+
+    .loginError {
+      font-size: 12px;
+      width: 100%;
+      line-height: 12px;
+      text-align: left;
+      position: relative;
+      top: -10px;
+      color: red;
+    }
+
     .input {
       width: 90%;
       padding: 8px;
@@ -38,6 +60,12 @@
       border-radius: 5px;
       cursor: pointer;
       margin: 70px 0 20px 0;
+    }
+
+    .link {
+      text-decoration: underline;
+      cursor: pointer;
+      color: $primary;
     }
   }
 }

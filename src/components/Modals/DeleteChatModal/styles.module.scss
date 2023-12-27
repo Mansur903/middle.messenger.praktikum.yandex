@@ -1,0 +1,96 @@
+@import '../../../styles/vars';
+
+.modalOverlay {
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 20;
+  transition: .3s all;
+}
+
+
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  max-width: 350px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 30;
+  box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
+  text-align: center;
+  padding: 30px;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: 0.3s all;
+
+  .modalCross {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  .modalCross:hover {
+    opacity: 1;
+  }
+  .modalCross:before, .modalCross:after {
+    position: absolute;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+    top: -2px;
+    left: 7px;
+  }
+  .modalCross:before {
+    transform: rotate(45deg);
+  }
+  .modalCross:after {
+    transform: rotate(-45deg);
+  }
+
+  .modalContent {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .modalTitle {
+      margin-bottom: 20px;
+    }
+
+    .modalChatNameInput {
+      width: 95%;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+
+    .modalConfirmButton {
+      margin-top: 20px;
+      width: 100px;
+      align-self: center;
+      background-color: $error;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      padding: 5px;
+      cursor: pointer;
+    }
+  }
+}
+
+.active{
+  opacity: 1;
+  visibility: visible;
+}

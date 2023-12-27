@@ -20,9 +20,8 @@
       margin: 0 25px
     }
 
-    .avatar {
-      width: 100px;
-      border-radius: 100%;
+    .avatarWrapper {
+      display: inline-block;
     }
 
     .formList {
@@ -34,19 +33,35 @@
       justify-content: space-between;
       border-bottom: 1px solid $gray8;
       margin-bottom: 8px;
+
+      .inputWrapper {
+
+        .input {
+          width: 100%;
+          padding: 8px 0 8px 0;
+          border: none;
+          margin-right: 5px;
+          margin-bottom: 3px;
+          color: $gray50;
+          text-align: right;
+        }
+
+        .error {
+          font-size: 12px;
+          display: block;
+          width: 100%;
+          line-height: 12px;
+          text-align: left;
+          margin-left: 10px;
+          position: relative;
+          color: red;
+        }
+      }
     }
 
     .sign {
       line-height: 35px;
       font-size: $fontSizeMD;
-    }
-
-    .input {
-      width: 30%;
-      padding: 8px;
-      border: none;
-      color: $gray50;
-      text-align: right
     }
 
     .button {
