@@ -24,7 +24,8 @@
     "no-tabs": "off",
     "indent": "off",
     "camelcase": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "settings": {
     "import/resolver": {
