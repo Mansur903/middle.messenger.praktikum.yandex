@@ -4,14 +4,12 @@ import Router from './Router.ts';
 import Block from './Block';
 
 describe('Router', () => {
-	// @ts-ignore
-	global.window.history.back = () => {
+	(global as any).window.history.back = () => {
 		if (typeof window.onpopstate === 'function') {
 			window.onpopstate({ currentTarget: window } as unknown as PopStateEvent);
 		}
 	};
-	// @ts-ignore
-	global.window.history.forward = () => {
+	(global as any).window.history.forward = () => {
 		if (typeof window.onpopstate === 'function') {
 			window.onpopstate({ currentTarget: window } as unknown as PopStateEvent);
 		}
@@ -28,8 +26,7 @@ describe('Router', () => {
 	} as unknown as Block;
 
 	it('use() should return Router instance', () => {
-		// @ts-ignore
-		const result = Router.use('/', BlockMock);
+		const result = Router.use('/', (BlockMock as any));
 
 		expect(result).to.eq(Router);
 	});
@@ -37,8 +34,7 @@ describe('Router', () => {
 	describe('.back()', () => {
 		it('should render a page on history back action', () => {
 			Router
-				// @ts-ignore
-				.use('/', BlockMock)
+				.use('/', (BlockMock as any))
 				.start();
 
 			Router.back();
@@ -49,8 +45,7 @@ describe('Router', () => {
 
 	it('should render a page on start', () => {
 		Router
-			// @ts-ignore
-			.use('/', BlockMock)
+			.use('/', (BlockMock as any))
 			.start();
 
 		expect(getContentFake.callCount).to.eq(1);
