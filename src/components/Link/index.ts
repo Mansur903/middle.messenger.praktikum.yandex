@@ -1,5 +1,5 @@
-import Block from '../../utils/Block';
-import { PropsWithRouter, withRouter } from '../../hooks/withRouter';
+import Block from '../../utils/Block.ts';
+import { PropsWithRouter, withRouter } from '../../hooks/withRouter.ts';
 
 interface LinkProps extends PropsWithRouter {
   to: string;

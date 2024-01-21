@@ -2,6 +2,10 @@
 
 import Block from './Block';
 
+// export interface Block<P extends Record<string, any> = any> {
+//   new(props: P): Block<P>;
+// }
+
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
 }
@@ -122,6 +126,13 @@ class Router {
 
   public forward() {
     this.history.forward();
+  }
+
+  public reset() {
+    // @ts-ignore
+    delete Router.__instance;
+
+    new Router(this.rootQuery);
   }
 
   private getRoute(pathname: string) {
