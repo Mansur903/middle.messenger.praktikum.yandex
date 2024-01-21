@@ -4,12 +4,12 @@ import Router from './Router.ts';
 import Block from './Block';
 
 describe('Router', () => {
-	(global as any).window.history.back = () => {
+	global.window.history.back = () => {
 		if (typeof window.onpopstate === 'function') {
 			window.onpopstate({ currentTarget: window } as unknown as PopStateEvent);
 		}
 	};
-	(global as any).window.history.forward = () => {
+	global.window.history.forward = () => {
 		if (typeof window.onpopstate === 'function') {
 			window.onpopstate({ currentTarget: window } as unknown as PopStateEvent);
 		}
