@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --open",
-    "lint": "eslint 'src/**/*.ts' && npx stylelint src/**/*.scss && tsc src/**/*.ts",
+    "lint": "eslint 'src/**/*.ts' && npx stylelint src/**/*.scss",
+    "test": "mocha",
+    "prepare": "husky install",
     "prebuild": "tsc --noEmit",
     "build": "npm run prebuild && vite build",
     "preview": "vite preview",
@@ -25,6 +27,7 @@
     "esm-loader-css": "^1.0.6",
     "esm-loader-typescript": "^1.0.6",
     "esmock": "^2.6.2",
+    "husky": "^8.0.3",
     "jsdom": "^20.0.1",
     "mocha": "^10.2.0",
     "node-esm-loader": "^0.3.0",
@@ -46,5 +49,10 @@
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
