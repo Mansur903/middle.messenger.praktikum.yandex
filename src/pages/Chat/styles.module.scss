@@ -1,0 +1,160 @@
+@import '../../styles/vars';
+@import '../../styles/typography';
+
+.main {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+
+  .channels {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $border;
+    min-width: 300px;
+
+    .avatar {
+      width: 50px;
+      border-radius: 100%;
+      margin: 10px;
+    }
+
+    .channelsHeader {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid $border;
+
+      .createChatButton {
+        color: $gray50;
+        margin: 10px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: none;
+        border: none;
+        font-size: 15px;
+      }
+
+      .createChatButton:hover {
+        color: $primary;
+      }
+
+      .searchInput::placeholder {
+        text-align: center;
+      }
+
+      .profileLink {
+        color: $gray50;
+        margin: 10px 10px 0 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        border-bottom: 1px solid $border;
+      }
+
+      .profileLink:hover {
+        color: $primary;
+      }
+    }
+
+    .channelCmp {
+      display: flex;
+      cursor: pointer;
+      background-color: white;
+      transition: background-color 0.1s ease;
+      border-bottom: 1px solid $border;
+      margin: 0 10px 0 10px;
+      max-height: 76px;
+    }
+
+    .channelCmpSelected {
+      display: flex;
+      cursor: pointer;
+      background-color: $gray4;
+      transition: background-color 0.1s ease;
+      border-bottom: 1px solid $border;
+      margin: 0 10px 0 10px;
+      max-height: 76px;
+    }
+
+    .channelCmp:hover {
+      background-color: $gray4;
+    }
+
+    .channelsList {
+      margin-top: 20px
+    }
+  }
+
+  .chat {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    .chatHeader {
+      height: 70px;
+      border: 1px solid $border;
+      display: flex;
+      justify-content: space-between;
+
+      .chatHeaderAvatar {
+        width: 40px;
+        height: 40px;
+        margin: 10px 20px;
+        border-radius: 50%;
+      }
+
+      .chatTitle {
+        align-self: center;
+      }
+
+      .chatHeaderButtons {
+
+      }
+
+      .chatHeaderChannelInfo {
+        display: flex;
+      }
+    }
+
+    .messages {
+      height: 100%;
+      border: 1px solid $border;
+      list-style: none;
+      display: flex;
+      flex-direction: column-reverse;
+      padding-bottom: 10px;
+      overflow-y: scroll;
+    }
+
+    .inputWrapper {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      margin: 5px 5px;
+
+      .input {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 90%;
+        height: 70%;
+        margin: 10px;
+        background: $backgroundGrey;
+        border-radius: 10px;
+        border: 1px solid $border;
+        padding: 5px;
+      }
+      .button {
+        display: inline-block;
+        width: 8%;
+        overflow: clip;
+        height: 70%;
+        margin: 10px;
+      }
+    }
+  }
+}

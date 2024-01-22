@@ -21,6 +21,18 @@
       font-size: $fontSizeDisplayXS;
     }
 
+    .error {
+      font-size: 12px;
+      display: block;
+      width: 100%;
+      line-height: 12px;
+      text-align: left;
+      margin-left: 10px;
+      position: relative;
+      top: -10px;
+      color: red;
+    }
+
     .input {
       width: 90%;
       padding: 8px;
@@ -40,8 +52,10 @@
       margin: 10px 0;
     }
 
-    .blueLink {
-      color: $primary
+    .link {
+      text-decoration: underline;
+      cursor: pointer;
+      color: $primary;
     }
   }
 }

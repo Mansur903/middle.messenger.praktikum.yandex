@@ -4,23 +4,56 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --open",
+    "lint": "eslint 'src/**/*.ts' && npx stylelint src/**/*.scss",
+    "test": "mocha",
+    "prepare": "husky install",
+    "prebuild": "tsc --noEmit",
+    "build": "npm run prebuild && vite build",
     "preview": "vite preview",
     "start": "npm run build && node server.js"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.5",
+    "@types/sinon": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "chai": "^5.0.0",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "esm-loader-css": "^1.0.6",
+    "esm-loader-typescript": "^1.0.6",
+    "esmock": "^2.6.2",
+    "husky": "^8.0.3",
+    "jsdom": "^20.0.1",
+    "lint-staged": "^15.2.0",
+    "mocha": "^10.2.0",
+    "node-esm-loader": "^0.3.0",
+    "postcss-scss": "^4.0.9",
     "sass": "^1.68.0",
+    "sinon": "^17.0.1",
+    "stylelint": "^15.10.3",
+    "stylelint-scss": "^5.2.1",
+    "typescript": "^5.2.2",
     "vite": "^4.4.5",
     "vite-image": "^1.0.2"
   },
   "dependencies": {
     "express": "^4.18.2",
     "handlebars": "^4.7.8",
+    "nanoid": "3",
     "normalize.css": "^8.0.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "ts-node": "^10.9.2"
   },
   "engines": {
     "node": ">=12.0.0"
+  },
+  "lint-staged": {
+    "*": "eslint 'src/**/*.ts' && npx stylelint src/**/*.scss"
   }
 }

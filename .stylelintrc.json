@@ -1,0 +1,15 @@
+{
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "color-hex-case": "lower"
+  },
+  "overrides": [
+    {
+      "files": ["*.scss", "**/*.scss"],
+      "customSyntax": "postcss-scss"
+    }
+  ],
+  "ignoreFiles": [
+    "build/*"
+  ]
+}

@@ -16,11 +16,6 @@
     border-radius: 10px;
     text-align: center;
 
-    .link {
-      color: inherit;
-      text-decoration: inherit;
-    }
-
     .header {
       margin: 10px 0;
     }
@@ -73,13 +68,18 @@
         padding: 10px 0;
         border-bottom: 1px solid $gray8;
 
-        .blueLink {
-          color: $primary
-        }
+      }
 
-        .redLink {
-          color: $error
-        }
+      .link {
+        color: $primary;
+        text-decoration: inherit;
+        cursor: pointer;
+      }
+
+      .redLink {
+        color: $error;
+        text-decoration: inherit;
+        cursor: pointer;
       }
     }
   }
