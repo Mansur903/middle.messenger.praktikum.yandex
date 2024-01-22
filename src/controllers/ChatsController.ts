@@ -56,6 +56,36 @@ class ChatsController {
       console.log(error);
     }
   }
+
+  async changeAvatar(data: FormData) {
+    try {
+      await this.chatsApi.changeAvatar(data);
+      const chats = await this.chatsApi.getChats();
+      store.set('chats', chats);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteChat(id: number) {
+    try {
+      await this.chatsApi.deleteChat(id);
+      const chats = await this.chatsApi.getChats();
+      store.set('chats', chats);
+      store.set('selectedChat', null);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getChatUsers(chatId: number) {
+    try {
+      const users = await this.chatsApi.getChatUsers(chatId);
+      store.set('selectedChatUsers', users);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default new ChatsController();

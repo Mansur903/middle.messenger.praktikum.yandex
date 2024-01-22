@@ -1,3 +1,5 @@
+@import '../../../styles/vars';
+
 .modalOverlay {
   opacity: 0;
   visibility: hidden;
@@ -12,6 +14,7 @@
   transition: .3s all;
 }
 
+
 .modal {
   opacity: 0;
   visibility: hidden;
@@ -22,7 +25,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 30;
-
   box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2);
   text-align: center;
   padding: 30px;
@@ -68,15 +70,22 @@
       margin-bottom: 20px;
     }
 
-    .modalFileInput {
-      margin-bottom: 20px;
-      padding-left: 20px;
+    .modalChatNameInput {
+      width: 95%;
+      padding: 8px;
+      margin-bottom: 16px;
     }
 
     .modalConfirmButton {
       margin-top: 20px;
       width: 100px;
       align-self: center;
+      background-color: $error;
+      border-radius: 8px;
+      border: none;
+      color: white;
+      padding: 5px;
+      cursor: pointer;
     }
   }
 }

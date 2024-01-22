@@ -124,6 +124,13 @@ class Router {
     this.history.forward();
   }
 
+  public reset() {
+    // @ts-ignore
+    delete Router.__instance;
+
+    new Router(this.rootQuery);
+  }
+
   private getRoute(pathname: string) {
     return this.routes.find((route) => route.match(pathname));
   }

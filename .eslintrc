@@ -1,7 +1,8 @@
 {
   "extends": "airbnb-base",
   "env": {
-    "browser": true
+    "browser": true,
+    "mocha": true
   },
   "rules": {
     "max-len": [2, 150],
@@ -24,7 +25,8 @@
     "no-tabs": "off",
     "indent": "off",
     "camelcase": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "settings": {
     "import/resolver": {

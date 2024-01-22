@@ -4,6 +4,8 @@ import styles from './styles.module.scss';
 import { Button } from '../Button';
 import { RemoveUsersFromChat } from '../Modals/RemoveUserFromChat';
 import { AddUsersToChat } from '../Modals/AddUsersToChat';
+import { DeleteChat } from '../Modals/DeleteChatModal';
+import { store } from '../../utils/Store.ts';
 
 interface ChatTooltipProps {
   className?: string,
@@ -32,7 +34,7 @@ export class ChatTooltip extends Block {
     });
 
     this.children.modalRemoveUserFromChat = new RemoveUsersFromChat({
-      title: 'Удалить пользователей из чата (если сразу несколько, то через запятую)',
+      title: 'Удалить пользователей из чата',
       isActive: false,
       buttonText: 'Удалить',
     });
@@ -43,12 +45,19 @@ export class ChatTooltip extends Block {
       buttonText: 'Добавить',
     });
 
+    this.children.modalDeleteChat = new DeleteChat({
+      title: 'Вы действительно хотите удалить чат?',
+      isActive: false,
+      buttonText: 'Удалить',
+    });
+
     this.children.buttonRemoveUserFromChat = new Button({
       label: 'Удалить пользователя',
       className: styles.buttonRemoveUserFromChat,
       events: {
         click: () => {
-          (this.children.modalRemoveUserFromChat as Block).setProps({ isActive: true });
+          const { selectedChatUsers } = store.getState();
+          (this.children.modalRemoveUserFromChat as Block).setProps({ isActive: true, selectedChatUsers });
         },
       },
     });
@@ -59,6 +68,17 @@ export class ChatTooltip extends Block {
       events: {
         click: () => {
           (this.children.modalAddUserToChat as Block).setProps({ isActive: true });
+        },
+      },
+    });
+
+    this.children.buttonDeleteChat = new Button({
+      label: 'Удалить чат',
+      className: styles.buttonDeleteChat,
+      events: {
+        click: () => {
+          console.log(1);
+          (this.children.modalDeleteChat as Block).setProps({ isActive: true });
         },
       },
     });
@@ -88,9 +108,11 @@ export class ChatTooltip extends Block {
        >
        {{{buttonAddUserToChat}}}
        {{{buttonRemoveUserFromChat}}}
+       {{{buttonDeleteChat}}}
        </div>
        {{{modalRemoveUserFromChat}}}
        {{{modalAddUserToChat}}}
+       {{{modalDeleteChat}}}
 `, {
       ...this.props,
     });

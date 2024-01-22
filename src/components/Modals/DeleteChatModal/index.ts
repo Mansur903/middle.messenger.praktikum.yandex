@@ -2,9 +2,9 @@ import Handlebars from 'handlebars';
 import Block from '../../../utils/Block';
 import styles from './styles.module.scss';
 import { Button } from '../../Button';
+// import { Input } from '../../Input';
 import ChatsController from '../../../controllers/ChatsController';
 import { store } from '../../../utils/Store';
-import { InputCheckbox } from '../../InputCheckbox';
 
 interface ModalProps {
   title: string;
@@ -12,18 +12,17 @@ interface ModalProps {
   buttonText: string;
   isActive: boolean;
   onClose?: () => void;
-  users?: object[];
 }
 
-Handlebars.registerHelper('modalShowRemoveUserFromChat', () => {
+Handlebars.registerHelper('modalShowDeleteChat', () => {
   return `${styles.modal} ${styles.active}`;
 });
 
-Handlebars.registerHelper('overlayShowRemoveUserFromChat', () => {
+Handlebars.registerHelper('overlayShowDeleteChat', () => {
   return `${styles.modalOverlay} ${styles.active}`;
 });
 
-export class RemoveUsersFromChat extends Block {
+export class DeleteChat extends Block {
   constructor(props: ModalProps) {
     super('div', props);
   }
@@ -38,6 +37,14 @@ export class RemoveUsersFromChat extends Block {
       },
     });
 
+    // this.children.chatNameInput = new Input({
+    //   required: true,
+    //   type: 'text',
+    //   className: styles.modalChatNameInput,
+    //   placeholder: 'Введите id',
+    //   id: 'usersDelete',
+    // });
+
     this.children.confirmButton = new Button({
       label: 'Удалить',
       type: 'submit',
@@ -45,11 +52,11 @@ export class RemoveUsersFromChat extends Block {
       events: {
         click: (e) => {
           e.preventDefault();
-          const usersArray = Array.from(document.querySelectorAll('input[type="checkbox"]'))
-            .map((item) => Number(item.id));
+          // const usersId = document.getElementById('usersDelete') as HTMLInputElement;
+          // const usersArray = usersId.value.split(',').map((id) => Number(id));
           const { selectedChat } = store.getState();
-          if (usersArray && selectedChat) {
-            ChatsController.removeUser({ users: usersArray, chatId: selectedChat?.id });
+          if (selectedChat) {
+            ChatsController.deleteChat(selectedChat?.id);
           }
           this.close();
         },
@@ -64,47 +71,33 @@ export class RemoveUsersFromChat extends Block {
   }
 
   render() {
-    const { selectedChatUsers } = store.getState();
-
-    if (selectedChatUsers) {
-      console.log({ selectedChatUsers });
-      this.children.usersCmp = selectedChatUsers.map((item: { first_name: string, id: string }) => new InputCheckbox({
-        type: 'checkbox',
-        name: item.first_name,
-        id: item.id,
-        className: styles.checkbox,
-      }));
-    }
-
     return this.compile(`
         <div
         {{#if isActive}}
-          class='{{modalShowRemoveUserFromChat}}'
+          class='{{modalShowDeleteChat}}'
         {{else}}
-          class='{{modalHideRemoveUserFromChat}}'
+          class='{{modalHideDeleteChat}}'
         {{/if}}
         data-modal="1">
            {{{closeButton}}}
            <form id="avatarForm" class=${styles.modalContent}>
              <p class=${styles.modalTitle}>{{title}}</p>
-             {{#each usersCmp}}
-                {{{this}}}
-             {{/each}}
+             {{{chatNameInput}}}
              {{{confirmButton}}}
            </form>
         </div>
         
         <div
          {{#if isActive}}
-          class='{{overlayShowRemoveUserFromChat}}'
+          class='{{overlayShowDeleteChat}}'
           {{else}}
-          class='{{overlayHideRemoveUserFromChat}}'
+          class='{{overlayHideDeleteChat}}'
          {{/if}}
          id="overlay-modal"></div>
 `, {
       ...this.props,
-      modalHideRemoveUserFromChat: styles.modal,
-      overlayHideRemoveUserFromChat: styles.modalOverlay,
+      modalHideDeleteChat: styles.modal,
+      overlayHideDeleteChat: styles.modalOverlay,
       modalCross: styles.modalCross,
     });
   }

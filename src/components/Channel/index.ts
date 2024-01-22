@@ -29,7 +29,8 @@ export class Channel extends Block {
   }
 
   getAvatarPath() {
-    return this.props.avatar || imgUrl;
+    return this.props.avatar ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`
+      : imgUrl;
   }
 
   render() {

@@ -8,6 +8,7 @@ export interface State {
   user?: IUser
   chats?: IChats[]
   selectedChat?: { id:number, avatar:string, title:string, token:string }
+  selectedChatUsers?: { first_name: string, id: string }[]
 }
 
 enum StorageEvent {

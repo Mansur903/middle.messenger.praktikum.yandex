@@ -2,7 +2,7 @@
 
 .tooltip {
   width: 210px;
-  height: 90px;
+  height: 130px;
   position: absolute;
   right: 10px;
   top: 54px;
@@ -27,6 +27,18 @@
     height: 30px;
     margin: 0 10px 10px 10px;
     background-color: $warning;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .buttonDeleteChat {
+    width: 190px;
+    height: 30px;
+    margin: 0 10px 10px 10px;
+    background-color: $error;
     border-radius: 8px;
     border: none;
     color: white;

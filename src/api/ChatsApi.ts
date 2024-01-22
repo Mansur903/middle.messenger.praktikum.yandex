@@ -18,7 +18,7 @@ export class ChatsAPI extends API {
   }
 
   getChats() {
-    return this.http.get();
+    return this.http.get('');
   }
 
   createChat(payload: object) {
@@ -35,5 +35,17 @@ export class ChatsAPI extends API {
 
   getToken(chatId:number):Promise<{token:string}> {
     return this.http.post(`/token/${chatId}`);
+  }
+
+  changeAvatar(data: FormData) {
+    return this.http.put('/avatar', data);
+  }
+
+  deleteChat(id: number) {
+    return this.http.delete('', { chatId: id });
+  }
+
+  getChatUsers(chatId: number) {
+    return this.http.get(`/${chatId}/users`);
   }
 }
